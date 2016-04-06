@@ -1,1 +1,1 @@
-import '/imports/ui/pages/loading.html';
+import '../../../ui/pages/loading.html';

@@ -1,1 +1,0 @@
-import '/imports/ui/layouts/mainLayout.js';

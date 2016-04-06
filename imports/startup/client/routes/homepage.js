@@ -1,1 +1,6 @@
-import '/imports/ui/pages/homepage.html';
+import '../../../ui/pages/homepage.html';
+
+Router.route('/', {
+    name: 'home',
+    template: 'homePage'
+});

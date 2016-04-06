@@ -1,1 +1,6 @@
-import '/imports/ui/pages/projects.html';
+import '../../../ui/pages/projects.html';
+
+Router.route('/projects', {
+    name: 'projects',
+    template: 'projects'
+});
