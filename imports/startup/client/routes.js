@@ -8,35 +8,30 @@ import '/imports/ui/layouts/content/tasks.html';
 import '/imports/ui/layouts/content/reports.html';
 
 Router.configure({
-  layoutTemplate: 'mainLayout'
+  layoutTemplate: 'main-layout'
 });
 
 Router.route('/', {
     name: 'home',
-    template: 'homePage',
-    path: '/'
+    template: 'homePage'
 });
 
-Router.route('/', {
+Router.route('/organisation', {
     name: 'organisation',
-    template: 'organisation',
-    path: '/organisation'
+    template: 'organisation'
 });
 
-Router.route('/', {
+Router.route('/projects', {
     name: 'projects',
-    template: 'projects',
-    path: '/projects'
+    template: 'projects'
 });
 
-Router.route('/', {
+Router.route('/tasks', {
     name: 'tasks',
-    template: 'tasks',
-    path: '/tasks'
+    template: 'tasks'
 });
 
-Router.route('/', {
+Router.route('/reports', {
     name: 'reports',
-    template: 'reports',
-    path: '/reports'
+    template: 'reports'
 });
