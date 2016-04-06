@@ -1,0 +1,1 @@
+import '/imports/ui/pages/notFound.html';
