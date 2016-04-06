@@ -1,11 +1,11 @@
 import { Template } from 'meteor/templating';
 
 import '/imports/ui/layouts/mainLayout.js';
-import '/imports/ui/layouts/content/homepage.html';
-import '/imports/ui/layouts/content/organisation.html';
-import '/imports/ui/layouts/content/projects.html';
-import '/imports/ui/layouts/content/tasks.html';
-import '/imports/ui/layouts/content/reports.html';
+import '/imports/ui/pages/homepage.html';
+import '/imports/ui/pages/organisation.html';
+import '/imports/ui/pages/projects.html';
+import '/imports/ui/pages/tasks.html';
+import '/imports/ui/pages/reports.html';
 
 Router.configure({
   layoutTemplate: 'main-layout'
