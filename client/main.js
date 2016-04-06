@@ -1,1 +1,1 @@
-import '../imports/startup/client';
+import '../imports/startup/client/routes/hooks.js';
