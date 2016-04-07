@@ -87,7 +87,6 @@ tracker@1.0.12
 twbs:bootstrap@3.3.6
 ui@1.0.10
 underscore@1.0.7
-underscorestring:underscore.string@3.3.4
 url@1.0.8
 webapp@1.2.7
 webapp-hashing@1.0.8

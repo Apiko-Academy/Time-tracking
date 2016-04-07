@@ -8,7 +8,7 @@ Accounts.ui.config({
     inputType: 'text',
     visible: true,
     validate: function(value, errorFunction) {
-      if (!s(value).trim()) {
+      if (!value.trim()) {
         errorFunction("Please write your first name");
         return false;
       } else {
@@ -27,7 +27,7 @@ Accounts.ui.config({
     visible: true,
     saveToProfile: false,
     validate: function(value, errorFunction) {
-      if (s(value).trim()) {
+      if (value) {
         return true;
       } else {
         errorFunction('You must accept the terms and conditions.');
