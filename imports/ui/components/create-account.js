@@ -13,7 +13,7 @@ Accounts.createUser = function(options, callback) {
 
   // Replace password with the hashed password.
   options.password = Accounts._hashPassword(options.password);
-  options.profile.url = '';
+  options.profile.profileImage = '';
 
   Accounts.callLoginMethod({
     methodName: 'createUser',
