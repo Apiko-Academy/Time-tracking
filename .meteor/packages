@@ -19,3 +19,7 @@ ecmascript              # Enable ECMAScript2015+ syntax in app code
 
 iron:router
 twbs:bootstrap
+accounts-password
+accounts-base
+less
+ian:accounts-ui-bootstrap-3

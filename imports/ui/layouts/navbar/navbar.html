@@ -1,11 +1,20 @@
 <template name="navbar">
-	<nav class="navbar navbar-default">    	
-		<div class="container-fluid">
-			<div class="collapse navbar-collapse">
-				<ul class="nav navbar-nav">
-					{{> topmenu}}		
-				</ul>
-			</div>
+	<div class="navbar navbar-default" role="navigation">
+		<div class="navbar-header">
+			<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target=".navbar-collapse">
+				<span class="sr-only">Toggle navigation</span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+			</button>
 		</div>
-	</nav>
+		<div class="navbar-collapse collapse">
+			<ul class="nav navbar-nav navbar-left">
+					{{> topmenu}}		
+			</ul>
+			<ul class="nav navbar-nav navbar-right">
+				{{> loginButtons}}	
+			</ul>
+		</div>
+	</div>
 </template>
