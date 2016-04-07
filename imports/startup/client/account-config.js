@@ -3,7 +3,7 @@ Accounts.ui.config({
   requestPermissions: {},
   // passwordSignupFields: 'USERNAME_AND_EMAIL',
   extraSignupFields: [{
-    fieldName: 'first-name',
+    fieldName: 'firstname',
     fieldLabel: 'First name',
     inputType: 'text',
     visible: true,
@@ -16,7 +16,7 @@ Accounts.ui.config({
       }
     }
   }, {
-    fieldName: 'last-name',
+    fieldName: 'lastname',
     fieldLabel: 'Last name',
     inputType: 'text',
     visible: true,

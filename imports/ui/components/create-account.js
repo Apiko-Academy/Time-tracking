@@ -2,6 +2,7 @@ import { Accounts } from 'meteor/accounts-base';
 
 Accounts.createUser = function(options, callback) {
   options = _.clone(options); // we'll be modifying options
+  console.log(options);
 
   if (typeof options.password !== 'string')
     throw new Error("options.password must be a string");
