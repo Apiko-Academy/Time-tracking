@@ -8,6 +8,7 @@ Accounts.ui.config({
     inputType: 'text',
     visible: true,
     validate: function(value, errorFunction) {
+      value.trim();
       if (!value) {
         errorFunction("Please write your first name");
         return false;
@@ -27,6 +28,7 @@ Accounts.ui.config({
     visible: true,
     saveToProfile: false,
     validate: function(value, errorFunction) {
+      value.trim();
       if (value) {
         return true;
       } else {
