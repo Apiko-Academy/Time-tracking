@@ -20,5 +20,13 @@ Accounts.ui.config({
     fieldLabel: 'Last name',
     inputType: 'text',
     visible: true,
+    validate: function(value, errorFunction) {
+      if (!value.trim()) {
+        errorFunction("Please write your last name");
+        return false;
+      } else {
+        return true;
+      }
+    }
   }]
 });
