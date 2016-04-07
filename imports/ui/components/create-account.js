@@ -21,3 +21,8 @@ Accounts.createUser = function(options, callback) {
     userCallback: callback
   });
 };
+
+
+//packet https://github.com/ianmartorell/meteor-accounts-ui-bootstrap-3/
+//file login_buttons_dropdown.js
+//signupFields = signupFields.concat(Accounts.ui._options.extraSignupFields); line 319
