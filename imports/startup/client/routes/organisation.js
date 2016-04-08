@@ -3,16 +3,7 @@ import { Meteor } from 'meteor/meteor';
 
 Router.route('/organisation', {
   name: 'organisation',
-  template: 'organisation',
-
-		waitOn: function() {
-			return Meteor.subscribe('userData');
-		},
-		data: function() { 
-			return {
-				//groups: Groups.find().fetch() 
-			}
-		}
+  template: 'organisation'
 });
 
 Template.organisation.helpers({
