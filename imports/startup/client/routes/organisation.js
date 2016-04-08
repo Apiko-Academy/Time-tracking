@@ -1,8 +1,8 @@
 import '../../../ui/pages/organisation.html';
 
 Router.route('/organisation', {
-    name: 'organisation',
-    template: 'organisation'
+  name: 'organisation',
+  template: 'organisation'
 });
 
 Template.organisation.helpers({
@@ -10,10 +10,10 @@ Template.organisation.helpers({
       return 'owner';
   },
   isInRole(role) {
-      let id = Meteor.userId();
+    let id = Meteor.userId();
 
-      console.log(Roles.userIsInRole(id, role));
+    console.log(Roles.userIsInRole(id, role));
 
-      return Roles.userIsInRole(id, role);
+    return Roles.userIsInRole(id, role);
   }
 })
