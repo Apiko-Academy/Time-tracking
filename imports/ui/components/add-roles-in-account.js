@@ -1,11 +1,13 @@
 Accounts.onCreateUser(function(options, user) {
   
-  // if (options.roles.length > 0) {
-  //   Roles.addUsersToRoles(user._id, options.roles);
-  // }
+  if (options.roles.length > 0) {
+    Roles.addUsersToRoles(user._id, options.roles);
+    //user.roles = options.roles;
+  }
+  if (options.profile) {
+  	user.profile = options.profile;
+  }
 
-  Roles.addUsersToRoles(user._id, 'owner');
-  
   return user;
 });
 		
