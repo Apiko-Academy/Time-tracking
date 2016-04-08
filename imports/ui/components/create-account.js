@@ -20,7 +20,6 @@ Accounts.createUser = function(options, callback) {
     userCallback: callback
   });
 
-  console.log(q);
 };
 
 
