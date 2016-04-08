@@ -2,7 +2,7 @@ import { Accounts } from 'meteor/accounts-base';
 
 Accounts.createUser = function(options, callback) {
   options = _.clone(options); // we'll be modifying options
-  
+
   if (typeof options.password !== 'string')
     throw new Error("options.password must be a string");
   if (!options.password) {
@@ -13,16 +13,14 @@ Accounts.createUser = function(options, callback) {
   // Replace password with the hashed password.
   options.password = Accounts._hashPassword(options.password);
   options.profile.profileImage = '';
-
+  
   Accounts.callLoginMethod({
     methodName: 'createUser',
     methodArguments: [options],
     userCallback: callback
   });
 
-  console.log(q);
 };
-
 
 //packet https://github.com/ianmartorell/meteor-accounts-ui-bootstrap-3/
 //file login_buttons_dropdown.js
