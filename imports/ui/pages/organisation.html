@@ -1,6 +1,6 @@
 <template name="organisation">
   <h3>Organisation</h3>
-  {{#if isUserInRole undefined 'owner'}}
+  {{#if isUserInRole 'owner'}}
     <p>role : owner</p>
   {{/if}}
 </template>
