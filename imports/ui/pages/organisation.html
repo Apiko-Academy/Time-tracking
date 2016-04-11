@@ -1,6 +1,6 @@
 <template name="organisation">
   <h3>Organisation</h3>
-  {{#if isUserInRole }}
-    <p>role : owner</p>
+  {{#if isUserInRole 'owner'}}
+    <p><b>Role name : </b>{{rolename}}</p>
   {{/if}}
 </template>

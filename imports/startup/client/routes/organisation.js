@@ -1,5 +1,5 @@
 import { Meteor } from 'meteor/meteor';
-import '../../../ui/pages/organisation.html';
+import '../../../ui/pages/organisation.js';
 
 Router.route('/organisation', {
   name: 'organisation',
