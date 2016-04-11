@@ -1,11 +1,13 @@
 Accounts.onCreateUser(function(options, user) {
+	console.log(options);
 
-	if(!options || !user) {
+  if(!options || !user) {
       console.log('error creating user');
     return;
   }
   
   if (options.profile) {
+  	options.profile.profileImage = '';
   	user.profile = options.profile;
   }
 
