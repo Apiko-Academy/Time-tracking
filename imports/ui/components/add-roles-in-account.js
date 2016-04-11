@@ -1,24 +1,21 @@
 Accounts.onCreateUser(function(options, user) {
-  
-  if (options.roles.length > 0) {
-    Roles.addUsersToRoles(user._id, options.roles);
-    //user.roles = options.roles;
+
+	if(!options || !user) {
+      console.log('error creating user');
+    return;
   }
+  
   if (options.profile) {
   	user.profile = options.profile;
   }
 
   return user;
 });
-		
 
-// Accounts.validateNewUser(function (user) {
-//   var loggedInUser = Meteor.user();
+Meteor.users.after.insert(function (userId, doc) {
+  
+  if (this._id) {
+    Roles.addUsersToRoles(this._id, ['owner']);
+  }
 
-//   if (Roles.userIsInRole(loggedInUser, ['owner'])) {
-//     // NOTE: This example assumes the user is not using groups.
-//     return true;
-//   }
-
-//   throw new Meteor.Error(403, "Not authorized to create new users");
-// });
+});

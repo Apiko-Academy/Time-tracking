@@ -1,4 +1,5 @@
 import '../../../ui/pages/organisation.html';
+import '../../../ui/pages/role.html';
 import { Meteor } from 'meteor/meteor';
 
 Router.route('/organisation', {
@@ -7,14 +8,8 @@ Router.route('/organisation', {
 });
 
 Template.organisation.helpers({
-  roles() {
-      return 'owner';
-  },
   isInRole(role) {
     let id = Meteor.userId();
-
-    console.log(Roles.userIsInRole(id, role));
-
     return Roles.userIsInRole(id, role);
   }
 })
