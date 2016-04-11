@@ -24,3 +24,5 @@ accounts-base
 less
 ian:accounts-ui-bootstrap-3
 alanning:roles
+matb33:collection-hooks
+zephraph:namespace

@@ -1,9 +1,11 @@
 <template name="mainLayout">
-	<body>
-		{{> navbar}}
-		<div className="container">
-			{{> yield}}
-		</div>
-		{{> footer}}
-	</body>
+	<div class="container">
+	  {{> navbar}}
+		<div class="row">
+		  <div class="col-xs-12 col-sm-10 col-md-8 col-lg-8">
+		    {{> yield}}	
+		  </div>
+    </div>
+    {{> footer}}
+	</div>
 </template>
