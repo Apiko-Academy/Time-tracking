@@ -2,6 +2,8 @@ import './organisation.html';
 
 Template.organisation.helpers({
   rolename: function () {
-  	return 'owner';
+    if ( antitoggl.isUserInRole('owner') ) {
+      return 'owner';	
+    }
   }	
 });

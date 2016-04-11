@@ -1,15 +1,31 @@
 import { Template } from 'meteor/templating';
 
-Template.registerHelper('isUserInRole', (role = 'owner', userId = Meteor.userId(), group = null) => {
+// Template.registerHelper('isUserInRole', (role = 'owner', userId = Meteor.userId(), group = null) => {
 
-  if (typeof userId === "object") {
-    userId = Meteor.userId();
-  }
+//   if (typeof userId === "object") {
+//     userId = Meteor.userId();
+//   }
   
-  if (typeof group === "string") {
-    return Roles.userIsInRole(userId, role, group);
-  } else {
-  	return Roles.userIsInRole(userId, role);	
-  }
+//   if (typeof group === "string") {
+//     return Roles.userIsInRole(userId, role, group);
+//   } else {
+//   	return Roles.userIsInRole(userId, role);	
+//   }
   
+// });
+
+Namespace('antitoggl', {
+  isUserInRole: function(role = 'owner', userId = Meteor.userId(), group = null) {
+	
+		if (typeof userId === "object") {
+		  userId = Meteor.userId();
+		}
+		
+		if (typeof group === "string") {
+		  return Roles.userIsInRole(userId, role, group);
+		} else {
+		  return Roles.userIsInRole(userId, role);	
+		}
+	}
+
 });
