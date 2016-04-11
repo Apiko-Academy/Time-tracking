@@ -1,14 +1,10 @@
 import { Template } from 'meteor/templating';
 
-Template.registerHelper('isUserInRole', (role = 'owner', userId = Meteor.userId(), group = null ) => {
+Template.registerHelper('isUserInRole', (role = 'owner', userId = Meteor.userId(), group = null) => {
 
-	if( typeof userId === "object") {
-		userId = Meteor.userId();
-	}
-
-	console.log('role',role);
-	console.log('userId',userId);
-	console.log('group',group);
+  if (typeof userId === "object") {
+    userId = Meteor.userId();
+  }
 
   return Roles.userIsInRole(userId, role);
 });
