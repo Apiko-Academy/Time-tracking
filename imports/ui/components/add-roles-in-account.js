@@ -1,6 +1,5 @@
 Accounts.onCreateUser(function(options, user) {
-	console.log(options);
-
+	
   if(!options || !user) {
       console.log('error creating user');
     return;
