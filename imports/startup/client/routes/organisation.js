@@ -1,6 +1,7 @@
-import '../../../ui/pages/organisation.html';
+import { Meteor } from 'meteor/meteor';
+import '../../../ui/pages/organisation/organisation.js';
 
 Router.route('/organisation', {
-    name: 'organisation',
-    template: 'organisation'
+  name: 'organisation',
+  template: 'organisation'
 });
