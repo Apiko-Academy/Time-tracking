@@ -4,17 +4,22 @@ import '../../api/users.js';
 import './user-profile.html';
 
 Template.userProfile.onRendered(function () {
+  $.fn.editable.defaults.mode = 'inline';
+  
   $('#username.editable').editable({
+    display: false,
     pk: Meteor.userId(),
     success: updateUserProfile
   });
 
   $('#profile\\.firstName.editable').editable({
+    display: false,
     pk: Meteor.userId(),
     success: updateUserProfile
   });
 
   $('#profile\\.lastName.editable').editable({
+    display: false,
     pk: Meteor.userId(),
     success: updateUserProfile
   });
