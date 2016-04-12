@@ -2,7 +2,7 @@ import {Router} from 'meteor/iron:router';
 
 Router.configure({
   layoutTemplate: 'mainLayout',
-	loadingTemplate: 'loading',
+  loadingTemplate: 'loading',
   notFoundTemplate: 'notFound'
 });
 
@@ -14,3 +14,4 @@ import './tasks.js';
 import './reports.js';
 import '../../../ui/pages/loading.html';
 import '../../../ui/pages/not-found.html';
+import './user-profile.js';

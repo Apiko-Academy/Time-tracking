@@ -1,0 +1,36 @@
+<template name="userProfile">
+	<table id="user-profile" class="table table-bordered table-striped">
+    <tbody>
+      <tr>
+        <td>Username</td>
+        <td> 
+          <a href="#" id="username" data-type="text" data-pk="{{_id}}" data-title="Enter username" class="editable editable-click" value="{{username}}">{{username}}</a>
+        </td>
+      </tr>
+      <tr>
+        <td>First name</td>
+        <td>
+          <a href="#" id="firstName" data-type="text" data-pk="{{_id}}" data-title="Enter first name" class="editable editable-click" value="{{firstName}}">{{firstName}}</a>
+        </td>
+      </tr>
+      <tr>
+        <td>Last name</td>
+        <td>
+          <a href="#" id="lastName" data-type="text" data-pk="{{_id}}" data-title="Enter last name" class="editable editable-click" value="{{lastName}}">{{lastName}}</a>
+        </td>
+      </tr>
+      <tr>
+        <td>Avatar</td>
+        <td>{{avatar}}</td>
+      </tr>
+      <tr>
+        <td>Emails</td>
+        <td></td>
+      </tr>
+      <tr>
+        <td>Organizations</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+</template>
