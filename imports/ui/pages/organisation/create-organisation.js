@@ -2,32 +2,33 @@ import './create-organisation.html';
 
 Template.createOrganisation.events({
 
-  'submit form': function(e) {
-    e.preventDefault();
+  'submit form': function(event) {
+    event.preventDefault();
 
-    let name = $(e.target).find('[name=organisation-name]').val().trim(),
-        descript = $(e.target).find('[name=organisation-description]').val().trim();
+    let name = event.target['organisation-name'].value.trim();
+    let descript = event.target['organisation-description'].value.trim();
 
-    if (!name || !descript) return;
+    if (!name || !descript) {
+      return;
+    }
 
     let organisation = {
-        name: name,
-        descript: descript
+      name: name,
+      descript: descript
     };
 
-    antitoggl.resetForm(e);
+    antitoggl.resetForm(event);
 
     Meteor.call('organisationInsert', organisation, function(error, result) {
 
-        if (error) {
-            throwError(error.reason);
-            return;
-        }
+      if (error) {
+        throwError(error.reason);
+        return;
+      }
 
-        if (result.organisationExists) {
-            alert('This organisation has created');
-            //Router.go('organisationItem', { _id: result._id });
-        }
+      if (result) {
+        //Router.go('organisationItem', { _id: result._id });
+      }
 
     });
 

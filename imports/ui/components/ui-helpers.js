@@ -12,8 +12,8 @@ isUserInRole: function(role = 'owner', userId = Meteor.userId(), group = null) {
       }
   },
 
-  resetForm: function(e) {
-      $(e.target).find('input[type=text], textarea').val('');
+  resetForm: function(event) {
+    event.target.reset();
   }
 
 });
