@@ -28,7 +28,7 @@ if (Meteor.isServer) {
       let organisationId = Organisation.insert(organisation);
 
       if (organisationId) {
-        Roles.addUsersToRoles(this.userId, ['owner'], organisationId);
+        Roles.setUserRoles(this.userId, ['owner'], organisationId);
       }
 
       return organ
