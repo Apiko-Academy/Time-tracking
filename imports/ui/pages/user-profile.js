@@ -14,25 +14,37 @@ Template.userProfile.onRendered(() => {
   $('#username.editable').editable({
     display: false,
     pk: Meteor.userId(),
-    success: updateUserProfile
+    success: updateUserProfile,
+    validate: function(value) {
+      return validateOnRequire(value);
+    }
   });
 
   $('#profile\\.firstName.editable').editable({
     display: false,
     pk: Meteor.userId(),
-    success: updateUserProfile
+    success: updateUserProfile,
+    validate: function(value) {
+      return validateOnRequire(value);
+    }
   });
 
   $('#profile\\.lastName.editable').editable({
     display: false,
     pk: Meteor.userId(),
-    success: updateUserProfile
+    success: updateUserProfile,
+    validate: function(value) {
+      return validateOnRequire(value);
+    }
   });
 
   $('#emails\\.0\\.address.editable').editable({
     display: false,
     pk: Meteor.userId(),
-    success: updateUserProfile
+    success: updateUserProfile,
+    validate: function(value) {
+      return validateOnRequire(value) || validateEmail(value);
+    }
   });
 
 })
@@ -52,6 +64,11 @@ Template.userProfile.helpers({
   },
   email: function () {
     return Meteor.user() && Meteor.user().emails && Meteor.user().emails[0].address;
+  },
+  isNotVerifiedEmail: function () {
+    let isVerifiedEmail = Meteor.user() && Meteor.user().emails && Meteor.user().emails[0].verified;
+    
+    return !isVerifiedEmail;
   },
   organizations: function () {
     let organizationsIDs = Meteor.user() && Meteor.user().organizations;
@@ -76,7 +93,7 @@ Template.userProfile.events({
         updateUserProfile('', InkBlobs.url);
       },
       function(FPError){
-        log.error(FPError.toString());
+        console.log(FPError.toString());
     });
   }
 })
@@ -90,4 +107,18 @@ function updateUserProfile (response, newValue) {
   options[fieldName] = newValue;
 
   Meteor.call('users.update', userId, options);
+}
+
+function validateEmail (email) {
+  let regEx = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+
+  if (!regEx.test(email)) {
+    return 'Enter valid email';
+  }
+}
+
+function validateOnRequire (value) {
+  if ($.trim(value) == '') {
+    return 'This field is required';
+  }
 }

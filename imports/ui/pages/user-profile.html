@@ -10,25 +10,29 @@
         <tr>
           <td>Username</td>
           <td> 
-            <a href="#" id="username" data-type="text" data-title="Enter username" class="editable editable-click" value="{{username}}">{{username}}</a>
+            <a href="#" id="username" data-type="text" data-title="Enter username" class="editable editable-click">{{username}}</a>
           </td>
         </tr>
         <tr>
           <td>First name</td>
           <td>
-            <a href="#" id="profile.firstName" data-type="text" data-title="Enter first name" class="editable editable-click" value="{{firstName}}">{{firstName}}</a>
+            <a href="#" id="profile.firstName" data-type="text" data-title="Enter first name" class="editable editable-click">{{firstName}}</a>
           </td>
         </tr>
         <tr>
           <td>Last name</td>
           <td>
-            <a href="#" id="profile.lastName" data-type="text" data-title="Enter last name" class="editable editable-click" value="{{lastName}}">{{lastName}}</a>
+            <a href="#" id="profile.lastName" data-type="text" data-title="Enter last name" class="editable editable-click">{{lastName}}</a>
           </td>
         </tr>
         <tr>
           <td>Email</td>
           <td>
-            <a href="#" id="emails.0.address" data-type="text" data-title="Enter email" class="editable editable-click" value="{{email}}">{{email}}</a>
+            <a href="#" id="emails.0.address" data-type="text" data-title="Enter email" class="editable editable-click">{{email}}</a>
+
+            {{#if isNotVerifiedEmail}}
+              <span class="not-verified-email">not verified</span>
+            {{/if}}
           </td>
         </tr>
       </tbody>
