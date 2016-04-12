@@ -5,7 +5,7 @@ import './user-profile.html';
 
 Template.userProfile.onRendered(function () {
   $.fn.editable.defaults.mode = 'inline';
-  
+
   $('#username.editable').editable({
     display: false,
     pk: Meteor.userId(),
@@ -19,6 +19,12 @@ Template.userProfile.onRendered(function () {
   });
 
   $('#profile\\.lastName.editable').editable({
+    display: false,
+    pk: Meteor.userId(),
+    success: updateUserProfile
+  });
+
+  $('#emails\\.0\\.address.editable').editable({
     display: false,
     pk: Meteor.userId(),
     success: updateUserProfile
@@ -39,11 +45,19 @@ Template.userProfile.helpers({
   avatar: function () {
     return Meteor.user() && Meteor.user().avatar;
   },
-  emails: function () {
-    return Meteor.user() && Meteor.user().emails;
+  email: function () {
+    return Meteor.user() && Meteor.user().emails && Meteor.user().emails[0].address;
   },
   organizations: function () {
-    return Meteor.user() && Meteor.user().organizations;
+    let organizationsIDs = Meteor.user() && Meteor.user().organizations;
+
+    //temporary implementation of assigned organization untill no organizations
+    return [{
+      location: 'location',
+      timezone: 'timezone',
+      iconUrl: 'http://jssolutionsdev.com/img/logo.png',
+      companySite: 'http://jssolutionsdev.com/'
+    }]
   }
 });
 
