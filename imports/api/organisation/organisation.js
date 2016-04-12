@@ -21,7 +21,7 @@ if (Meteor.isServer) {
       }
 
       let organisation = _.extend(organisationAttributes, {
-          owners: [Meteor.userId()],
+          owners: [this.userId],
           createdAt: new Date()
       });
 
@@ -29,12 +29,15 @@ if (Meteor.isServer) {
 
       if (organisationId) {
         Roles.setUserRoles(this.userId, ['owner'], organisationId);
+
+        if( Roles.userIsInRole(this.userId, 'owner', 'general_group') && Roles.userIsInRole(this.userId, 'owner', organisationId) ) {
+          Roles.removeUsersFromRoles(this.userId, ['owner'], 'general_group');
+        }
       }
 
-      return organ
-      isationId;
+      return organisationId;
     }
 
-});
+  });
 
 }
