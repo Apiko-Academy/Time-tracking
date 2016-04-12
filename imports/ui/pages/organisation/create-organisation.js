@@ -9,7 +9,7 @@ Template.createOrganisation.events({
     let description = event.target['organisation-description'].value.trim();
 
     if (!name || !description) {
-      alert('fields are empty!');
+      alert('Name or description are empty');
       return;
     }
 
