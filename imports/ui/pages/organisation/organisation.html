@@ -1,8 +1,10 @@
 <template name="organisation">
-  <p><b>Role name : </b>{{rolename}}</p>
   <div class="row">
       <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
-        {{> createOrganisation}}
+        {{#if isOwner}}
+          <p><b>Role name : </b>owner</p>
+          {{> createOrganisation}}
+        {{/if}}
       </div>
       <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
         {{#each organisation}}
