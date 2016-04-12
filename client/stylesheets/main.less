@@ -1,4 +1,45 @@
 /* CSS declarations go here */
+.user-info {
+  float: left;
+}
+
+#user-avatar {
+  cursor: pointer;
+  float: left;
+  position: relative;
+  display: block;
+  margin: 0 10px 10px 0;
+}
+
+#user-avatar img {
+  left: 0;
+  top: 0;
+}
+
+#user-avatar:hover .change-avatar {
+  display:block
+}
+
+.change-avatar {
+  background: rgba(0, 0, 0, 0.5);
+  bottom: 0;
+  color: #fff;
+  display: none;
+  height: 30px;
+  line-height: 30px;
+  right: 0;
+  width: 100%;
+  z-index: 3;
+  left: 0;
+  position: absolute;
+  text-align: center;
+  font-weight: 700;
+}
+
 table#user-profile {
   width: initial;
+}
+
+.clearer {
+  clear: both;
 }

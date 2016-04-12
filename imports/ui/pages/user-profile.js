@@ -1,9 +1,14 @@
 import { Template } from 'meteor/templating';
+// import { filepicker } from 'meteor/natestrauser:filepicker-plus';
 
 import '../../api/users.js';
 import './user-profile.html';
 
-Template.userProfile.onRendered(function () {
+Template.userProfile.onCreated(() => {
+  loadFilePicker('AMxXlNUEKQ1OgRo47XtKSz');
+});
+
+Template.userProfile.onRendered(() => {
   $.fn.editable.defaults.mode = 'inline';
 
   $('#username.editable').editable({
@@ -43,7 +48,7 @@ Template.userProfile.helpers({
     return Meteor.user() && Meteor.user().profile && Meteor.user().profile.lastName;
   },
   avatar: function () {
-    return Meteor.user() && Meteor.user().avatar;
+    return Meteor.user() && Meteor.user().profile && Meteor.user().profile.avatar;
   },
   email: function () {
     return Meteor.user() && Meteor.user().emails && Meteor.user().emails[0].address;
@@ -61,9 +66,25 @@ Template.userProfile.helpers({
   }
 });
 
+Template.userProfile.events({
+  'click #user-avatar': function () {
+    filepicker.pick({
+        mimetypes: ['image/gif','image/jpeg','image/png'],
+        multiple: false
+      },
+      function(InkBlobs){
+        updateUserProfile('', InkBlobs.url);
+      },
+      function(FPError){
+        log.error(FPError.toString());
+    });
+  }
+})
+
+//have to find out what should be in 'response'
 function updateUserProfile (response, newValue) {
-  let userId    = $(this).data().editable.options.pk,
-      fieldName = $(this)[0].id,
+  let userId    = Meteor.userId(),
+      fieldName = $(this)[0].id || "profile.avatar",
       options   = {};
 
   options[fieldName] = newValue;
