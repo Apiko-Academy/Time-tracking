@@ -1,22 +1,24 @@
 import { Template } from 'meteor/templating';
 
+import '../../api/users.js';
 import './user-profile.html';
 
 Template.userProfile.onRendered(function () {
   $('#username.editable').editable({
-    success: function(response, newValue) {
-    
-  }});
+    pk: Meteor.userId(),
+    success: updateUserProfile
+  });
 
-  $('#firstName.editable').editable({
-    success: function(response, newValue) {
-    
-  }});
+  $('#profile\\.firstName.editable').editable({
+    pk: Meteor.userId(),
+    success: updateUserProfile
+  });
 
-  $('#lastName.editable').editable({
-    success: function(response, newValue) {
-    
-  }});
+  $('#profile\\.lastName.editable').editable({
+    pk: Meteor.userId(),
+    success: updateUserProfile
+  });
+
 })
 
 Template.userProfile.helpers({
@@ -39,3 +41,13 @@ Template.userProfile.helpers({
     return Meteor.user() && Meteor.user().organizations;
   }
 });
+
+function updateUserProfile (response, newValue) {
+  let userId    = $(this).data().editable.options.pk,
+      fieldName = $(this)[0].id,
+      options   = {};
+
+  options[fieldName] = newValue;
+
+  Meteor.call('users.update', userId, options);
+}
