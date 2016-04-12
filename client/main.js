@@ -1,3 +1,3 @@
-import '../imports/startup/client/routes/hooks.js';
-import '../imports/startup/client/account-config.js';
+import '../imports/startup/client/index.js';
 import '../imports/ui/components/ui-helpers.js';
+import '../imports/lib/organisation.js';
