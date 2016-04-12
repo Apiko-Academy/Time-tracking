@@ -10,10 +10,6 @@ isUserInRole: function(role = 'owner', userId = Meteor.userId(), group = null) {
       } else {
         return Roles.userIsInRole(userId, role);
       }
-  },
-
-  resetForm: function(event) {
-    event.target.reset();
   }
 
 });

@@ -3,7 +3,7 @@ Meteor.methods({
 
     check(organisationAttributes, {
       name: String,
-      descript: String
+      description: String
     });
 
     let organisationWithSameName = Organisation.findOne({ name: organisationAttributes.name });

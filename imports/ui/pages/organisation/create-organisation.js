@@ -6,33 +6,29 @@ Template.createOrganisation.events({
     event.preventDefault();
 
     let name = event.target['organisation-name'].value.trim();
-    let descript = event.target['organisation-description'].value.trim();
+    let description = event.target['organisation-description'].value.trim();
 
-    if (!name || !descript) {
+    if (!name || !description) {
+      alert('fields are empty!');
       return;
     }
 
     let organisation = {
       name: name,
-      descript: descript
+      description: description
     };
 
-    antitoggl.resetForm(event);
+    event.target.reset();
 
     Meteor.call('organisationInsert', organisation, function(error, result) {
 
-      if (error) {
-        throwError(error.reason);
-        return;
-      }
-
       if (result) {
         //Router.go('organisationItem', { _id: result._id });
+      } else {
+        throwError(error.reason);
       }
-
     });
 
   }
-
 
 });
