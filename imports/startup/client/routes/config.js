@@ -8,9 +8,10 @@ Router.configure({
 
 import './main-layout.js';
 import './homepage.js';
-import './organisation.js';
+import './timer.js';
 import './projects.js';
 import './tasks.js';
 import './reports.js';
+import './organisation.js';
 import '../../../ui/pages/loading.html';
 import '../../../ui/pages/not-found.html';
