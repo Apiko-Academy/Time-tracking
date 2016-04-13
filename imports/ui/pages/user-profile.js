@@ -53,6 +53,11 @@ Template.userProfile.onRendered(function () {
 });
 
 Template.userProfile.helpers({
+  avatar: function () {
+    let noImg = AntiToggl.img.noImg;
+
+    return Meteor.user() && Meteor.user().profile && Meteor.user().profile.avatar || noImg;
+  },
   email: function () {
     return Meteor.user() && Meteor.user().emails && Meteor.user().emails[0].address;
   },
