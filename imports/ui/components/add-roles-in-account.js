@@ -1,3 +1,5 @@
+import '../../lib/anti-toggl.js';
+
 Accounts.onCreateUser(function(options, user) {
 	
   if(!options || !user) {
@@ -6,7 +8,7 @@ Accounts.onCreateUser(function(options, user) {
   }
   
   if (options.profile) {
-  	options.profile.profileImage = '';
+  	options.profile.avatar = AntiToggl.img.noImg;
   	user.profile = options.profile;
   }
 

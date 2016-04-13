@@ -53,11 +53,6 @@ Template.userProfile.onRendered(function () {
 });
 
 Template.userProfile.helpers({
-  avatar: function () {
-    let noImg = AntiToggl.img.noImg;
-
-    return Meteor.user() && Meteor.user().profile && Meteor.user().profile.avatar || noImg;
-  },
   email: function () {
     return Meteor.user() && Meteor.user().emails && Meteor.user().emails[0].address;
   },
@@ -67,15 +62,11 @@ Template.userProfile.helpers({
     return !isVerifiedEmail;
   },
   organizations: function () {
-    let organizationsIDs = Meteor.user() && Meteor.user().organizations;
-
-    //temporary implementation of assigned organization untill no organizations
-    return [{
-      location: 'location',
-      timezone: 'timezone',
-      iconUrl: 'http://jssolutionsdev.com/img/logo.png',
-      companySite: 'http://jssolutionsdev.com/'
-    }]
+    let userId = Meteor.userId();
+    let organizationIDs = Meteor.user() && Meteor.user().organizationIDs || [];
+    let organizations = Organisation.find({_id:{$in:organizationIDs}}).fetch();
+    
+    return organizations;
   }
 });
 
