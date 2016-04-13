@@ -3,7 +3,8 @@
   float: left;
 }
 
-#user-avatar {
+#user-avatar,
+#organisation-icon {
   cursor: pointer;
   float: left;
   position: relative;
@@ -11,16 +12,19 @@
   margin: 0 10px 10px 0;
 }
 
-#user-avatar img {
+#user-avatar img,
+#organisation-icon img {
   left: 0;
   top: 0;
 }
 
-#user-avatar:hover .change-avatar {
+#user-avatar:hover .change-avatar,
+#organisation-icon:hover .change-icon {
   display:block
 }
 
-.change-avatar {
+.change-avatar,
+.change-icon {
   background: rgba(0, 0, 0, 0.5);
   bottom: 0;
   color: #fff;
@@ -61,4 +65,12 @@ span.not-verified-email {
 
 .list-item-organisation {
   border-bottom: 1px solid #ccc;
+}
+
+#organisation-icon > img {
+  display:block
+}
+
+.create-organisation-form label[for=organisation-icon] {
+  display: block;
 }

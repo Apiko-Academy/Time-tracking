@@ -1,9 +1,15 @@
+import { check } from 'meteor/check';
+
 Meteor.methods({
   organisationInsert: function(organisationAttributes) {
 
     check(organisationAttributes, {
       name: String,
-      description: String
+      description: String,
+      profile: {
+        companySite: Match.Maybe(String),
+        iconUrl: Match.Maybe(String)
+      }
     });
 
     let organisationWithSameName = Organisation.findOne({ name: organisationAttributes.name });
