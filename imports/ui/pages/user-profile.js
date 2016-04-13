@@ -1,67 +1,57 @@
-import { Template } from 'meteor/templating';
-// import { filepicker } from 'meteor/natestrauser:filepicker-plus';
-
-import '../../api/users.js';
 import './user-profile.html';
 
-Template.userProfile.onCreated(() => {
+import { Template } from 'meteor/templating';
+import { loadFilePicker } from 'meteor/natestrauser:filepicker-plus';
+
+Template.userProfile.onCreated(function () {
   loadFilePicker('AMxXlNUEKQ1OgRo47XtKSz');
 });
 
-Template.userProfile.onRendered(() => {
+Template.userProfile.onRendered(function () {
   $.fn.editable.defaults.mode = 'inline';
 
-  $('#username.editable').editable({
+  this.$('#username.editable').editable({
     display: false,
     pk: Meteor.userId(),
+    title: "Enter username",
     success: updateUserProfile,
     validate: function(value) {
       return validateOnRequire(value);
     }
   });
 
-  $('#profile\\.firstName.editable').editable({
+  this.$('#profile\\.firstName.editable').editable({
     display: false,
     pk: Meteor.userId(),
+    title: "Enter first name",
     success: updateUserProfile,
     validate: function(value) {
       return validateOnRequire(value);
     }
   });
 
-  $('#profile\\.lastName.editable').editable({
+  this.$('#profile\\.lastName.editable').editable({
     display: false,
     pk: Meteor.userId(),
+    title: "Enter last name",
     success: updateUserProfile,
     validate: function(value) {
       return validateOnRequire(value);
     }
   });
 
-  $('#emails\\.0\\.address.editable').editable({
+  this.$('#emails\\.0\\.address.editable').editable({
     display: false,
     pk: Meteor.userId(),
+    title: "Enter email",
     success: updateUserProfile,
     validate: function(value) {
       return validateOnRequire(value) || validateEmail(value);
     }
   });
-
-})
+});
 
 Template.userProfile.helpers({
-  username: function () {
-    return Meteor.user() && Meteor.user().username;
-  },
-  firstName: function () {
-    return Meteor.user() && Meteor.user().profile && Meteor.user().profile.firstName;
-  },
-  lastName: function () {
-    return Meteor.user() && Meteor.user().profile && Meteor.user().profile.lastName;
-  },
-  avatar: function () {
-    return Meteor.user() && Meteor.user().profile && Meteor.user().profile.avatar;
-  },
   email: function () {
     return Meteor.user() && Meteor.user().emails && Meteor.user().emails[0].address;
   },
@@ -96,7 +86,7 @@ Template.userProfile.events({
         console.log(FPError.toString());
     });
   }
-})
+});
 
 //have to find out what should be in 'response'
 function updateUserProfile (response, newValue) {
@@ -110,7 +100,7 @@ function updateUserProfile (response, newValue) {
 }
 
 function validateEmail (email) {
-  let regEx = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+  let regEx = antitoggl.regex.email;
 
   if (!regEx.test(email)) {
     return 'Enter valid email';
