@@ -4,6 +4,7 @@ import { Template } from 'meteor/templating';
 import { loadFilePicker } from 'meteor/natestrauser:filepicker-plus';
 
 Template.userProfile.onCreated(function () {
+  // should be defined other way: meteor settings or env var, I guess
   loadFilePicker('AMxXlNUEKQ1OgRo47XtKSz');
 });
 
@@ -90,9 +91,9 @@ Template.userProfile.events({
 
 //have to find out what should be in 'response'
 function updateUserProfile (response, newValue) {
-  let userId    = Meteor.userId(),
-      fieldName = $(this)[0].id || "profile.avatar",
-      options   = {};
+  let userId    = Meteor.userId();
+  let fieldName = $(this)[0].id || "profile.avatar";
+  let options   = {};
 
   options[fieldName] = newValue;
 
@@ -100,9 +101,7 @@ function updateUserProfile (response, newValue) {
 }
 
 function validateEmail (email) {
-  let regEx = antitoggl.regex.email;
-
-  if (!regEx.test(email)) {
+  if (!AntiToggl.regex.email(email)) {
     return 'Enter valid email';
   }
 }
