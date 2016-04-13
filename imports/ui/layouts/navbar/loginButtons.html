@@ -1,4 +1,4 @@
 <template name="_loginButtonsAdditionalLoggedInDropdownActions">
-  <button class="btn btn-default btn-block" id="login-buttons-profile-settings">Profile settings</button>
-  <button class="btn btn-default btn-block" id="login-buttons-organisation-settings">Organisation settings</button>
+  <a href="{{pathFor route='userProfile'}}" class="btn btn-default btn-block">Edit profile</a>
+  <a href="{{pathFor route='organisation'}}" class="btn btn-default btn-block">Organisation settings</a>
 </template>
