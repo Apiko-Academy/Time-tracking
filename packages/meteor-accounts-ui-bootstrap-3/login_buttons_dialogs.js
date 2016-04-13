@@ -33,6 +33,7 @@
 		}
 	});
 
+	//
 	// resetPasswordDialog template
 	//
 

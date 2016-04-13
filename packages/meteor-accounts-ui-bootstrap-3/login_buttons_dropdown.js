@@ -56,7 +56,7 @@
 
 		user_profile_picture: function() {
 			var user = Meteor.user();
-			
+
 			if (user && user.profile && user.profile.profileImage) {
 				return user.profile.profileImage;//display_picture
 			}

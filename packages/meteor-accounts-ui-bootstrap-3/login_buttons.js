@@ -88,7 +88,7 @@
 		if (!user){
 			return '';
 		}
-		
+
 		if (user.profile && user.profile.firstName && user.profile.lastName){
 			return user.profile.firstName + ' ' + user.profile.lastName;
 		}
