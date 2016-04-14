@@ -1,4 +1,4 @@
-Namespace('antitoggl', {
+Namespace('AntiToggl', {
   alert: function(message, type = "error") {
     let messageText = message;
     if(_.isObject(message)){
