@@ -1,13 +1,15 @@
 Namespace('antitoggl', {
   alert: function(message, type = "error") {
+    let messageText = message;
     if(_.isObject(message)){
       if(message.reason){
-      	alert(`${message.reason}`);
+      	messageText = message.reason;
       } else if(message.error){
-      	alert(`${message.error}`);
+      	message = message.error;
+      } else if(message.message){
+        message = message.message;
       }
-    } else {
-      alert(`${message}`);
     }
+    alert(messageText);
   }
 });
