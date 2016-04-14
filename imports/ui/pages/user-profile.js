@@ -82,14 +82,16 @@ Template.userProfile.events({
 });
 
 //have to find out what should be in 'response'
-function updateUserProfile (response, newValue) {
-  let userId    = Meteor.userId();
-  let fieldName = $(this)[0].id || "profile.avatar";
-  let options   = {};
+function updateUserProfile (fieldName) {
+  return function (response, newValue) {
+    let userId    = Meteor.userId();
+    let fieldName = fieldName || "profile.avatar";//$(this)[0].id || "profile.avatar";
+    let options   = {};
 
-  options[fieldName] = newValue;
+    options[fieldName] = newValue;
 
-  Meteor.call('users.update', userId, options);
+    Meteor.call('users.update', userId, options);
+  }
 }
 
 function validateEmail (email) {
@@ -101,5 +103,13 @@ function validateEmail (email) {
 function validateOnRequire (value) {
   if ($.trim(value) == '') {
     return 'This field is required';
+  }
+}
+
+function cropSelector (selector) {
+  var selector = '#emails\\.asd.editable'
+  selector = selector.split(".")[0];
+  if (selector.includes("\\")) {
+    selector = selector.substring(0, selector.indexOf("\\"));
   }
 }
