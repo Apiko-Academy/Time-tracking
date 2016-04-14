@@ -6,6 +6,7 @@ import { loadFilePicker } from 'meteor/natestrauser:filepicker-plus';
 Template.userProfile.onCreated(function () {
   // should be defined other way: meteor settings or env var, I guess
   loadFilePicker('AMxXlNUEKQ1OgRo47XtKSz');
+  this.subscribe('organisation');
 });
 
 Template.userProfile.onRendered(function () {
@@ -65,7 +66,7 @@ Template.userProfile.helpers({
     let userId = Meteor.userId();
     let organizationIDs = Roles.getGroupsForUser(userId) || [];
     let organizations = Organisation.find({_id:{$in:organizationIDs}}).fetch();
-    
+
     return organizations;
   }
 });
