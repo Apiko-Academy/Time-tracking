@@ -1,6 +1,5 @@
 Namespace('antitoggl', {
   alert: function(message, type = "error") {
-  	console.log(message);
     if(typeof message === "object"){
       if(message.reason){
       	alert(`Error: ${message.reason}`);
