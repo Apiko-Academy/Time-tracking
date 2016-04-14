@@ -26,12 +26,13 @@ Template.userProfile.onRendered(function () {
     title: 'Enter email'
   }];
   let template = this;
-
+  
   fieldsConfig.forEach(function(field) {
+    let fieldName = cropSelector(field.selector);
     let configObject = {
       pk: Meteor.userId(),
       title: field.title,
-      success: updateUserProfile,
+      success: updateUserProfile(fieldName),
       validate: function(value) {
         return validateOnRequire(value);
       }
@@ -73,7 +74,7 @@ Template.userProfile.events({
         multiple: false
       },
       function(InkBlobs){
-        updateUserProfile('', InkBlobs.url);
+        updateUserProfile("profile.avatar")('', InkBlobs.url);
       },
       function(FPError){
         console.log(FPError.toString());
@@ -81,11 +82,9 @@ Template.userProfile.events({
   }
 });
 
-//have to find out what should be in 'response'
 function updateUserProfile (fieldName) {
   return function (response, newValue) {
     let userId    = Meteor.userId();
-    let fieldName = fieldName || "profile.avatar";//$(this)[0].id || "profile.avatar";
     let options   = {};
 
     options[fieldName] = newValue;
@@ -107,9 +106,18 @@ function validateOnRequire (value) {
 }
 
 function cropSelector (selector) {
-  var selector = '#emails\\.asd.editable'
-  selector = selector.split(".")[0];
-  if (selector.includes("\\")) {
-    selector = selector.substring(0, selector.indexOf("\\"));
+  selector = selector.replace('#', '');
+  selector = selector.replace('.editable', '');
+  selector = removeSlashFromString(selector);
+
+  return selector;
+}
+
+function removeSlashFromString (string) {
+  string = string.replace("\\",'');
+  if (string.includes("\\")){
+    return removeSlashFromString(string);
   }
+
+  return string;
 }
