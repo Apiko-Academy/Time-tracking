@@ -13,16 +13,16 @@ Template.userProfile.onCreated(function () {
 
 Template.userProfile.onRendered(function () {
   let fieldsConfig = [{
-    selector: '#username.editable',
+    selector: '#username',
     title: 'Enter username'
   }, {
-    selector: '#profile\\.firstName.editable',
+    selector: '#profile\\.firstName',
     title: 'Enter first name'
   }, {
-    selector: '#profile\\.lastName.editable',
+    selector: '#profile\\.lastName',
     title: 'Enter last name'
   }, {
-    selector: '#emails\\.0\\.address.editable',
+    selector: '#emails\\.0\\.address',
     title: 'Enter email'
   }];
   let template = this;
@@ -107,7 +107,6 @@ function validateOnRequire (value) {
 
 function cropSelector (selector) {
   selector = selector.replace('#', '');
-  selector = selector.replace('.editable', '');
   selector = removeSlashFromString(selector);
 
   return selector;
