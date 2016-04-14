@@ -25,11 +25,9 @@ Template.userProfile.onRendered(function () {
     name: 'emails\\.0\\.address',
     title: 'Enter email'
   }];
-  let template = this;
   
-  fieldsConfig.forEach(function(field) {
+  fieldsConfig.forEach((field) => {
     let fieldName = removeSlashFromString(field.name);
-    console.log(fieldName);
     let configObject = {
       pk: Meteor.userId(),
       title: field.title,
@@ -45,7 +43,7 @@ Template.userProfile.onRendered(function () {
       }
     }
 
-    template.$('#' + field.name).editable(configObject);
+    this.$('#' + field.name).editable(configObject);
   });
 });
 
