@@ -8,7 +8,7 @@ Accounts.onCreateUser(function(options, user) {
   }
   
   if (options.profile) {
-  	options.profile.avatar = AntiToggl.image.noImage;
+  	options.profile.profileImage = AntiToggl.image.noImage;
   	user.profile = options.profile;
   }
 
