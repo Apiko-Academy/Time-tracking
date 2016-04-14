@@ -74,7 +74,7 @@ Template.userProfile.events({
         multiple: false
       },
       function(InkBlobs){
-        updateUserProfile('profile.avatar')('', InkBlobs.url);
+        updateUserProfile('profile.profileImage')('', InkBlobs.url);
       },
       function(FPError){
         console.log(FPError.toString());
