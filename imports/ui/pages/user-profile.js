@@ -64,10 +64,9 @@ Template.userProfile.helpers({
   },
   organizations: function () {
     let userId = Meteor.userId();
-    let organizationIDs = Roles.getGroupsForUser(userId) || [];
-    let organizations = Organisation.find({_id:{$in:organizationIDs}}).fetch();
-
-    return organizations;
+    let organizationIds = Roles.getGroupsForUser(userId) || [];
+    
+    return Organisation.find({_id:{$in:organizationIds}}).fetch();
   }
 });
 

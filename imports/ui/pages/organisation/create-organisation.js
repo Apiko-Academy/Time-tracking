@@ -2,6 +2,7 @@ import './create-organisation.html';
 
 import { Template } from 'meteor/templating';
 import { loadFilePicker } from 'meteor/natestrauser:filepicker-plus';
+import { ReactiveVar } from 'meteor/reactive-var';
 
 Template.createOrganisation.onCreated(function () {
   loadFilePicker('AMxXlNUEKQ1OgRo47XtKSz');

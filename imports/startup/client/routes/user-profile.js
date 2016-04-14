@@ -6,8 +6,6 @@ Router.route('/userProfile', {
   name: 'userProfile',
   template: 'userProfile',
   data: function () {
-  	let userDocument = Meteor.user();
-
-  	return userDocument;
+  	return Meteor.user();
   }
 });
