@@ -26,12 +26,13 @@ Template.userProfile.onRendered(function () {
     title: 'Enter email'
   }];
   
+  let trimSlashes = text => text.replace(/\\/g, '');
+
   fieldsConfig.forEach((field) => {
-    let fieldName = removeSlashFromString(field.name);
     let configObject = {
       pk: Meteor.userId(),
       title: field.title,
-      success: updateUserProfile(fieldName),
+      success: updateUserProfile(trimSlashes(field.name)),
       validate: function(value) {
         return validateOnRequire(value);
       }
@@ -102,13 +103,4 @@ function validateOnRequire (value) {
   if ($.trim(value) == '') {
     return 'This field is required';
   }
-}
-
-function removeSlashFromString (string) {
-  string = string.replace('\\', '');
-  if (string.includes('\\')){
-    return removeSlashFromString(string);
-  }
-
-  return string;
 }
