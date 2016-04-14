@@ -13,22 +13,23 @@ Template.userProfile.onCreated(function () {
 
 Template.userProfile.onRendered(function () {
   let fieldsConfig = [{
-    selector: '#username',
+    name: 'username',
     title: 'Enter username'
   }, {
-    selector: '#profile\\.firstName',
+    name: 'profile\\.firstName',
     title: 'Enter first name'
   }, {
-    selector: '#profile\\.lastName',
+    name: 'profile\\.lastName',
     title: 'Enter last name'
   }, {
-    selector: '#emails\\.0\\.address',
+    name: 'emails\\.0\\.address',
     title: 'Enter email'
   }];
   let template = this;
   
   fieldsConfig.forEach(function(field) {
-    let fieldName = cropSelector(field.selector);
+    let fieldName = removeSlashFromString(field.name);
+    console.log(fieldName);
     let configObject = {
       pk: Meteor.userId(),
       title: field.title,
@@ -38,13 +39,13 @@ Template.userProfile.onRendered(function () {
       }
     };
 
-    if (field.selector.includes('email')) {
+    if (field.name.includes('email')) {
       configObject.validate = function(value) {
         return validateOnRequire(value) || validateEmail(value);
       }
     }
 
-    template.$(field.selector).editable(configObject);
+    template.$('#' + field.name).editable(configObject);
   });
 });
 
@@ -103,13 +104,6 @@ function validateOnRequire (value) {
   if ($.trim(value) == '') {
     return 'This field is required';
   }
-}
-
-function cropSelector (selector) {
-  selector = selector.replace('#', '');
-  selector = removeSlashFromString(selector);
-
-  return selector;
 }
 
 function removeSlashFromString (string) {
