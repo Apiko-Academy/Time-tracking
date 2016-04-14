@@ -46,13 +46,13 @@ Template.createOrganisation.events({
     });
 
   },
-  'click #organisation-icon': function (event, template) {
+  'click #organisation-icon': function (event, tmpl) {
     filepicker.pick({
         mimetypes: ['image/gif','image/jpeg','image/png'],
         multiple: false
       },
       function(InkBlobs){
-        template.iconUrl.set(InkBlobs.url);
+        tmpl.iconUrl.set(InkBlobs.url);
       },
       function(FPError){
         console.log(FPError.toString());
