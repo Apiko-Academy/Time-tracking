@@ -42,8 +42,6 @@ Template.userProfile.onRendered(function () {
       configObject.validate = function(value) {
         return validateOnRequire(value) || validateEmail(value);
       }
-
-      template.$(field.selector).editable(configObject);
     }
 
     template.$(field.selector).editable(configObject);
@@ -52,10 +50,12 @@ Template.userProfile.onRendered(function () {
 
 Template.userProfile.helpers({
   email: function () {
-    return Meteor.user() && Meteor.user().emails && Meteor.user().emails[0].address;
+    let user = Meteor.user();
+    return user && user.emails && user.emails[0].address;
   },
   isNotVerifiedEmail: function () {
-    let isVerifiedEmail = Meteor.user() && Meteor.user().emails && Meteor.user().emails[0].verified;
+    let user = Meteor.user();
+    let isVerifiedEmail = user && user.emails && user.emails[0].verified;
     
     return !isVerifiedEmail;
   },

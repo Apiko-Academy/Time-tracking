@@ -1,6 +1,6 @@
 Namespace('AntiToggl', {
   isUserInRole: function(role = 'owner', userId = Meteor.userId(), group = null) {
-    if (typeof userId === "object") {
+    if (typeof userId !== 'string') {
       userId = Meteor.userId();
     }
 
