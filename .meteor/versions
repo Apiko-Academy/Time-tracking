@@ -30,6 +30,7 @@ email@1.0.11
 es5-shim@4.5.9
 fastclick@1.0.10
 geojson-utils@1.0.7
+handlebars@1.0.6
 hot-code-push@1.0.3
 html-tools@1.0.8
 htmljs@1.0.8
@@ -62,6 +63,8 @@ modules@0.5.2
 modules-runtime@0.6.2
 mongo@1.1.6
 mongo-id@1.0.3
+natestrauser:filepicker-plus@2.0.0
+natestrauser:x-editable-bootstrap@1.5.2_4
 npm-bcrypt@0.7.8_2
 npm-mongo@1.4.42
 observe-sequence@1.0.10

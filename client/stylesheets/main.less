@@ -1,3 +1,55 @@
+/* CSS declarations go here */
+.user-info {
+  float: left;
+}
+
+.icon {
+  cursor: pointer;
+  float: left;
+  position: relative;
+  display: block;
+  margin: 0 10px 10px 0;
+}
+
+.icon img {
+  left: 0;
+  top: 0;
+}
+
+.icon:hover .change-icon {
+  display:block
+}
+
+.change-icon {
+  background: rgba(0, 0, 0, 0.5);
+  bottom: 0;
+  color: #fff;
+  display: none;
+  height: 30px;
+  line-height: 30px;
+  right: 0;
+  width: 100%;
+  z-index: 3;
+  left: 0;
+  position: absolute;
+  text-align: center;
+  font-weight: 700;
+}
+
+table#user-profile {
+  width: initial;
+}
+
+span.not-verified-email {
+  font-size: 10px;
+  color: red;
+  vertical-align: top;
+}
+
+.clearer {
+  clear: both;
+}
+
 body {
   > .container {
       padding: 60px 15px 0;
@@ -29,9 +81,13 @@ body {
 }
 
 .create-organisation-form textarea {
-  resize: vertical; 	
+  resize: vertical;
 }
 
 .list-item-organisation {
   border-bottom: 1px solid #ccc;
+}
+
+.create-organisation-form label[for=organisation-icon] {
+  display: block;
 }
