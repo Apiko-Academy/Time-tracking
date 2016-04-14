@@ -3,8 +3,7 @@
   float: left;
 }
 
-#user-avatar,
-#organisation-icon {
+.icon {
   cursor: pointer;
   float: left;
   position: relative;
@@ -12,18 +11,15 @@
   margin: 0 10px 10px 0;
 }
 
-#user-avatar img,
-#organisation-icon img {
+.icon img {
   left: 0;
   top: 0;
 }
 
-#user-avatar:hover .change-avatar,
-#organisation-icon:hover .change-icon {
+.icon:hover .change-icon {
   display:block
 }
 
-.change-avatar,
 .change-icon {
   background: rgba(0, 0, 0, 0.5);
   bottom: 0;
@@ -90,10 +86,6 @@ body {
 
 .list-item-organisation {
   border-bottom: 1px solid #ccc;
-}
-
-#organisation-icon > img {
-  display:block
 }
 
 .create-organisation-form label[for=organisation-icon] {

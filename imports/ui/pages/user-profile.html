@@ -1,7 +1,7 @@
 <template name="userProfile">
-  <div id="user-avatar">
-    <img  src="{{this.profile.avatar}}" alt="User's avatar" width="85">
-    <span class="change-avatar">Change Avatar</span>
+  <div id="user-avatar" class="icon">
+    <img  src="{{this.profile.avatar}}" alt="User's avatar" width="85" height="85">
+    <span class="change-icon">Change Avatar</span>
   </div>
   
   <div class="user-info">
@@ -41,7 +41,7 @@
       <h4><b>Organizations</b></h4>
       {{#each organizations}}
         <a href="{{profile.companySite}}" target="_blank">
-          <img src="{{profile.iconUrl}}" alt="Company site" width="42">
+          <img src="{{profile.iconUrl}}" alt="Company site" width="42" height="42">
         </a>
       {{/each}}
     </div>
