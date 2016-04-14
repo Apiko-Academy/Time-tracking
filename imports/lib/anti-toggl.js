@@ -8,8 +8,8 @@ Namespace('AntiToggl.regex', {
   }
 });
 
-Namespace('AntiToggl.img', {
-  noImg: "https://cdn.filepicker.io/api/file/oWq4fx2lTOK6w9L5xCJn"
+Namespace('AntiToggl.image', {
+  noImage: "https://cdn.filepicker.io/api/file/oWq4fx2lTOK6w9L5xCJn"
 });
 
 Namespace('AntiToggl.organization', {

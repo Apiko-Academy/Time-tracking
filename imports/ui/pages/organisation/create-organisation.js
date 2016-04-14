@@ -63,9 +63,9 @@ Template.createOrganisation.events({
 
 Template.createOrganisation.helpers({
   iconUrl: function () {
-    let noImg = AntiToggl.img.noImg;
+    let noImage = AntiToggl.image.noImage;
     let iconUrl = Template.instance().iconUrl.get();
 
-    return iconUrl || noImg;
+    return iconUrl || noImage;
   }
 });

@@ -74,7 +74,7 @@ Template.userProfile.events({
         multiple: false
       },
       function(InkBlobs){
-        updateUserProfile("profile.avatar")('', InkBlobs.url);
+        updateUserProfile('profile.avatar')('', InkBlobs.url);
       },
       function(FPError){
         console.log(FPError.toString());
@@ -114,8 +114,8 @@ function cropSelector (selector) {
 }
 
 function removeSlashFromString (string) {
-  string = string.replace("\\",'');
-  if (string.includes("\\")){
+  string = string.replace('\\', '');
+  if (string.includes('\\')){
     return removeSlashFromString(string);
   }
 
