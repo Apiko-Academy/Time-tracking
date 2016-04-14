@@ -3,6 +3,8 @@ import './user-profile.html';
 import { Template } from 'meteor/templating';
 import { loadFilePicker } from 'meteor/natestrauser:filepicker-plus';
 
+import '../../startup/client/config.js';
+
 Template.userProfile.onCreated(function () {
   // should be defined other way: meteor settings or env var, I guess
   loadFilePicker('AMxXlNUEKQ1OgRo47XtKSz');
@@ -10,46 +12,40 @@ Template.userProfile.onCreated(function () {
 });
 
 Template.userProfile.onRendered(function () {
-  $.fn.editable.defaults.mode = 'inline';
+  let fieldsConfig = [{
+    selector: '#username.editable',
+    title: 'Enter username'
+  }, {
+    selector: '#profile\\.firstName.editable',
+    title: 'Enter first name'
+  }, {
+    selector: '#profile\\.lastName.editable',
+    title: 'Enter last name'
+  }, {
+    selector: '#emails\\.0\\.address.editable',
+    title: 'Enter email'
+  }];
+  let template = this;
 
-  this.$('#username.editable').editable({
-    display: false,
-    pk: Meteor.userId(),
-    title: "Enter username",
-    success: updateUserProfile,
-    validate: function(value) {
-      return validateOnRequire(value);
-    }
-  });
+  fieldsConfig.forEach(function(field) {
+    let configObject = {
+      pk: Meteor.userId(),
+      title: field.title,
+      success: updateUserProfile,
+      validate: function(value) {
+        return validateOnRequire(value);
+      }
+    };
 
-  this.$('#profile\\.firstName.editable').editable({
-    display: false,
-    pk: Meteor.userId(),
-    title: "Enter first name",
-    success: updateUserProfile,
-    validate: function(value) {
-      return validateOnRequire(value);
-    }
-  });
+    if (field.selector.includes('email')) {
+      configObject.validate = function(value) {
+        return validateOnRequire(value) || validateEmail(value);
+      }
 
-  this.$('#profile\\.lastName.editable').editable({
-    display: false,
-    pk: Meteor.userId(),
-    title: "Enter last name",
-    success: updateUserProfile,
-    validate: function(value) {
-      return validateOnRequire(value);
+      template.$(field.selector).editable(configObject);
     }
-  });
 
-  this.$('#emails\\.0\\.address.editable').editable({
-    display: false,
-    pk: Meteor.userId(),
-    title: "Enter email",
-    success: updateUserProfile,
-    validate: function(value) {
-      return validateOnRequire(value) || validateEmail(value);
-    }
+    template.$(field.selector).editable(configObject);
   });
 });
 

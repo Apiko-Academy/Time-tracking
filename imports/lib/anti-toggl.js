@@ -11,3 +11,13 @@ Namespace('AntiToggl.regex', {
 Namespace('AntiToggl.img', {
   noImg: "https://cdn.filepicker.io/api/file/oWq4fx2lTOK6w9L5xCJn"
 });
+
+Namespace('AntiToggl.organization', {
+  getIcon: function (organizationId) {
+    let organization = Organisation.findOne(organizationId);
+
+    if (organization) {
+      return organization.profile.iconUrl;
+    }
+  }
+});
