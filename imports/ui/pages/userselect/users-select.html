@@ -1,5 +1,6 @@
 <template name="Users_select">
-  {{#if currentUser}} {{> Users_search}}
+  {{#if currentUser}} 
+    <!-- {{> Users_search}} -->
     <ul class="list-group no-group-user">
         {{#each user in usersOutsideGroup}}
           {{> Users_list itemUser=user onSelectUser=onUserSelectHandler}}

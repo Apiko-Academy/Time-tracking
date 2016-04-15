@@ -35,7 +35,7 @@ Template.Users_select.helpers({
   onUserSelectHandler: function() {
     return function(selectedUserId) {
       console.log('selectedUserId : ', selectedUserId);
-      
+
       let organistaionsId = Session.get('organistaionsId');
       Meteor.call('setUserInGroup', selectedUserId, 'member', organistaionsId, function(error, result) {
         if (result) {
@@ -44,7 +44,6 @@ Template.Users_select.helpers({
           idUsersInGroup.push(selectedUserId);
           Session.set('idUsersInGroup', idUsersInGroup);
 
-          console.log('added!');
         } else {
           console.log('error');
         }

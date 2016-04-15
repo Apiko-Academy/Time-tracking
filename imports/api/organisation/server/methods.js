@@ -65,7 +65,7 @@ Meteor.methods({
   },
 
   setUserInGroup: function(userId, role, organisationId) {
-    Roles.setUserRoles(userId, role, organisationId);
+    Roles.addUsersToRoles(userId, role, organisationId);
     return true;
   }
 });

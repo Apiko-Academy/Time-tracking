@@ -13,5 +13,12 @@ Template.Users_list.helpers({
     } else {
       return "/default-user.png";
     }
+  },
+  currentUserId: function() {
+    if (this.itemUser._id === Meteor.userId()) {
+      return false;
+    } else {
+      return true;
+    }
   }
 });
