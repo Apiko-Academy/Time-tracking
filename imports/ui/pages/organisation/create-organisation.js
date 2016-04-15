@@ -3,6 +3,7 @@ import './create-organisation.html';
 import { Template } from 'meteor/templating';
 import { loadFilePicker } from 'meteor/natestrauser:filepicker-plus';
 import { ReactiveVar } from 'meteor/reactive-var';
+import '../../../lib/anti-toggl/client/anti-toggl.js';
 
 Template.createOrganisation.onCreated(function () {
   loadFilePicker('AMxXlNUEKQ1OgRo47XtKSz');

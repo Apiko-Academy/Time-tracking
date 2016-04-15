@@ -1,6 +1,6 @@
 import { Namespace } from 'meteor/zephraph:namespace';
 import { sAlert } from 'meteor/juliancwirko:s-alert';
-import '../../../startup/client/sAlert-config.js';
+
 
 Namespace('AntiToggl', {
   alert: function(message, type = "error") {
