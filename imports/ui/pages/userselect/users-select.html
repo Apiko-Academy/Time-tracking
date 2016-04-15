@@ -1,8 +1,9 @@
 <template name="Users_select">
-  {{> Users_search}}
-  <ul class="list-group no-group-user">
-      {{#each user in usersOutsideGroup}}
-        {{> Users_list itemUser=user onSelectUser=onUserSelectHandler}}
-      {{/each}}
-  </ul>
+  {{#if currentUser}} {{> Users_search}}
+    <ul class="list-group no-group-user">
+        {{#each user in usersOutsideGroup}}
+          {{> Users_list itemUser=user onSelectUser=onUserSelectHandler}}
+        {{/each}}
+    </ul>
+  {{/if}}
 </template>

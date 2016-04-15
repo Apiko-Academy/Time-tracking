@@ -9,9 +9,9 @@ Template.Users_list.events({
 Template.Users_list.helpers({
   user_profile_picture: function() {
     if (this.itemUser.profile && this.itemUser.profile.profileImage) {
-      return user.profile.profileImage;
+      return this.itemUser.profile.profileImage;
     } else {
-      return "";
+      return "/default-user.png";
     }
   }
 });

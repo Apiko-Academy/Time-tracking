@@ -7,7 +7,8 @@ Meteor.publish('users.in.group', function usersInGroup(users) {
       profile: 1,
       emails: 1
     }
-  });
+  })
+});
 
 Meteor.publish('organisation', function () {
   return Organisation.find();
