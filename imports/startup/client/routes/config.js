@@ -13,5 +13,6 @@ import './projects.js';
 import './tasks.js';
 import './reports.js';
 import './organisation.js';
+import './users-select.js';
 import '../../../ui/pages/loading.html';
 import '../../../ui/pages/not-found.html';

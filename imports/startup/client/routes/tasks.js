@@ -1,4 +1,4 @@
-import '../../../ui/pages/tasks.html';
+import '../../../ui/pages/tasks.js';
 
 Router.route('/tasks', {
     name: 'tasks',

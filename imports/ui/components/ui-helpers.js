@@ -1,5 +1,5 @@
 Namespace('antitoggl', {
-isUserInRole: function(role = 'owner', userId = Meteor.userId(), group = null) {
+  isUserInRole: function(role = 'owner', userId = Meteor.userId(), group = null) {
 
       if (typeof userId === "object") {
         userId = Meteor.userId();
