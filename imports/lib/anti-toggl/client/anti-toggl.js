@@ -1,3 +1,7 @@
+import { Namespace } from 'meteor/zephraph:namespace';
+import { sAlert } from 'meteor/juliancwirko:s-alert';
+
+
 Namespace('AntiToggl', {
   alert: function(message, type = "error") {
     let messageText = message;
@@ -10,6 +14,8 @@ Namespace('AntiToggl', {
         message = message.message;
       }
     }
-    alert(messageText);
+    if(sAlert[type]){
+      sAlert[type](messageText);
+    }
   }
 });

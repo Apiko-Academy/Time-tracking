@@ -3,6 +3,7 @@ import './create-organisation.html';
 import { Template } from 'meteor/templating';
 import { loadFilePicker } from 'meteor/natestrauser:filepicker-plus';
 import { ReactiveVar } from 'meteor/reactive-var';
+import '../../../lib/anti-toggl/client/anti-toggl.js';
 
 Template.createOrganisation.onCreated(function () {
   loadFilePicker('AMxXlNUEKQ1OgRo47XtKSz');
@@ -17,10 +18,10 @@ Template.createOrganisation.events({
     let name = event.target['organisation-name'].value.trim();
     let description = event.target['organisation-description'].value.trim();
     let companySite = event.target['company-site'].value.trim();
-    let iconUrl = template.iconUrl.get() || AntiToggl.img.noImg;
+    let iconUrl = template.iconUrl.get() || AntiToggl.image.noImage;
 
     if (!name || !description) {
-      alert('Name or description are empty');
+      AntiToggl.alert('Name or description are empty');
       return;
     }
 
@@ -41,7 +42,7 @@ Template.createOrganisation.events({
       if (result) {
         //Router.go('organisationItem', { _id: result._id });
       } else {
-        throwError(error.reason);
+        AntiToggl.alert(error);
       }
     });
 
