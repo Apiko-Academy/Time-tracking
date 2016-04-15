@@ -1,9 +1,8 @@
-import { Meteor } from 'meteor/meteor';
 import { sAlert } from 'meteor/juliancwirko:s-alert';
 
 sAlert.config({
   effect: 'scale',
-  position: 'bottom-right',
+  position: 'top-right',
   timeout: 5000,
   html: false,
   onRouteClose: true,
