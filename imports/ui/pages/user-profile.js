@@ -61,9 +61,10 @@ Template.userProfile.helpers({
   },
   organizations: function () {
     let userId = Meteor.userId();
-    let organizationIds = Roles.getGroupsForUser(userId) || [];
+    let organizationIds = Roles.getGroupsForUser(userId);
     
-    return Organisation.find({_id:{$in:organizationIds}}).fetch();
+    //seems like we dont need this additional filtering. Just take whole Organization
+    return Organisation.find({ _id: { $in: organizationIds } }).fetch();
   }
 });
 
