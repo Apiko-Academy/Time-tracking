@@ -16,7 +16,7 @@ Namespace('AntiToggl.organization', {
   getIcon: function (organizationId) {
     let organization = Organisation.findOne(organizationId);
 
-    if (organization) {
+    if (organization && organization.profile && organization.profile.iconUrl ) {
       return organization.profile.iconUrl;
     }
   }
