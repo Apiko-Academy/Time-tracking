@@ -1,7 +1,9 @@
 import { Meteor } from 'meteor/meteor';
 
 Meteor.publish('users', function () {
-  return Meteor.users.find({}, {fields: {
-    profile: true
-  }});
+  if(this.userId){
+    return Meteor.users.find({}, {fields: {
+      profile: true
+    }});
+  }
 });

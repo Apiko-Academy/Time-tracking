@@ -26,7 +26,10 @@ Namespace('AntiToggl.organization', {
 
 Namespace('AntiToggl.users', {
   getFullName: function (userId) {
-    let userProfile = Meteor.users.findOne(userId).profile;
-    return userProfile.firstName + ' ' + userProfile.lastName;
+    let userItem = Meteor.users.findOne(userId);
+
+    if(userItem){
+      return userItem.profile.firstName + ' ' + userItem.profile.lastName;
+    }
   }
 });
