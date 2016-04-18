@@ -37,20 +37,6 @@ Meteor.methods({
     return organisationId;
   },
 
-  // getUsersInGroup: function(role, roles) {
-  //   if (!this.userId) {
-  //     return 'Need to sign in';
-  //   }
-    
-  //   var organistaionsId = Roles.getGroupsForUser(this.userId, role);
-  //   var userInGroup = Roles.getUsersInRole(roles, organistaionsId[0]).fetch();
-
-  //   return {
-  //     organistaionsId: organistaionsId[0],
-  //     userInGroup: userInGroup
-  //   }
-  // },
-
   addUsersToRoles: function(userId, role, organisationId) {
     Roles.addUsersToRoles(userId, role, organisationId);
     return true;
