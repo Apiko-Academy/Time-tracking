@@ -1,0 +1,9 @@
+<template name="Users_select">
+  {{#if Template.subscriptionsReady}}
+    <ul class="list-group no-group-user">
+        {{#each itemUser in users}}
+          {{> Users_list itemUser=itemUser onSelectUser=onSelectUser}}
+        {{/each}}
+    </ul>
+  {{/if}}
+</template>

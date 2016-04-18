@@ -33,3 +33,16 @@ Namespace('AntiToggl.users', {
     }
   }
 });
+
+Namespace('AntiToggl.profileImage', {
+  getIcon: function (id) {
+    
+    let user = Meteor.users.findOne({_id: id});
+    
+    if (user && user.profile.profileImage) {
+      return user.profile.profileImage;
+    } else {
+      return "/default-user.png";
+    }
+  }
+});

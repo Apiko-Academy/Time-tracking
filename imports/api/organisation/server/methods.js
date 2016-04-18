@@ -20,8 +20,8 @@ Meteor.methods({
     }
 
     let organisation = _.extend(organisationAttributes, {
-        owners: [this.userId],
-        createdAt: new Date()
+      owners: [this.userId],
+      createdAt: new Date()
     });
 
     let organisationId = Organisation.insert(organisation);
@@ -29,12 +29,16 @@ Meteor.methods({
     if (organisationId) {
       Roles.setUserRoles(this.userId, ['owner'], organisationId);
 
-      if( Roles.userIsInRole(this.userId, 'owner', 'general_group') && Roles.userIsInRole(this.userId, 'owner', organisationId) ) {
+      if (Roles.userIsInRole(this.userId, 'owner', 'general_group') && Roles.userIsInRole(this.userId, 'owner', organisationId)) {
         Roles.removeUsersFromRoles(this.userId, ['owner'], 'general_group');
       }
     }
 
     return organisationId;
-  }
+  },
 
+  addUsersToRoles: function(userId, role, organisationId) {
+    Roles.addUsersToRoles(userId, role, organisationId);
+    return true;
+  }
 });
