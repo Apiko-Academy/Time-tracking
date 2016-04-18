@@ -8,5 +8,8 @@ Meteor.publish('all.users', function allUsers() {
 });
 
 Meteor.publish('organisation', function () {
-  return Organisation.find();
+  let userId = this.userId;
+  let organizationIds = Roles.getGroupsForUser(userId);
+
+  return Organisation.find({ _id: { $in: organizationIds } });
 });
