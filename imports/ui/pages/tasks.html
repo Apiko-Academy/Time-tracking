@@ -1,3 +1,6 @@
 <template name="tasks">
 	<h3>Tasks</h3>
+	{{#if currentUser}} 
+	  {{> Users_select users=allUsers onSelectUser=onUserSelectHandler}}
+	{{/if}}
 </template>

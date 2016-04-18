@@ -1,0 +1,8 @@
+<template name="Users_list">
+  {{#if currentUserId}}
+    <li class="list-group-item">
+        <img src="{{src}}" width="30px" height="30px" class="img-circle" alt="#" />
+        <span><b>{{itemUser.profile.firstName}} {{itemUser.profile.lastName}}</b> ({{itemUser.emails.[0].address}})</span>
+    </li>
+  {{/if}}
+</template>
