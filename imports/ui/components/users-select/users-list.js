@@ -9,9 +9,6 @@ Template.Users_list.events({
 
 Template.Users_list.helpers({
   src: function() {
-    return AntiToggl.user.getIcon(this.itemUser._id);
-  },
-  currentUserId: function() {
-    return this.itemUser._id !== Meteor.userId();
+    return AntiToggl.profileImage.getIcon(this.itemUser._id);
   }
 });

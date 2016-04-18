@@ -22,17 +22,20 @@ Namespace('AntiToggl.organization', {
   }
 });
 
-Namespace('AntiToggl.user', {
-  getIcon: function (userId) {
+Namespace('AntiToggl.profileImage', {
+  getIcon: function (id) {
     
-    let user = Meteor.users.findOne(userId);
+    let user = Meteor.users.findOne({_id: id});
     
     if (user && user.profile.profileImage) {
       return user.profile.profileImage;
     } else {
       return "/default-user.png";
     }
-  },
+  }
+});
+
+Namespace('AntiToggl.isInRole', {
   isUserInRole: function(role = 'owner', userId = Meteor.userId(), group = null) {
     if (typeof userId !== 'string') {
       userId = Meteor.userId();
