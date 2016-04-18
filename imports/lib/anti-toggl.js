@@ -18,6 +18,15 @@ Namespace('AntiToggl.organization', {
 
     if (organization && organization.profile && organization.profile.iconUrl ) {
       return organization.profile.iconUrl;
+    } else {
+      return AntiToggl.image.noImage;
     }
+  }
+});
+
+Namespace('AntiToggl.users', {
+  getFullName: function (userId) {
+    let userProfile = Meteor.users.findOne(userId).profile;
+    return userProfile.firstName + ' ' + userProfile.lastName;
   }
 });
