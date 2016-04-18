@@ -1,7 +1,16 @@
 <template name="myOrganisations">
   <div class="organizations-list-container container-fluid">
-  <h3>My organizations</h3>
-	{{#each organisations}}
+  <div class="row">
+    <div class="col-md-9">
+      <h3>My organizations</h3>
+    </div>
+    <div class="col-md-3"> 
+      <a href="{{pathFor route='organisation'}}" class="btn btn-success">
+        <span class="glyphicon glyphicon-plus"></span> Create organisation
+      </a>
+    </div>
+	</div>
+  {{#each organisations}}
       <div class="col-lg-4 col-md-6 col-xs-12">
       	<div class="media">
           <a class="pull-left" href="#">
