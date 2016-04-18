@@ -1,4 +1,5 @@
 import './users-list.html';
+import '../../../lib/anti-toggl.js';
 
 Template.Users_list.events({
   'click li.list-group-item': function(event, tmpl) {
@@ -7,12 +8,8 @@ Template.Users_list.events({
 });
 
 Template.Users_list.helpers({
-  user_profile_picture: function() {
-    if (this.itemUser.profile && this.itemUser.profile.profileImage) {
-      return this.itemUser.profile.profileImage;
-    } else {
-      return "/default-user.png";
-    }
+  src: function() {
+    return AntiToggl.user.getIcon(this.itemUser._id);
   },
   currentUserId: function() {
     return this.itemUser._id !== Meteor.userId();

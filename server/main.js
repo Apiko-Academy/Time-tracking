@@ -9,12 +9,3 @@ import '../imports/api/organisation/server/publications.js';
 Meteor.startup(() => {
 
 });
-
-
-// AntiSearchSource.allow('Meteor.users', {
-//   maxLimit: 10,
-//   securityCheck(userId, configs) {
-//     return !!userId;
-//   },
-//   allowedFields: ['users','profile.firstName']
-// });

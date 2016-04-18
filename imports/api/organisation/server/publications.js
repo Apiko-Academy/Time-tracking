@@ -11,7 +11,9 @@ import '../../../lib/organisation.js';
 // });
 
 Meteor.publish('all.users', function allUsers() {
-	return Meteor.users.find();
+	if (this.userId) {
+	  return Meteor.users.find();	
+	}
 });
 
 Meteor.publish('organisation', function () {
