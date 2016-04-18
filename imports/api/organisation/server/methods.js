@@ -37,34 +37,21 @@ Meteor.methods({
     return organisationId;
   },
 
-  getGroupsForUser: function(role) {
-    return Roles.getGroupsForUser(this.userId, role);
-  },
+  // getUsersInGroup: function(role, roles) {
+  //   if (!this.userId) {
+  //     return 'Need to sign in';
+  //   }
+    
+  //   var organistaionsId = Roles.getGroupsForUser(this.userId, role);
+  //   var userInGroup = Roles.getUsersInRole(roles, organistaionsId[0]).fetch();
 
-  getUsersInGroup: function(role, roles) {
-    if (!this.userId) {
-      return 'Need to sign in';
-    }
+  //   return {
+  //     organistaionsId: organistaionsId[0],
+  //     userInGroup: userInGroup
+  //   }
+  // },
 
-    var userInGroup = null;
-    var organistaionsId = null;
-
-    Meteor.call('getGroupsForUser', role, function(error, result) {
-      if (result) {
-        organistaionsId = result[0];
-        userInGroup = Roles.getUsersInRole(roles, organistaionsId).fetch();
-      } else {
-        console.log('error')
-      }
-    })
-
-    return {
-      organistaionsId: organistaionsId,
-      userInGroup: userInGroup
-    }
-  },
-
-  setUserInGroup: function(userId, role, organisationId) {
+  addUsersToRoles: function(userId, role, organisationId) {
     Roles.addUsersToRoles(userId, role, organisationId);
     return true;
   }

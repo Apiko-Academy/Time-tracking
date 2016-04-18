@@ -1,53 +1,27 @@
 import { Meteor } from 'meteor/meteor';
 import { Template } from 'meteor/templating';
-import { Session } from 'meteor/session';
+import { ReactiveVar } from 'meteor/reactive-var'
 import './users-select.html';
 import './users-search.js';
 import './users-list.js';
 
 
-Template.Users_select.onCreated(function() {
-  if (Meteor.isClient) {
-
-    let userId = Meteor.userId();
-    let idUsersInGroup = [];
-
-    if (userId) {
-      Meteor.call('getUsersInGroup', 'owner', ['owner', 'member'], function(error, result) {
-        if (result) {
-
-          for (let value of result.userInGroup) {
-            idUsersInGroup.push(value._id);
-          }
-
-          Session.set('idUsersInGroup', idUsersInGroup);
-          Session.set('organistaionsId', result.organistaionsId);
-        } else {
-          //throwError(error.reason);
-          console.log('error');
-        }
-      });
-    }
-  }
-});
-
 Template.Users_select.helpers({
   onUserSelectHandler: function() {
-    return function(selectedUserId) {
+  	return function(selectedUserId) {
       console.log('selectedUserId : ', selectedUserId);
+     
+      // Meteor.call('addUsersToRoles', selectedUserId, 'member', _organistaionsId, function(error, result) {
+      //   if (result) {
 
-      let organistaionsId = Session.get('organistaionsId');
-      Meteor.call('setUserInGroup', selectedUserId, 'member', organistaionsId, function(error, result) {
-        if (result) {
+      //     let _idUsersInGroup = idUsersInGroup.get();
+      //     _idUsersInGroup.push(selectedUserId);
+      //     idUsersInGroup.set(_idUsersInGroup);
 
-          let idUsersInGroup = Session.get('idUsersInGroup');
-          idUsersInGroup.push(selectedUserId);
-          Session.set('idUsersInGroup', idUsersInGroup);
-
-        } else {
-          console.log('error');
-        }
-      });
+      //   } else {
+      //     console.log('error');
+      //   }
+      // });
     }
   }
 });

@@ -15,10 +15,6 @@ Template.Users_list.helpers({
     }
   },
   currentUserId: function() {
-    if (this.itemUser._id === Meteor.userId()) {
-      return false;
-    } else {
-      return true;
-    }
+    return this.itemUser._id !== Meteor.userId();
   }
 });

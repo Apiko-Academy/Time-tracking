@@ -2,7 +2,7 @@
   {{#if currentUser}} 
     <!-- {{> Users_search}} -->
     <ul class="list-group no-group-user">
-        {{#each user in usersOutsideGroup}}
+        {{#each user in allUsers}}
           {{> Users_list itemUser=user onSelectUser=onUserSelectHandler}}
         {{/each}}
     </ul>
