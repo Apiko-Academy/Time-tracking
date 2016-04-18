@@ -11,7 +11,7 @@ Template.Users_select.onCreated(function () {
 
 Template.Users_select.helpers({
 	users: function() {
-    var users = Meteor.users.find({_id: {$ne:Meteor.userId()}}).fetch();
+    let users = Meteor.users.find({_id: {$ne: Meteor.userId()}}).fetch();
     return users;
   },
   onSelectUser: function() {
