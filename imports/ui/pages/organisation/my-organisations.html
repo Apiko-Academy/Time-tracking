@@ -1,0 +1,27 @@
+<template name="myOrganisations">
+  <div class="organizations-list-container">
+	{{#each organisations}}
+  	<div class="media">
+      <a class="pull-left" href="#">
+        <img class="media-object" src="{{iconUrl}}" style="width: 64px; height: 64px;">
+      </a>
+      <div class="media-body">
+        <h4 class="media-heading">{{name}} 
+          {{#if isOwner}}<a href="#"><span class="glyphicon glyphicon-cog"></span></a>{{/if}}
+        </h4>
+        {{#if owners}}
+          <p> <b>Owners: </b>
+          {{#each owners}}
+            <span class="label label-primary">
+              {{getUsername this}} 
+            </span>
+          {{/each}}
+          </p>
+        {{/if}}
+        <b>Description: </b>
+        {{description}}
+      </div>
+    </div>
+  {{/each}}
+  </div>
+</template>
