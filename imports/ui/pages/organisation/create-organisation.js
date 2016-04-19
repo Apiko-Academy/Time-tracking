@@ -37,14 +37,9 @@ Template.createOrganisation.events({
     event.target.reset();
     template.iconUrl.set();
     
-    Meteor.call('organisationInsert', organisation, function(error, result) {
-
-      if (result) {
-        //Router.go('organisationItem', { _id: result._id });
-      } else {
-        AntiToggl.alert(error);
-      }
-    });
+    Meteor.call('organisationInsert', organisation, AntiToggl.handleMethodResult(()=>{
+      Router.go('myorganisations');
+    }));
 
   },
   'click #organisation-icon': function (event, tmpl) {
@@ -56,7 +51,7 @@ Template.createOrganisation.events({
         tmpl.iconUrl.set(InkBlobs.url);
       },
       function(FPError){
-        console.log(FPError.toString());
+        AntiToggl.alert(FPError.toString());
     });
   }
 

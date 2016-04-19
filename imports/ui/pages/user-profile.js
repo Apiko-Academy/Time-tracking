@@ -4,6 +4,7 @@ import { Template } from 'meteor/templating';
 import { loadFilePicker } from 'meteor/natestrauser:filepicker-plus';
 
 import '../../startup/client/config.js';
+import '../../lib/anti-toggl/client/anti-toggl.js';
 
 Template.userProfile.onCreated(function () {
   // should be defined other way: meteor settings or env var, I guess
@@ -78,7 +79,7 @@ Template.userProfile.events({
         updateUserProfile('profile.profileImage')('', InkBlobs.url);
       },
       function(FPError){
-        console.log(FPError.toString());
+        AntiToggl.alert(FPError.toString());
     });
   }
 });
@@ -90,7 +91,7 @@ function updateUserProfile (fieldName) {
 
     options[fieldName] = newValue;
 
-    Meteor.call('users.update', userId, options);
+    Meteor.call('users.update', userId, options, AntiToggl.handleMethodResult());
   }
 }
 
