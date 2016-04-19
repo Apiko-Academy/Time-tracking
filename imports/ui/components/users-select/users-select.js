@@ -17,12 +17,12 @@ Template.Users_select.helpers({
     let query = { _id: { $ne: Meteor.userId() } };
 
     if (searchStr && searchStr.length >= 3 && _.isString(searchStr)) {
+      let searchRegExp = new RegExp(searchStr, 'i');
 
       query.$or = [
-        { 'profile.firstName': { $regex: ".*" + _escapeRegExpStr(searchStr) + ".*", $options: "i" } },
-        { 'profile.lastName': { $regex: ".*" + _escapeRegExpStr(searchStr) + ".*", $options: "i" } }
+        { 'profile.firstName': searchRegExp },
+        { 'profile.lastName': searchRegExp }
       ];
-
     }
 
     return Meteor.users.find(query);
@@ -35,8 +35,5 @@ Template.Users_select.helpers({
     return function(str) {
       template.searchStr.set(str);
     }
-
   }
 });
-
-let _escapeRegExpStr = str => str.replace(/[\-\[\]\/\{\}\(\)\*\+\?\.\\\^\$\|]/g, "\\$&");
