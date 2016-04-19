@@ -17,5 +17,14 @@ Namespace('AntiToggl', {
     if(sAlert[type]){
       sAlert[type](messageText);
     }
-  }
+  },
+  handleMethodResult: function(func){
+      return (error, result) => {
+        if(error){
+          AntiToggl.alert(error);
+        } else if(_.isFunction(func)){
+          func(result); 
+        }
+      }
+    }
 });
