@@ -1,5 +1,3 @@
-import '../../lib/anti-toggl.js';
-
 Accounts.onCreateUser(function(options, user) {
 	
   if(!options || !user) {

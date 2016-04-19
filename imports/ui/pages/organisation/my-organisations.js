@@ -1,5 +1,5 @@
 import './my-organisations.html';
-import '../../../lib/anti-toggl.js';
+import '../../../lib/anti-toggl/anti-toggl.js';
 
 import { Template } from 'meteor/templating';
 

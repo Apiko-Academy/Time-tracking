@@ -1,5 +1,4 @@
 import './users-list.html';
-import '../../../lib/anti-toggl.js';
 
 Template.Users_list.events({
   'click li.list-group-item': function(event, tmpl) {

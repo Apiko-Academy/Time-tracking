@@ -37,7 +37,9 @@ Template.createOrganisation.events({
     event.target.reset();
     template.iconUrl.set();
     
-    Meteor.call('organisationInsert', organisation, AntiToggl.handleMethodResult());
+    Meteor.call('organisationInsert', organisation, AntiToggl.handleMethodResult(()=>{
+      Router.go('myorganisations');
+    }));
 
   },
   'click #organisation-icon': function (event, tmpl) {
