@@ -16,7 +16,7 @@ Template.Users_select.helpers({
     let searchStr = Template.instance().searchStr.get();
     let query = { _id: { $ne: Meteor.userId() } };
 
-    if (searchStr && searchStr.length >= 3 && _.isString(searchStr)) {
+    if (searchStr && _.isString(searchStr)) {
       let searchRegExp = new RegExp(searchStr, 'i');
 
       query.$or = [
