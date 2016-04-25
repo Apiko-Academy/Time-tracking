@@ -1,0 +1,16 @@
+<template name="projects">
+  <div class="row">
+    <div class="col-md-9">
+	    <h3>Projects</h3>
+    </div>
+    <div class="col-md-3">
+      <button type="button" class="btn btn-success project-create">Create project</button>
+    </div>
+  </div>
+  <div class="row">
+    {{> projectsFind}}
+  </div>
+  <div class="row">
+    {{> projectsList projects=projects}}
+  </div>
+</template>

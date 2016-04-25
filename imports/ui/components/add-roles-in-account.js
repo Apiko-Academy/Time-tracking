@@ -1,9 +1,7 @@
-import '../../../lib/anti-toggl/client/anti-toggl.js';
-
 Accounts.onCreateUser(function(options, user) {
 	
   if(!options || !user) {
-      AntiToggl.alert('error creating user');
+      console.log('error creating user');
     return;
   }
   

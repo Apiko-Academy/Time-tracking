@@ -1,0 +1,42 @@
+<template name="projectsFind">
+  <div class="input-group">
+    <div class="input-group-btn">
+      <select class="filter_active form-control" title="Active" name="active">
+        <option>Active</option>
+        <option>Archived</option>
+        <option>Both</option>
+      </select>
+    </div>
+    <div class="input-group-btn">
+      <select class="filter_client" multiple data-live-search="true" title="Client" data-actions-box="true" name="client">
+        <option value="">Without client</option>
+        <optgroup label="Clients">
+          {{#each clients}}
+            <option value="{{_id}}">{{name}}</option>
+          {{else}}
+            <option data-divider="true"></option>
+            <option disabled>Client list are empty</option>
+          {{/each}}
+        </optgroup>
+      </select>
+    </div>
+    <div class="input-group-btn">
+      <select class="filter_team" multiple data-live-search="true" title="Team" data-actions-box="true" name="team">
+        <option value="">Without client</option>
+        <optgroup label="Clients">
+          {{#each clients}}
+            <option value="{{_id}}">{{name}}</option>
+          {{else}}
+            <option data-divider="true"></option>
+            <option disabled>Client list are empty</option>
+          {{/each}}
+        </optgroup>
+      </select>
+    </div>
+    <input type="text" class="form-control" placeholder="Name" name="name"/>
+    <span class="input-group-btn">
+      <button class="btn btn-success" type="button">Apply</button>
+    </span>
+  </div>
+  <button type="button" class="btn btn-warning btn-xs pull-right">Clear filters</button>
+</template>

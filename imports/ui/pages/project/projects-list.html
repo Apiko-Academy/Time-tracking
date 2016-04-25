@@ -1,0 +1,20 @@
+<template name="projectsList">
+  <table class="table">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Client</th>
+        </tr>
+      </thead>
+      <tbody>
+        {{#each projects}}
+          <tr>
+            <td>{{name}}</td>
+            <td>{{client}}</td>
+          </tr>
+        {{else}}
+          Project list are empty
+        {{/each}}
+      </tbody>
+    </table>
+</template>
