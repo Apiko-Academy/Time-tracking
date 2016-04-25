@@ -1,6 +1,6 @@
 import './my-organisations.html';
-import '../../../lib/anti-toggl/anti-toggl.js';
-
+import { getOrganisationIcon } from '../../../modules/images.js';
+import { getFullName } from '../../../modules/users.js';
 import { Template } from 'meteor/templating';
 
 Template.myOrganisations.helpers({
@@ -8,9 +8,9 @@ Template.myOrganisations.helpers({
     return this.owners.indexOf(Meteor.userId()) !== -1;
   },
   getUsername: function(userId){
-    return AntiToggl.users.getFullName(userId);
+    return getFullName(userId);
   },
   iconUrl: function(){
-    return AntiToggl.organization.getIcon(this._id);
+    return getOrganisationIcon(this._id);
   }
 });

@@ -3,7 +3,8 @@ import './create-organisation.html';
 import { Template } from 'meteor/templating';
 import { loadFilePicker } from 'meteor/natestrauser:filepicker-plus';
 import { ReactiveVar } from 'meteor/reactive-var';
-import '../../../lib/anti-toggl/client/anti-toggl.js';
+import { alert, handleMethodResult } from '../../../modules/anti-toggl-alert-module.js';
+import { noImage } from '../../../modules/images.js';
 
 Template.createOrganisation.onCreated(function () {
   loadFilePicker('AMxXlNUEKQ1OgRo47XtKSz');
@@ -18,10 +19,10 @@ Template.createOrganisation.events({
     let name = event.target['organisation-name'].value.trim();
     let description = event.target['organisation-description'].value.trim();
     let companySite = event.target['company-site'].value.trim();
-    let iconUrl = template.iconUrl.get() || AntiToggl.image.noImage;
+    let iconUrl = template.iconUrl.get() || noImage;
 
     if (!name || !description) {
-      AntiToggl.alert('Name or description are empty');
+      alert('Name or description are empty');
       return;
     }
 
@@ -37,7 +38,7 @@ Template.createOrganisation.events({
     event.target.reset();
     template.iconUrl.set();
     
-    Meteor.call('organisationInsert', organisation, AntiToggl.handleMethodResult(()=>{
+    Meteor.call('organisationInsert', organisation, handleMethodResult(()=>{
       Router.go('myorganisations');
     }));
 
@@ -51,7 +52,7 @@ Template.createOrganisation.events({
         tmpl.iconUrl.set(InkBlobs.url);
       },
       function(FPError){
-        AntiToggl.alert(FPError.toString());
+        alert(FPError.toString());
     });
   }
 
@@ -59,7 +60,7 @@ Template.createOrganisation.events({
 
 Template.createOrganisation.helpers({
   iconUrl: function () {
-    let noImage = AntiToggl.image.noImage;
+    let noImage = noImage;
     let iconUrl = Template.instance().iconUrl.get();
 
     return iconUrl || noImage;

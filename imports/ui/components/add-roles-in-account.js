@@ -1,14 +1,15 @@
-import '../../../lib/anti-toggl/client/anti-toggl.js';
+import { alert } from '../../modules/anti-toggl-alert-module.js';
+import { noImage } from '../../modules/images.js';
 
 Accounts.onCreateUser(function(options, user) {
 	
   if(!options || !user) {
-      AntiToggl.alert('error creating user');
+      alert('error creating user');
     return;
   }
   
   if (options.profile) {
-  	options.profile.profileImage = AntiToggl.image.noImage;
+  	options.profile.profileImage = noImage;
   	user.profile = options.profile;
   }
 

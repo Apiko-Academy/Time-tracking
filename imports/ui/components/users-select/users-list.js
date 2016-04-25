@@ -1,4 +1,5 @@
 import './users-list.html';
+import { getProfileIcon } from '../../../modules/images.js';
 
 Template.Users_list.events({
   'click li.list-group-item': function(event, tmpl) {
@@ -8,6 +9,6 @@ Template.Users_list.events({
 
 Template.Users_list.helpers({
   src: function() {
-    return AntiToggl.profileImage.getIcon(this.itemUser._id);
+    return getProfileIcon(this.itemUser._id);
   }
 });
