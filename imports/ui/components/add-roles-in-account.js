@@ -1,10 +1,10 @@
-import { alert } from '../../modules/anti-toggl-alert-module.js';
+import { outputErrorHandler } from '../../modules/output-errors-handler.js';
 import { noImage } from '../../modules/images.js';
 
 Accounts.onCreateUser(function(options, user) {
 	
   if(!options || !user) {
-      alert('error creating user');
+      outputErrorHandler('error creating user');
     return;
   }
   

@@ -1,5 +1,5 @@
 import './my-organisations.html';
-import { getOrganisationIcon } from '../../../modules/images.js';
+import { getOrganisationIcon } from '../../../modules/organisation.js';
 import { getFullName } from '../../../modules/users.js';
 import { Template } from 'meteor/templating';
 
