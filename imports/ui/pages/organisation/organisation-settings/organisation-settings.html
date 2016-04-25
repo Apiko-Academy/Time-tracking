@@ -1,0 +1,25 @@
+<template name="organisationSettings">
+  <div class="edit-organisation-container">
+    <form class="edit-organisation-form">
+      <div class="form-group">
+        <label for="organisation-name">Organisation name :</label>
+        <input type="text" class="form-control" name="organisation-name" value="{{this.name}}">
+      </div>{{users}}
+      <div class="form-group">
+        <label for="organisation-description">Description :</label>
+        <textarea class="form-control" name="organisation-description" rows="3" value="{{this.description}}"></textarea>
+      </div>
+      <div class="form-group">
+        <label for="company-site">Organisation site :</label>
+        <input type="text" class="form-control" name="company-site" value="{{this.profile.companySite}}">
+      </div>
+      <label for="organisation-icon">Organisation icon :</label>
+      <div id="organisation-icon" class="icon">
+        <img  src="{{this.profile.iconUrl}}" alt="Organisation avatar" width="85" height="85">
+        <span class="change-icon">Change Icon</span>
+      </div>
+      <div class="clearer"></div>
+      <button type="submit" class="btn btn-success">Submit</button>
+    </form>
+  </div>
+</template>
