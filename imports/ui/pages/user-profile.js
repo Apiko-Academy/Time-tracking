@@ -4,7 +4,9 @@ import { Template } from 'meteor/templating';
 import { loadFilePicker } from 'meteor/natestrauser:filepicker-plus';
 
 import '../../startup/client/config.js';
-import '../../lib/anti-toggl/client/anti-toggl.js';
+import { handleMethodResult } from '../../modules/handle-method-result.js';
+import { outputHandler } from '../../modules/output-handler.js';
+import { regExEmail } from '../../modules/regex.js';
 
 Template.userProfile.onCreated(function () {
   // should be defined other way: meteor settings or env var, I guess
@@ -79,7 +81,7 @@ Template.userProfile.events({
         updateUserProfile('profile.profileImage')('', InkBlobs.url);
       },
       function(FPError){
-        AntiToggl.alert(FPError.toString());
+        outputHandler(FPError.toString());
     });
   }
 });
@@ -91,12 +93,12 @@ function updateUserProfile (fieldName) {
 
     options[fieldName] = newValue;
 
-    Meteor.call('users.update', userId, options, AntiToggl.handleMethodResult());
+    Meteor.call('users.update', userId, options, handleMethodResult());
   }
 }
 
 function validateEmail (email) {
-  if (!AntiToggl.regex.email(email)) {
+  if (!regExEmail(email)) {
     return 'Enter valid email';
   }
 }
