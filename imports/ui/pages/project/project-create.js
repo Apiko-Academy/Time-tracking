@@ -1,6 +1,6 @@
 import 'meteor/jesperwe:bootstrap-select';
 import './project-create.html';
-import '../../../lib/anti-toggl/client/anti-toggl.js';
+import {  handleMethodResult } from '../../../modules/handle-method-result';
 import 'meteor/trsdln:modals';
 
 Template.projectCreate.events({
@@ -9,7 +9,7 @@ Template.projectCreate.events({
 
     let clientName = inst.$('.client_name');
 
-    Meteor.call('clientCreate', clientName.val(), AntiToggl.handleMethodResult((res) =>{
+    Meteor.call('clientCreate', clientName.val(), handleMethodResult((res) =>{
       clientName.val("");
       inst.$('.select_client')
         .selectpicker('refresh')
@@ -30,7 +30,7 @@ Template.projectCreate.events({
 
     target.reset();
     
-    Meteor.call('projectCreate', projectAttributes, AntiToggl.handleMethodResult(()=>{
+    Meteor.call('projectCreate', projectAttributes, handleMethodResult(()=>{
       ModalManager.getInstanceByElement(event.target).close();
     }));
   }
