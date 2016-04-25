@@ -15,6 +15,10 @@ Template.projects.events({
 
 Template.projects.helpers({
   projects: function(){
-    return Project.find();
+    return Project.find(Template.instance().filter);
   }
+});
+
+Template.projects.onCreated(function(){
+  this.filter = {};
 });

@@ -1,13 +1,16 @@
+import { outputHandler } from '../../modules/output-handler.js';
+import { noImage } from '../../modules/images.js';
+
 Accounts.onCreateUser(function(options, user) {
-	
+  
   if(!options || !user) {
-      console.log('error creating user');
+    outputHandler('error creating user');
     return;
   }
   
   if (options.profile) {
-  	options.profile.profileImage = AntiToggl.image.noImage;
-  	user.profile = options.profile;
+    options.profile.profileImage = noImage;
+    user.profile = options.profile;
   }
 
   return user;

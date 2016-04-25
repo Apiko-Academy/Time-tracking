@@ -6,7 +6,15 @@ Template.projectsFind.helpers({
   }
 });
 
+Template.projectsFind.events({
+  'click .apply-filter': function (event, inst) {
+      
+    }
+});
+
 Template.projectsFind.onRendered(function(){
+  let filter = this.view.parentView._templateInstance.filter;
+  console.log(filter);
   $('.filter_active').selectpicker();
   $('.filter_client').selectpicker({
     liveSearchPlaceholder: 'Find client'
