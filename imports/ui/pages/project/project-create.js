@@ -1,6 +1,7 @@
 import 'meteor/jesperwe:bootstrap-select';
 import './project-create.html';
 import '../../../lib/anti-toggl/client/anti-toggl.js';
+import 'meteor/trsdln:modals';
 
 Template.projectCreate.events({
   'click .client-add': function(event, inst){
@@ -28,8 +29,10 @@ Template.projectCreate.events({
     }
 
     target.reset();
-
-    Meteor.call('projectCreate', projectAttributes, AntiToggl.handleMethodResult());
+    
+    Meteor.call('projectCreate', projectAttributes, AntiToggl.handleMethodResult(()=>{
+      ModalManager.getInstanceByElement(event.target).close();
+    }));
   }
 });
 
