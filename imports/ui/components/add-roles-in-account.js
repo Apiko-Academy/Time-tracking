@@ -1,4 +1,4 @@
-import { outputHandler } from '../../modules/output-errors-handler.js';
+import { outputHandler } from '../../modules/output-handler.js';
 import { noImage } from '../../modules/images.js';
 
 Accounts.onCreateUser(function(options, user) {

@@ -5,7 +5,7 @@ import { loadFilePicker } from 'meteor/natestrauser:filepicker-plus';
 
 import '../../startup/client/config.js';
 import { handleMethodResult } from '../../modules/handle-method-result.js';
-import { outputHandler } from '../../modules/output-errors-handler.js';
+import { outputHandler } from '../../modules/output-handler.js';
 import { regExEmail } from '../../modules/regex.js';
 
 Template.userProfile.onCreated(function () {

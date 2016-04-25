@@ -4,7 +4,7 @@ import { Template } from 'meteor/templating';
 import { loadFilePicker } from 'meteor/natestrauser:filepicker-plus';
 import { ReactiveVar } from 'meteor/reactive-var';
 import { handleMethodResult } from '../../../modules/handle-method-result.js';
-import { outputHandler } from '../../../modules/output-errors-handler.js';
+import { outputHandler } from '../../../modules/output-handler.js';
 import { noImage } from '../../../modules/images.js';
 
 Template.createOrganisation.onCreated(function () {

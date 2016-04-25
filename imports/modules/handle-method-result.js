@@ -1,4 +1,4 @@
-import { outputHandler } from './output-errors-handler.js';
+import { outputHandler } from './output-handler.js';
 let handleMethodResult = (func) => {
     return (error, result) => {
       if (error) {
