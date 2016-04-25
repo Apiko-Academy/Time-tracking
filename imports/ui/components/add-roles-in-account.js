@@ -1,10 +1,10 @@
-import { outputErrorHandler } from '../../modules/output-errors-handler.js';
+import { outputHandler } from '../../modules/output-errors-handler.js';
 import { noImage } from '../../modules/images.js';
 
 Accounts.onCreateUser(function(options, user) {
 	
   if(!options || !user) {
-      outputErrorHandler('error creating user');
+    outputHandler('error creating user');
     return;
   }
   

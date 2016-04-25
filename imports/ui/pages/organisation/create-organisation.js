@@ -4,7 +4,7 @@ import { Template } from 'meteor/templating';
 import { loadFilePicker } from 'meteor/natestrauser:filepicker-plus';
 import { ReactiveVar } from 'meteor/reactive-var';
 import { handleMethodResult } from '../../../modules/handle-method-result.js';
-import { outputErrorHandler } from '../../../modules/output-errors-handler.js';
+import { outputHandler } from '../../../modules/output-errors-handler.js';
 import { noImage } from '../../../modules/images.js';
 
 Template.createOrganisation.onCreated(function () {
@@ -23,7 +23,7 @@ Template.createOrganisation.events({
     let iconUrl = template.iconUrl.get() || noImage;
 
     if (!name || !description) {
-      outputErrorHandler('Name or description are empty');
+      outputHandler('Name or description are empty');
       return;
     }
 
@@ -53,7 +53,7 @@ Template.createOrganisation.events({
         tmpl.iconUrl.set(InkBlobs.url);
       },
       function(FPError){
-        outputErrorHandler(FPError.toString());
+        outputHandler(FPError.toString());
     });
   }
 

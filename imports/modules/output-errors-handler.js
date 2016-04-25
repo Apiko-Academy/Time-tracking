@@ -1,6 +1,6 @@
 import { sAlert } from 'meteor/juliancwirko:s-alert';
 
-let outputErrorHandler = (message, type = 'error') => {
+let outputHandler = (message, type = 'error') => {
   let messageText;
   if (_.isObject(message)) {
     if (message.reason) {
@@ -16,4 +16,4 @@ let outputErrorHandler = (message, type = 'error') => {
   }
 };
 
-export { outputErrorHandler };
+export { outputHandler };
