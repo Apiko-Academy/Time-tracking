@@ -24,11 +24,13 @@ Template.organisationSettings.helpers({
     return tmpl.iconUrl.get();
   },
   isInOrganisationUsers() {
-    let usersInOrganisation = Template.instance().organisationUsers.get();
     let tmpl = Template.instance();
-    let users =  Meteor.users.find({_id: {$in: usersInOrganisation}});
     return function (itemId) {
-      console.log(itemId)
+      let usersInOrganisation = tmpl.organisationUsers.get();
+      let users =  Meteor.users.find({_id: {$in: usersInOrganisation}});
+      if (_.contains(tmpl.organisationUsers.get(), itemId)) {
+        return true;
+      }
     }
   },
   notInOrganisationUsers(){
