@@ -26,18 +26,9 @@ Template.projectsFind.events({
 Template.projectsFind.onRendered(function(){
   let filter = this.filter;
 
-  $('.filter_active').selectpicker().on('changed.bs.select', function (e) {
-    if($(this).val() !== 'both') {
-      filter.active = $(this).val();
-    } else {
-      delete filter.active;
-    }  
-  });
-
   $('.filter_client').selectpicker({
     liveSearchPlaceholder: 'Find client'
   }).on('changed.bs.select', function (e) {
-
     if($(this).val()){
       filter.clientId = {$in: $(this).val()};
     } else {

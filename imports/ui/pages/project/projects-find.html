@@ -2,14 +2,7 @@
   <form class="find-form">
     <div class="input-group">
       <div class="input-group-btn">
-        <select class="filter_active form-control" title="Active" name="active">
-          <option value="active">Active</option>
-          <option value="acrhived">Archived</option>
-          <option value="both">Both</option>
-        </select>
-      </div>
-      <div class="input-group-btn">
-        <select class="filter_client form-control" multiple data-live-search="true" title="Client" name="client">
+        <select class="filter_client form-control" multiple data-live-search="true" title="Filter by client" name="client">
           <option value="">Without client</option>
           <optgroup label="Clients">
             {{#each clients}}
@@ -22,7 +15,7 @@
         </select>
       </div>
       <div class="input-group-btn">
-        <select class="filter_team form-control" multiple data-live-search="true" title="Team" name="team">
+        <select class="filter_team form-control" multiple data-live-search="true" title="Filter by team" name="team">
           <option value="">Without client</option>
           <optgroup label="Clients">
             {{#each clients}}
