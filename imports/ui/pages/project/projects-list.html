@@ -4,13 +4,21 @@
         <tr>
           <th>Name</th>
           <th>Client</th>
+          <th>Team</th>
         </tr>
       </thead>
       <tbody>
+      {{teamMembers}}
         {{#each projects}}
           <tr>
             <td>{{name}}</td>
             <td>{{client}}</td>
+            <td>{{#each managers}}
+              <b>{{this}},</b>
+            {{/each}}
+            {{#each workers}}
+              {{this}},
+            {{/each}}</td>
           </tr>
         {{else}}
           Project list are empty

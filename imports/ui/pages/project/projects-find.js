@@ -1,8 +1,27 @@
 import './projects-find.html';
+import 'meteor/alanning:roles';
+import 'meteor/underscore';
+import {getFullName} from '../../../modules/users.js';
 
 Template.projectsFind.helpers({
   clients: function(){
     return Clients.find();
+  },
+  teamMembers: function(){
+    let organizationIds = Roles.getGroupsForUser(Meteor.userId());
+    let usersIds = [];
+    let members = [];
+
+    organizationIds.forEach(function(orgId){
+      usersIds = _.union(usersIds, _.pluck(Roles.getUsersInRole(['member', 'owner'], orgId).fetch(), '_id'));
+    });
+    usersIds.forEach(function(id){
+      members.push({
+        _id: id,
+        fullName: getFullName(id)
+      });
+    });
+    return members;
   }
 });
 
@@ -39,7 +58,11 @@ Template.projectsFind.onRendered(function(){
   $('.filter_team').selectpicker({
     liveSearchPlaceholder: 'Find team'
   }).on('changed.bs.select', function (e) {
-    filter.team = {$in: $(this).val()};
+    if($(this).val()){
+      filter.workers = {$in: $(this).val()};
+    } else {
+      delete filter.workers;
+    }
   });
 
 });

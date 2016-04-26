@@ -8,7 +8,8 @@ Router.route('/projects', {
     waitOn: function(){
       return [
         Meteor.subscribe('projects'),
-        Meteor.subscribe('clients')
+        Meteor.subscribe('clients'),
+        Meteor.subscribe('users')
       ]
     }
 });

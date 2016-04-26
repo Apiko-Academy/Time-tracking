@@ -16,13 +16,9 @@
       </div>
       <div class="input-group-btn">
         <select class="filter_team form-control" multiple data-live-search="true" title="Filter by team" name="team">
-          <option value="">Without client</option>
-          <optgroup label="Clients">
-            {{#each clients}}
-              <option value="{{_id}}">{{name}}</option>
-            {{else}}
-              <option data-divider="true"></option>
-              <option disabled>Client list are empty</option>
+          <optgroup label="Team">
+            {{#each teamMembers}}
+              <option value="{{_id}}">{{fullName}}</option>
             {{/each}}
           </optgroup>
         </select>
