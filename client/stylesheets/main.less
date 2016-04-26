@@ -102,7 +102,9 @@ body {
     cursor: pointer;
   }
 }
-
+span.label.label-primary {
+  margin-right: 2px;
+}
 .create-organisation-form label[for=organisation-icon] {
   display: block;
 }
@@ -117,4 +119,62 @@ body {
 
 .s-alert-box {
   margin-top: 31px;
+}
+.edit-organisation-container {
+  div.users-list {
+    display: block;
+  }
+  div.form-group {
+    margin-top: 15px;
+  }
+  .edit-organisation-form {
+    margin-top: 15px;
+    padding: 10px;
+  }
+  .icon { 
+    position: relative;
+    img {
+      position: absolute;
+      left: 120px;
+      top: -75px;
+      width: 100px;
+      height: 100px;
+      display: block;
+    }
+  }
+  #icon-label {
+    margin-top: 25px;
+  }
+  li.user-item {
+    list-style: none;
+    display: block;
+    img {
+      width: 65px;
+      height: 65px;
+    }
+    h3.invited {
+      display: inline-block;
+      font-size: larger;
+      font-weight: bold;
+      cursor: pointer;
+      width: 140px;
+      text-align: center;
+    }
+    h3.other {
+      display: inline-block;
+      font-size: larger;
+      font-weight: bold;
+      cursor: pointer;
+      width: 140px;
+      text-align: center;
+    }
+  }
+  div.row>div.col-sm-3 {
+    button.btn-success {
+      margin-left: 45px;
+    }
+    .btn-danger {
+      margin-left: 35px;
+    }
+  }
 }

@@ -1,5 +1,6 @@
 import { Meteor } from 'meteor/meteor';
 import { check } from 'meteor/check';
+import { MongoId } from '../../../modules/regex.js';
 
 Meteor.methods({
   organisationInsert: function(organisationAttributes) {
@@ -10,7 +11,8 @@ Meteor.methods({
       profile: {
         companySite: Match.Maybe(String),
         iconUrl: Match.Maybe(String)
-      }
+      },
+      users: [MongoId]
     });
 
     let organisationWithSameName = Organisation.findOne({ name: organisationAttributes.name });
@@ -36,7 +38,29 @@ Meteor.methods({
 
     return organisationId;
   },
-
+  editOrganisation: function (organisationData) {
+    check(organisationData, {
+      _id: MongoId,
+      description: String,
+      name: String,
+      profile: {
+        companySite: Match.Optional(String),
+        iconUrl: String
+      },
+      users: [MongoId],
+      owners: [MongoId]
+    });
+    Organisation.update({_id: organisationData._id}, {$set: {
+      description: organisationData.description,
+      name: organisationData.name,
+      profile: {
+        companySite: organisationData.profile.companySite,
+        iconUrl: organisationData.profile.iconUrl
+      },
+      users: organisationData.users,
+      owners: organisationData.owners
+    }});
+  },
   addUsersToRoles: function(userId, role, organisationId) {
     Roles.addUsersToRoles(userId, role, organisationId);
     return true;
