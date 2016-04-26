@@ -38,6 +38,10 @@ Template.projectsFind.events({
   },
   'click .reset-filters': function(event, inst){
     event.preventDefault();
+    
+    inst.$(".filter_client").selectpicker('deselectAll');
+    inst.$(".filter_team").selectpicker('deselectAll');
+    inst.$(".project-name").val('');
     inst.view.parentView._templateInstance.filter.set({});
   }
 });
