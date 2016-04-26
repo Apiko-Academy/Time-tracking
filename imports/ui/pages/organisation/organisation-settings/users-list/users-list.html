@@ -1,0 +1,39 @@
+<template name="usersList">
+  <div class="users-list">
+    <div class="col-sm-12">
+      <div class="col-sm-5"></div>
+      <div class="col-sm-3">
+        <h3 class="text-primary">Users</h3>
+      </div>
+    </div>{{users}}
+    <div class="col-sm-12">
+      <div class="col-sm-6">
+        <div class="col-sm-12">
+          {{#each isInOrganisationUsers}}
+            <li class="user-item">
+              <img src="{{this.profile.profileImage}}" alt="{{getName this}}"/>
+              <h3 class="text-success invited">{{getName this}}</h3>
+              <button class="btn btn-warning" value="{{this._id}}">Remove</button>
+              {{#if isUserInRoleOwner}}
+                <button class="btn btn-default" value="{{this._id}}">Remove from owners</button>
+              {{else}}
+                <button class="btn btn-info" value="{{this._id}}">Add to owners</button>
+              {{/if}}
+            </li>
+          {{/each}}
+        </div>
+      </div>
+      <div class="col-sm-6">
+        <div class="col-sm-9">
+          {{#each notInOrganisationUsers}}
+            <li class="user-item">
+              <img src="{{this.profile.profileImage}}" alt="{{getName this}}"/>
+              <h3 class="text-danger other">{{getName this}}</h3>
+              <button class="btn btn-primary" value="{{this._id}}">Add</button>
+            </li>
+          {{/each}}
+        </div>
+      </div>
+    </div>
+  </div>
+</template>

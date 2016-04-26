@@ -34,5 +34,8 @@ Template.Users_select.helpers({
     return function(str) {
       template.searchStr.set(str);
     }
+  },
+  inOrganisation: function() {
+    return this.inOrganisation;
   }
 });

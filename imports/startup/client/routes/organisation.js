@@ -20,7 +20,7 @@ Router.route('/editOrganisation/:_id', {
   waitOn: function(){
     return [
       Meteor.subscribe('current.organisation', this.params._id),
-      Meteor.subscribe('allUsers')
+      Meteor.subscribe('users')
     ]
   },
   data: function(){

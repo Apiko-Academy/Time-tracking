@@ -1,19 +1,22 @@
-import '../my-organisations.html';
 import './organisation-settings.html';
 import '../../../../lib/organisation.js';
+import './users-list/users-list.html';
 import { outputHandler } from '../../../../modules/output-handler.js';
+import { getFullName } from '../../../../modules/users.js';
 import { handleMethodResult } from '../../../../modules/handle-method-result.js';
 
 import { Template } from 'meteor/templating';
 import { ReactiveVar } from 'meteor/reactive-var';
-import 'meteor/mongo';
+import { Mongo } from 'meteor/mongo';
 
 Template.organisationSettings.onCreated(function () {
   loadFilePicker('AMxXlNUEKQ1OgRo47XtKSz');
   this.iconUrl = new ReactiveVar(this.data.profile.iconUrl);
   this.organisationUsers = new ReactiveVar(this.data.users);
-  this.otherUsers = new ReactiveVar(Meteor.users.find({_id: {$nin: this.organisationUsers.get()}}).map(function(item){ return item._id } ));
+  let others = Meteor.users.find({_id: {$nin: this.data.users}}).map(function(item){ return item._id; } );
+  this.otherUsers = new ReactiveVar(others);
   this.owner = new ReactiveVar(this.data.owners);
+  this.selectedUsers = new ReactiveVar([]);
 });
 Template.organisationSettings.helpers({
   iconUrl(){
@@ -21,14 +24,30 @@ Template.organisationSettings.helpers({
     return tmpl.iconUrl.get();
   },
   isInOrganisationUsers() {
-    return Meteor.users.find({_id: {$in: Template.instance().organisationUsers.get()}});
+    let usersInOrganisation = Template.instance().organisationUsers.get();
+    let tmpl = Template.instance();
+    let users =  Meteor.users.find({_id: {$in: usersInOrganisation}});
+    return function (itemId) {
+      console.log(itemId)
+    }
   },
   notInOrganisationUsers(){
-    return  Meteor.users.find({_id: {$in: Template.instance().otherUsers.get()}});
+    let usersNotInOrganisation = Template.instance().otherUsers.get();
+    return  Meteor.users.find({_id: {$in: usersNotInOrganisation}});
   },
   isUserInRoleOwner () {
-    if (_.contains(Template.instance().owner.get(), this._id)) {
+    let owners = Template.instance().owner.get();
+    if (_.contains(owners, this._id)) {
       return true;
+    }
+  },
+  onUserSelectHandler () {
+    let tmpl = Template.instance();
+    return function (itemId) {
+      let selected = tmpl.selectedUsers.get();
+      selected.push(itemId)
+      selected = _.uniq(selected);
+      tmpl.selectedUsers.set(selected);
     }
   }
 });
@@ -47,8 +66,7 @@ Template.organisationSettings.events({
   },
   'click .btn-success': function(event, tmpl) {
     event.preventDefault();
-    let data = {};
-    _.extend(data, {
+    let data =  {
       _id: tmpl.data._id,
       name:  tmpl.$('[name=organisation-name]').val().trim(),
       description:  tmpl.$('[name=organisation-description]').val().trim(),
@@ -58,15 +76,10 @@ Template.organisationSettings.events({
       },
       users: tmpl.organisationUsers.get(),
       owners: tmpl.owner.get()
-    });
-    if (!data.name || !data.description) {
-      outputHandler('Name or description are empty');
-      return;
-    } else {
-      Meteor.call('editOrganisation', data, handleMethodResult(() => {
-        Router.go('myorganisations');
-      }));
-    }
+    };
+    Meteor.call('editOrganisation', data, handleMethodResult(() => {
+       Router.go('myorganisations');
+    }));
   },
   'click .btn-primary': function(event, tmpl) {
     event.preventDefault();
