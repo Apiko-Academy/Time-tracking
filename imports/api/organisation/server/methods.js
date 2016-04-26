@@ -50,6 +50,13 @@ Meteor.methods({
       users: [MongoId],
       owners: [MongoId]
     });
+    _.each(organisationData.owners, function(element) {
+      Roles.setUserRoles(element, ['owner'], organisationData._id);
+
+      if (Roles.userIsInRole(element, 'owner', 'general_group') && Roles.userIsInRole(element, 'owner', organisationData._id)) {
+        Roles.removeUsersFromRoles(element, ['owner'], 'general_group');
+      }
+    });
     Organisation.update({_id: organisationData._id}, {$set: {
       description: organisationData.description,
       name: organisationData.name,
