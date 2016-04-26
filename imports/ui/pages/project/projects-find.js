@@ -49,7 +49,7 @@ Template.projectsFind.onRendered(function(){
     liveSearchPlaceholder: 'Find client'
   }).on('changed.bs.select', function (e) {
     if($(this).val()){
-      filter.clientId = {$in: $(this).val()};
+      filter.clientId = {$all: $(this).val()};
     } else {
       delete filter.clientId;
     }
@@ -59,9 +59,9 @@ Template.projectsFind.onRendered(function(){
     liveSearchPlaceholder: 'Find team'
   }).on('changed.bs.select', function (e) {
     if($(this).val()){
-      filter.workers = {$in: $(this).val()};
+      filter.$or = [{workers: {$all: $(this).val()}}, {managers: {$all: $(this).val()}}];
     } else {
-      delete filter.workers;
+      delete filter.$or;
     }
   });
 
