@@ -3,13 +3,13 @@
     <div class="input-group">
       <div class="input-group-btn">
         <select class="filter_active form-control" title="Active" name="active">
-          <option>Active</option>
-          <option>Archived</option>
-          <option>Both</option>
+          <option value="active">Active</option>
+          <option value="acrhived">Archived</option>
+          <option value="both">Both</option>
         </select>
       </div>
       <div class="input-group-btn">
-        <select class="filter_client form-control" multiple data-live-search="true" title="Client" data-actions-box="true" name="client">
+        <select class="filter_client form-control" multiple data-live-search="true" title="Client" name="client">
           <option value="">Without client</option>
           <optgroup label="Clients">
             {{#each clients}}
@@ -22,7 +22,7 @@
         </select>
       </div>
       <div class="input-group-btn">
-        <select class="filter_team form-control" multiple data-live-search="true" title="Team" data-actions-box="true" name="team">
+        <select class="filter_team form-control" multiple data-live-search="true" title="Team" name="team">
           <option value="">Without client</option>
           <optgroup label="Clients">
             {{#each clients}}
@@ -34,7 +34,7 @@
           </optgroup>
         </select>
       </div>
-      <input type="text" class="form-control form-control" placeholder="Name" name="name"/>
+      <input type="text" class="form-control form-control project-name" placeholder="Name" name="name"/>
       <span class="input-group-btn">
         <button class="btn btn-success apply-filter" type="button">Apply</button>
       </span>

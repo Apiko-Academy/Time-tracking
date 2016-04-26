@@ -15,10 +15,10 @@ Template.projects.events({
 
 Template.projects.helpers({
   projects: function(){
-    return Project.find(Template.instance().filter);
+    return Project.find(Template.instance().filter.get());
   }
 });
 
 Template.projects.onCreated(function(){
-  this.filter = {};
+  this.filter = new ReactiveVar( {} );
 });
