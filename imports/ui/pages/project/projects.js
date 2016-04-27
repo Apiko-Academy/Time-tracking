@@ -14,6 +14,14 @@ Template.Projects.events({
 });
 
 Template.Projects.helpers({
+  clients: function(){
+  	let clients = Clients.find().fetch(); 
+    clients.unshift({
+    	_id: '',
+    	name: 'Without client'
+    });
+    return clients;
+  },
   projects: function(){
     return Project.find(Template.instance().filter.get());
   }

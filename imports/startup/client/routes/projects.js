@@ -11,12 +11,5 @@ Router.route('/projects', {
         Meteor.subscribe('clients'),
         Meteor.subscribe('users')
       ]
-    },
-    data: function(){
-      return {
-        clients: function(){
-          return Clients.find();
-        }
-      }
     }
 });

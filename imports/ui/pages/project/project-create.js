@@ -1,17 +1,20 @@
 import 'meteor/jesperwe:bootstrap-select';
-import './project-create.html';
-import {  handleMethodResult } from '../../../modules/handle-method-result';
 import 'meteor/trsdln:modals';
+import './project-create.html';
+import '../../components/select-dropdown/select-dropdown.js';
+
+import {  handleMethodResult } from '../../../modules/handle-method-result';
+
 
 Template.Project_create.events({
   'click .client-add': function(event, tmpl){
     event.preventDefault();
 
-    let clientName = tmpl.$('.client_name');
+    let clientName = tmpl.$('.client-name');
 
     Meteor.call('clientCreate', clientName.val(), handleMethodResult((res) =>{
       clientName.val("");
-      tmpl.$('.select_client')
+      tmpl.$('.select-client')
         .selectpicker('refresh')
         .selectpicker('val', res);
       })
@@ -23,23 +26,17 @@ Template.Project_create.events({
 
     let projectAttributes = {
       name: target.name.value,
-      clientId: target.client.value,
+      clientId: target.clients.value,
       public: target.public.checked,
       color: ''
     }
 
     target.reset();
     
-    Meteor.call('Project_create', projectAttributes, handleMethodResult(()=>{
+    Meteor.call('projectCreate', projectAttributes, handleMethodResult(()=>{
       ModalManager.getInstanceByElement(event.target).close();
     }));
   }
-});
-
-Template.Project_create.onRendered(function(){
-  this.$('.select_client').selectpicker({
-    liveSearchPlaceholder: 'Find client'
-  });
 });
 
 Template.Project_create.helpers({

@@ -11,18 +11,11 @@
             <div class="input-group">
               <input type="text" class="form-control" placeholder="Name" name="name" />
               <div class="input-group-addon">
-                <select class="select_client form-control" title="Select client" data-live-search="true" name="client" >
-                  <option value="">Without client</option>
-                    {{#each clients}}
-                      <option value="{{_id}}">{{name}}</option>
-                    {{else}}
-                      <option data-divider="true"></option>
-                      <option disabled>Client list are empty</option>
-                    {{/each}}
-                </select>
+                {{> Select_dropdown optionValues=clients class='select-client' 
+                  liveSearch='true' title='Select client' name='clients' }}
               </div>
               <div class="input-group">
-                <input type="text" class="form-control client_name" placeholder="Add client">
+                <input type="text" class="form-control client-name" placeholder="Add client">
                 <span class="input-group-btn">
                   <button class="btn btn-primary client-add">Add</button>
                 </span>

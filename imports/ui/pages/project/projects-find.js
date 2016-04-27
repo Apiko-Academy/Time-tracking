@@ -1,28 +1,43 @@
 import './projects-find.html';
 import 'meteor/alanning:roles';
 import 'meteor/underscore';
+import '../../components/select-dropdown/select-dropdown.js';
 import {getFullName} from '../../../modules/users.js';
 
 Template.Projects_find.helpers({
-  refresh: function(){
-    let tmpl = Template.instance();
-    if(tmpl.isRendered){
-      Meteor.setTimeout(function() {
-        tmpl.$('.filter_client').selectpicker('refresh')
-      }, 2000);
+  clientFilterChanged: function(){
+    let filter = Template.instance().filter;
+    return function(event){
+      let selectVal = $(event.target).val();
+      if(selectVal){
+        filter.clientId = {$in: selectVal};
+      } else {
+        delete filter.clientId;
+      }
     }
   },
-  teamMembers: function(){
+  teamFilterChanged: function(){
+    let filter = Template.instance().filter;
+    return function(event){
+      let selectVal = $(event.target).val();
+      if(selectVal){
+        filter.$or = [{workers: {$all: selectVal}}, {managers: {$all: selectVal}}];
+      } else {
+        delete filter.$or;
+      }
+    }
+  },
+  teamMembers: ()=>{
     let organizationIds = Roles.getGroupsForUser(Meteor.userId());
     let usersIds = [];
 
-    organizationIds.forEach(function(orgId){
+    organizationIds.forEach((orgId)=>{
       usersIds = _.union(usersIds, _.pluck(Roles.getUsersInRole(['member', 'owner'], orgId).fetch(), '_id'));
     });
-    let members = usersIds.map(function(id){
+    let members = usersIds.map((id)=>{
       return {
         _id: id,
-        fullName: getFullName(id)
+        name: getFullName(id)
       };
     });
     return members;
@@ -30,50 +45,30 @@ Template.Projects_find.helpers({
 });
 
 Template.Projects_find.events({
-  'click .apply-filter': function (event, tmpl) {
+  'click .apply-filter': function(event, tmpl){
     event.preventDefault();
     let name = tmpl.$(".project-name").val();
+
     if(name){
       tmpl.filter.name = {$regex: name + ".*"};
     } else {
       delete tmpl.filter.name;
     }
-    tmpl.view.parentView._templateInstance.filter.set(tmpl.filter); 
+
+    tmpl.view.parentView.parentView._templateInstance.filter.set(tmpl.filter); 
   },
-  'click .reset-filters': function(event, tmpl){
+  'click .reset-filters': (event, tmpl)=>{
     event.preventDefault();
     
-    tmpl.$(".filter_client").selectpicker('deselectAll');
-    tmpl.$(".filter_team").selectpicker('deselectAll');
+    tmpl.$(".filter-client").selectpicker('deselectAll');
+    tmpl.$(".filter-team").selectpicker('deselectAll');
     tmpl.$(".project-name").val('');
-    tmpl.view.parentView._templateInstance.filter.set({});
+    tmpl.view.parentView.parentView._templateInstance.filter.set({});
   }
 });
 
 Template.Projects_find.onRendered(function(){
   this.isRendered = true;
-  let filter = this.filter;
-
-  this.$('.filter_client').selectpicker({
-    liveSearchPlaceholder: 'Find client'
-  }).on('changed.bs.select', function (e) {
-    if($(this).val()){
-      filter.clientId = {$all: $(this).val()};
-    } else {
-      delete filter.clientId;
-    }
-  });
-
-  this.$('.filter_team').selectpicker({
-    liveSearchPlaceholder: 'Find team'
-  }).on('changed.bs.select', function (e) {
-    if($(this).val()){
-      filter.$or = [{workers: {$all: $(this).val()}}, {managers: {$all: $(this).val()}}];
-    } else {
-      delete filter.$or;
-    }
-  });
-
 });
 
 Template.Projects_find.onCreated(function(){

@@ -2,27 +2,14 @@
   <form class="find-form">
     <div class="input-group">
       <div class="input-group-btn">
-        <select class="filter_client form-control" multiple data-live-search="true" title="Filter by client" name="client">
-          <option value="">Without client</option>
-          <optgroup label="Clients">
-            {{#each clients}}
-              <option value="{{_id}}">{{name}}</option>
-              {{refresh}}
-            {{else}}
-              <option data-divider="true"></option>
-              <option disabled>Client list are empty</option>
-            {{/each}}
-          </optgroup>
-        </select>
+        {{> Select_dropdown optionValues=clients multiple='multiple' class='filter-client' 
+          liveSearch='true' title='Filter client' name='Clients' onChanged=clientFilterChanged 
+        }}
       </div>
       <div class="input-group-btn">
-        <select class="filter_team form-control" multiple data-live-search="true" title="Filter by team" name="team">
-          <optgroup label="Team">
-            {{#each teamMembers}}
-              <option value="{{_id}}">{{fullName}}</option>
-            {{/each}}
-          </optgroup>
-        </select>
+        {{> Select_dropdown optionValues=teamMembers multiple='multiple' class='filter-team' 
+          liveSearch='true' title='Filter team' name='Team' onChanged=teamFilterChanged 
+        }}
       </div>
       <input type="text" class="form-control form-control project-name" placeholder="Name" name="name"/>
       <span class="input-group-btn">
