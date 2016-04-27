@@ -3,21 +3,21 @@ import './project-create.html';
 import {  handleMethodResult } from '../../../modules/handle-method-result';
 import 'meteor/trsdln:modals';
 
-Template.projectCreate.events({
-  'click .client-add': function(event, inst){
+Template.Project_create.events({
+  'click .client-add': function(event, tmpl){
     event.preventDefault();
 
-    let clientName = inst.$('.client_name');
+    let clientName = tmpl.$('.client_name');
 
     Meteor.call('clientCreate', clientName.val(), handleMethodResult((res) =>{
       clientName.val("");
-      inst.$('.select_client')
+      tmpl.$('.select_client')
         .selectpicker('refresh')
         .selectpicker('val', res);
       })
     );
   },
-  'submit .project-create-form': function(event, inst){
+  'submit .project-create-form': function(event, tmpl){
     event.preventDefault();
     let target = event.target;
 
@@ -30,19 +30,19 @@ Template.projectCreate.events({
 
     target.reset();
     
-    Meteor.call('projectCreate', projectAttributes, handleMethodResult(()=>{
-      ModalManager.getInstanceByElement(event.target).close();
+    Meteor.call('Project_create', projectAttributes, handleMethodResult(()=>{
+      ModalManager.gettmplanceByElement(event.target).close();
     }));
   }
 });
 
-Template.projectCreate.onRendered(function(){
-  $('.select_client').selectpicker({
+Template.Project_create.onRendered(function(){
+  this.$('.select_client').selectpicker({
     liveSearchPlaceholder: 'Find client'
   });
 });
 
-Template.projectCreate.helpers({
+Template.Project_create.helpers({
   clients: function(){
   	return Clients.find();
   }

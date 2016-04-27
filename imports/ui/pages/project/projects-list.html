@@ -1,4 +1,4 @@
-<template name="projectsList">
+<template name="Projects_list">
   <table class="table">
       <thead>
         <tr>
@@ -9,16 +9,9 @@
       </thead>
       <tbody>
         {{#each projects}}
-          <tr>
-            <td>{{name}}</td>
-            <td>{{client}}</td>
-            <td>{{#each managers}}
-              <b>{{this}} </b>
-            {{/each}}
-            {{#each workers}}
-              , {{this}}
-            {{/each}}</td>
-          </tr>
+        <tr>
+          {{> Project_list_item}}
+        </tr>
         {{else}}
           Project list are empty
         {{/each}}

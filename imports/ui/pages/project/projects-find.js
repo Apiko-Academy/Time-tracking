@@ -3,7 +3,7 @@ import 'meteor/alanning:roles';
 import 'meteor/underscore';
 import {getFullName} from '../../../modules/users.js';
 
-Template.projectsFind.helpers({
+Template.Projects_find.helpers({
   clients: function(){
     return Clients.find();
   },
@@ -25,31 +25,31 @@ Template.projectsFind.helpers({
   }
 });
 
-Template.projectsFind.events({
-  'click .apply-filter': function (event, inst) {
+Template.Projects_find.events({
+  'click .apply-filter': function (event, tmpl) {
     event.preventDefault();
-    let name = inst.$(".project-name").val();
+    let name = tmpl.$(".project-name").val();
     if(name){
-      inst.filter.name = {$regex: name + ".*"};
+      tmpl.filter.name = {$regex: name + ".*"};
     } else {
-      delete inst.filter.name;
+      delete tmpl.filter.name;
     }
-    inst.view.parentView._templateInstance.filter.set(inst.filter); 
+    tmpl.view.parentView._templatetmplance.filter.set(tmpl.filter); 
   },
-  'click .reset-filters': function(event, inst){
+  'click .reset-filters': function(event, tmpl){
     event.preventDefault();
     
-    inst.$(".filter_client").selectpicker('deselectAll');
-    inst.$(".filter_team").selectpicker('deselectAll');
-    inst.$(".project-name").val('');
-    inst.view.parentView._templateInstance.filter.set({});
+    tmpl.$(".filter_client").selectpicker('deselectAll');
+    tmpl.$(".filter_team").selectpicker('deselectAll');
+    tmpl.$(".project-name").val('');
+    tmpl.view.parentView._templatetmplance.filter.set({});
   }
 });
 
-Template.projectsFind.onRendered(function(){
+Template.Projects_find.onRendered(function(){
   let filter = this.filter;
 
-  $('.filter_client').selectpicker({
+  this.$('.filter_client').selectpicker({
     liveSearchPlaceholder: 'Find client'
   }).on('changed.bs.select', function (e) {
     if($(this).val()){
@@ -59,7 +59,7 @@ Template.projectsFind.onRendered(function(){
     }
   });
 
-  $('.filter_team').selectpicker({
+  this.$('.filter_team').selectpicker({
     liveSearchPlaceholder: 'Find team'
   }).on('changed.bs.select', function (e) {
     if($(this).val()){
@@ -71,6 +71,6 @@ Template.projectsFind.onRendered(function(){
 
 });
 
-Template.projectsFind.onCreated(function(){
+Template.Projects_find.onCreated(function(){
   this.filter = {};
 });
