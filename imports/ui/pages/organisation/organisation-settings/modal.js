@@ -2,24 +2,26 @@ import './modal.html';
 import './organisation-settings.html';
 
 Template.modalOrganisationEdit.onCreated(function(){
-  let parentView = Blaze.currentView.parentView;
-  let parentInstance = parentView.templateInstance();
-  let others = Meteor.users.find({_id: {$nin: this.data.users}}).map(function(item){ return item._id; } );
-  this.otherUsers = new ReactiveVar(others);
-  this.usersInOrganisation = parentInstance.organisationUsers;
+  this.usersInOrganisation = new ReactiveVar(this.data.reactiveVar);
+  this.setUsersInOrganisation = this.data.changeReactiveVarValue;
+  console.log(this)
 });
 Template.modalOrganisationEdit.helpers({
-  itemUser() {
-    let usersInOrganisation = Template.instance().usersInOrganisation.get();
-    return Meteor.users.find({_id: {$in: usersInOrganisation}});
-  },
   onUserSelectHandler () {
     let tmpl = Template.instance();
     return function (itemId) {
       let selected = tmpl.usersInOrganisation.get();
       selected.push(itemId)
-      tmpl.usersInOrganisation.set(selected);
-      return Meteor.users.find({_id: {$in: tmpl.otherUsers.get()}});
+      tmpl.usersInOrganisation.set(_.uniq(selected));
+      tmpl.setUsersInOrganisation(tmpl.usersInOrganisation.get());
+      return Meteor.users.find({_id: {$nin: tmpl.usersInOrganisation.get()}}).fetch();
     }
+  },
+  itemUser () {
+    let tmpl = Template.instance();
+    setInterval(function () {
+      console.log(tmpl.usersInOrganisation.get())
+    }, 10000)
+    return Meteor.users.find({_id: {$in: tmpl.usersInOrganisation.get()}}).fetch();
   }
 });

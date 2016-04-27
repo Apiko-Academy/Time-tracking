@@ -13,12 +13,10 @@ Template.Users_select.onCreated(function() {
 Template.Users_select.helpers({
   users: function() {
     let searchStr = Template.instance().searchStr.get();
-    let query;
-    if (Template.instance().data.users) {
-      let users = Template.instance().data.users.map(function(item){return item._id;});
+    let query = {};
+    if (this.users) {
+      let users = this.users.map((item) => {return item._id;});
       query =  { _id: { $nin: users } };
-    } else {
-      query = { _id: { $ne: Meteor.userId() } };
     }
 
     if (searchStr && _.isString(searchStr)) {

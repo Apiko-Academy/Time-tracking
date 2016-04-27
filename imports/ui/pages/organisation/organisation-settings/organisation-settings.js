@@ -1,18 +1,37 @@
 import './organisation-settings.html';
+import './modal.html';
+
+import './modal.js';
 import '../../../../lib/organisation.js';
-import { outputHandler } from '../../../../modules/output-handler.js';
+
 import { getFullName } from '../../../../modules/users.js';
 import { handleMethodResult } from '../../../../modules/handle-method-result.js';
-import './modal.html';
-import { ReactiveVar } from 'meteor/reactive-var';
 import { Mongo } from 'meteor/mongo';
-import './modal.js';
+import { outputHandler } from '../../../../modules/output-handler.js';
+import { ReactiveVar } from 'meteor/reactive-var';
 
 Template.organisationSettings.onCreated(function () {
   loadFilePicker('AMxXlNUEKQ1OgRo47XtKSz');
   this.iconUrl = new ReactiveVar(this.data.profile.iconUrl);
   this.organisationUsers = new ReactiveVar(this.data.users);
   this.owner = new ReactiveVar(this.data.owners);
+  this.usersAndRolesInOrganisation = function (userId, eventPressed) {
+    let owners = this.owner.get();
+    let ownerWithoutUserId = _.without(owners, userId);
+    if (eventPressed === 'add-user-to-owner') {
+      owners.push(userId)
+      this.owner.set(owners);
+    } else if (eventPressed === 'remove-user-from-owners') {
+      this.owner.set(ownerWithoutUserId);
+    } else if (eventPressed === 'remove-from-organisation-users'){
+      let usersInOrganisation = _.without(this.organisationUsers.get(),userId);
+      this.owner.set(ownerWithoutUserId);
+      this.organisationUsers.set(usersInOrganisation);
+    }
+  };
+  this.changeReactiveVarValue = function(value) {
+    this.organisationUsers.set(value);
+  };
 });
 Template.organisationSettings.helpers({
   iconUrl(){
@@ -21,8 +40,7 @@ Template.organisationSettings.helpers({
   },
   users () {
     let tmpl = Template.instance();
-    let users = Meteor.users.find({_id: {$in: tmpl.organisationUsers.get()}});
-    return users;
+    return Meteor.users.find({_id: {$in: tmpl.organisationUsers.get()}});
   },
   isUserInRoleOwner () {
     let owners = Template.instance().owner.get();
@@ -32,6 +50,22 @@ Template.organisationSettings.helpers({
   },
   getName () {
     return getFullName(this);
+  },
+  changeReactiveVarValue () {
+    let tmpl = Template.instance();
+    setInterval(function(){
+      console.log(tmpl.organisationUsers.get())
+    }, 15000)
+    return function(value) {
+      tmpl.changeReactiveVarValue;
+    }
+  },
+  reactiveVar () {
+    let tmpl = Template.instance();
+    return tmpl.organisationUsers.get();
+  },
+  data () {
+    return this;
   }
 });
 Template.organisationSettings.events({
@@ -47,7 +81,7 @@ Template.organisationSettings.events({
           outputHandler(FPError.toString());
         });
   },
-  'click .edit-organisation-submit': function(event, tmpl) {
+  'submit .edit-organisation-form': function(event, tmpl) {
     event.preventDefault();
     let data =  {
       _id: tmpl.data._id,
@@ -65,31 +99,16 @@ Template.organisationSettings.events({
        Router.go('myorganisations');
     }));
   },
-  'click .abort-editing': function(){
-    Router.go('myorganisations');
-  },
   'click .remove-from-organisation-users': function(event, tmpl){
     event.preventDefault();
-    let selectedUser = event.target.value;
-    let usersInOrganisation = tmpl.organisationUsers.get();
-    let owners = tmpl.owner.get();
-    usersInOrganisation = _.without(usersInOrganisation, selectedUser);
-    owners = _.without(owners, selectedUser);
-    tmpl.organisationUsers.set(usersInOrganisation);
-    tmpl.owner.set(owners);
+    tmpl.usersAndRolesInOrganisation(event.target.value, 'remove-from-organisation-users');
   },
   'click .add-user-to-owners': function(event, tmpl) {
     event.preventDefault();
-    let selectedUser = event.target.value;
-    let owners = tmpl.owner.get();
-    owners.push(selectedUser);
-    tmpl.owner.set(owners);
+    tmpl.usersAndRolesInOrganisation(event.target.value, 'add-user-to-owner');
   },
   'click .remove-user-from-owners': function(event, tmpl) {
     event.preventDefault();
-    let selectedUser = event.target.value;
-    let owners = tmpl.owner.get();
-    owners = _.without(owners, selectedUser);
-    tmpl.owner.set(owners);
+    tmpl.usersAndRolesInOrganisation(event.target.value, 'remove-user-from-owners');
   }
 });

@@ -50,10 +50,10 @@ Meteor.methods({
       users: [MongoId],
       owners: [MongoId]
     });
-    _.each(organisationData.owners, function(element) {
-      Roles.setUserRoles(element, ['owner'], organisationData._id);
+    _.each(organisationData.owners, function(organisationOwner) {
+      Roles.setUserRoles(organisationOwner, ['owner'], organisationData._id);
 
-      if (Roles.userIsInRole(element, 'owner', 'general_group') && Roles.userIsInRole(element, 'owner', organisationData._id)) {
+      if (Roles.userIsInRole(organisationOwner, 'owner', 'general_group') && Roles.userIsInRole(organisationOwner, 'owner', organisationData._id)) {
         Roles.removeUsersFromRoles(element, ['owner'], 'general_group');
       }
     });
