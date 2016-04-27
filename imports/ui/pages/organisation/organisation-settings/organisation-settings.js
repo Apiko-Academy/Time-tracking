@@ -57,9 +57,6 @@ Template.organisationSettings.helpers({
   reactiveVar () {
     let tmpl = Template.instance();
     return tmpl.organisationUsers.get();
-  },
-  data () {
-    return this;
   }
 });
 Template.organisationSettings.events({
