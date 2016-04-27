@@ -24,13 +24,10 @@ Template.organisationSettings.onCreated(function () {
     } else if (eventPressed === 'remove-user-from-owners') {
       this.owner.set(ownerWithoutUserId);
     } else if (eventPressed === 'remove-from-organisation-users'){
-      let usersInOrganisation = _.without(this.organisationUsers.get(),userId);
+      let usersInOrganisation = _.without(this.organisationUsers.get(), userId);
       this.owner.set(ownerWithoutUserId);
       this.organisationUsers.set(usersInOrganisation);
     }
-  };
-  this.changeReactiveVarValue = function(value) {
-    this.organisationUsers.set(value);
   };
 });
 Template.organisationSettings.helpers({
