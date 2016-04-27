@@ -4,38 +4,27 @@ import './users-list/users-list.html';
 import { outputHandler } from '../../../../modules/output-handler.js';
 import { getFullName } from '../../../../modules/users.js';
 import { handleMethodResult } from '../../../../modules/handle-method-result.js';
-
-import { Template } from 'meteor/templating';
+import './modal.html';
 import { ReactiveVar } from 'meteor/reactive-var';
 import { Mongo } from 'meteor/mongo';
+import './modal.js'
 
 Template.organisationSettings.onCreated(function () {
   loadFilePicker('AMxXlNUEKQ1OgRo47XtKSz');
   this.iconUrl = new ReactiveVar(this.data.profile.iconUrl);
   this.organisationUsers = new ReactiveVar(this.data.users);
-  let others = Meteor.users.find({_id: {$nin: this.data.users}}).map(function(item){ return item._id; } );
-  this.otherUsers = new ReactiveVar(others);
   this.owner = new ReactiveVar(this.data.owners);
-  this.selectedUsers = new ReactiveVar([]);
+  this.usersInOrganisation = new ReactiveVar(this.data.users);
 });
 Template.organisationSettings.helpers({
   iconUrl(){
     let tmpl = Template.instance();
     return tmpl.iconUrl.get();
   },
-  isInOrganisationUsers() {
+  users () {
     let tmpl = Template.instance();
-    return function (itemId) {
-      let usersInOrganisation = tmpl.organisationUsers.get();
-      let users =  Meteor.users.find({_id: {$in: usersInOrganisation}});
-      if (_.contains(tmpl.organisationUsers.get(), itemId)) {
-        return true;
-      }
-    }
-  },
-  notInOrganisationUsers(){
-    let usersNotInOrganisation = Template.instance().otherUsers.get();
-    return  Meteor.users.find({_id: {$in: usersNotInOrganisation}});
+    let users = Meteor.users.find({_id: {$in: tmpl.organisationUsers.get()}});
+    return users;
   },
   isUserInRoleOwner () {
     let owners = Template.instance().owner.get();
@@ -43,14 +32,8 @@ Template.organisationSettings.helpers({
       return true;
     }
   },
-  onUserSelectHandler () {
-    let tmpl = Template.instance();
-    return function (itemId) {
-      let selected = tmpl.selectedUsers.get();
-      selected.push(itemId)
-      selected = _.uniq(selected);
-      tmpl.selectedUsers.set(selected);
-    }
+  getName () {
+    return getFullName(this);
   }
 });
 Template.organisationSettings.events({
@@ -66,7 +49,7 @@ Template.organisationSettings.events({
           outputHandler(FPError.toString());
         });
   },
-  'click .btn-success': function(event, tmpl) {
+  'click .edit-organisation-submit': function(event, tmpl) {
     event.preventDefault();
     let data =  {
       _id: tmpl.data._id,
@@ -79,40 +62,34 @@ Template.organisationSettings.events({
       users: tmpl.organisationUsers.get(),
       owners: tmpl.owner.get()
     };
+
     Meteor.call('editOrganisation', data, handleMethodResult(() => {
        Router.go('myorganisations');
     }));
   },
-  'click .btn-primary': function(event, tmpl) {
-    event.preventDefault();
-    let users = tmpl.organisationUsers.get();
-    let otherUsers = tmpl.otherUsers.get();
-    users.push(event.target.value);
-    tmpl.organisationUsers.set(users);
-    tmpl.otherUsers.set(_.without(otherUsers, event.target.value));
+  'click .abort-editing': function(){
+    Router.go('myorganisations');
   },
-  'click .btn-warning': function(event, tmpl) {
+  'click .remove-from-organisation-users': function(event, tmpl){
     event.preventDefault();
-    let users = tmpl.organisationUsers.get();
-    let otherUsers = tmpl.otherUsers.get();
-    let owners = tmpl.owner.get();
-    otherUsers.push(event.target.value);
-    tmpl.organisationUsers.set(_.without(users, event.target.value));
-    tmpl.otherUsers.set(otherUsers);
-    tmpl.owner.set(_.without(owners, event.target.value));
+    let selectedUser = event.target.value;
+    let usersInOrganisation = tmpl.organisationUsers.get();
+    usersInOrganisation = _.without(usersInOrganisation, selectedUser);
+    tmpl.organisationUsers.set(usersInOrganisation);
   },
-  'click .btn-default': function(event, tmpl){
+  'click .add-user-to-owners': function(event, tmpl) {
     event.preventDefault();
+    console.log(tmpl.organisationUsers.get())
+    let selectedUser = event.target.value;
     let owners = tmpl.owner.get();
-    tmpl.owner.set(_.without(owners, event.target.value));
-  },
-  'click .btn-info': function(event, tmpl) {
-    event.preventDefault();
-    let owners = tmpl.owner.get();
-    owners.push(event.target.value);
+    owners.push(selectedUser);
     tmpl.owner.set(owners);
   },
-  'click .btn-danger': function(){
-    Router.go('myorganisations');
+  'click .remove-user-from-owners': function(event, tmpl) {
+    event.preventDefault();
+    let selectedUser = event.target.value;
+    let owners = tmpl.owner.get();
+    owners = _.without(owners, selectedUser);
+    tmpl.owner.set(owners);
   }
 });

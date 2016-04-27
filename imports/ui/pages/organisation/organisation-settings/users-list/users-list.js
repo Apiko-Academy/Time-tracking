@@ -11,7 +11,7 @@ import { Mongo } from 'meteor/mongo';
 
 Template.usersList.helpers({
   users(){
-    console.log(this)
+    //console.log(this)
   },
   getName(){
     return getFullName(this);
