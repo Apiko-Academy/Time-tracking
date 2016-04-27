@@ -1,20 +1,18 @@
 import './organisation-settings.html';
 import '../../../../lib/organisation.js';
-import './users-list/users-list.html';
 import { outputHandler } from '../../../../modules/output-handler.js';
 import { getFullName } from '../../../../modules/users.js';
 import { handleMethodResult } from '../../../../modules/handle-method-result.js';
 import './modal.html';
 import { ReactiveVar } from 'meteor/reactive-var';
 import { Mongo } from 'meteor/mongo';
-import './modal.js'
+import './modal.js';
 
 Template.organisationSettings.onCreated(function () {
   loadFilePicker('AMxXlNUEKQ1OgRo47XtKSz');
   this.iconUrl = new ReactiveVar(this.data.profile.iconUrl);
   this.organisationUsers = new ReactiveVar(this.data.users);
   this.owner = new ReactiveVar(this.data.owners);
-  this.usersInOrganisation = new ReactiveVar(this.data.users);
 });
 Template.organisationSettings.helpers({
   iconUrl(){
@@ -74,12 +72,14 @@ Template.organisationSettings.events({
     event.preventDefault();
     let selectedUser = event.target.value;
     let usersInOrganisation = tmpl.organisationUsers.get();
+    let owners = tmpl.owner.get();
     usersInOrganisation = _.without(usersInOrganisation, selectedUser);
+    owners = _.without(owners, selectedUser);
     tmpl.organisationUsers.set(usersInOrganisation);
+    tmpl.owner.set(owners);
   },
   'click .add-user-to-owners': function(event, tmpl) {
     event.preventDefault();
-    console.log(tmpl.organisationUsers.get())
     let selectedUser = event.target.value;
     let owners = tmpl.owner.get();
     owners.push(selectedUser);
