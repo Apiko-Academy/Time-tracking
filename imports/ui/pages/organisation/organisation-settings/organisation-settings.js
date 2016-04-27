@@ -53,11 +53,8 @@ Template.organisationSettings.helpers({
   },
   changeReactiveVarValue () {
     let tmpl = Template.instance();
-    setInterval(function(){
-      console.log(tmpl.organisationUsers.get())
-    }, 15000)
     return function(value) {
-      tmpl.changeReactiveVarValue;
+      tmpl.organisationUsers.set(value);
     }
   },
   reactiveVar () {
