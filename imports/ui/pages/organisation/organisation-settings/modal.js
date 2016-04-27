@@ -3,7 +3,6 @@ import './organisation-settings.html';
 
 Template.modalOrganisationEdit.onCreated(function(){
   this.setUsersInOrganisation = this.data.changeReactiveVarValue;
-  console.log(this)
 });
 Template.modalOrganisationEdit.helpers({
   onUserSelectHandler () {
