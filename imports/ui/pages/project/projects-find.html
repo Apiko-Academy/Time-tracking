@@ -7,6 +7,7 @@
           <optgroup label="Clients">
             {{#each clients}}
               <option value="{{_id}}">{{name}}</option>
+              {{refresh}}
             {{else}}
               <option data-divider="true"></option>
               <option disabled>Client list are empty</option>

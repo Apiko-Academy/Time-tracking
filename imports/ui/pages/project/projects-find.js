@@ -4,22 +4,26 @@ import 'meteor/underscore';
 import {getFullName} from '../../../modules/users.js';
 
 Template.Projects_find.helpers({
-  clients: function(){
-    return Clients.find();
+  refresh: function(){
+    let tmpl = Template.instance();
+    if(tmpl.isRendered){
+      Meteor.setTimeout(function() {
+        tmpl.$('.filter_client').selectpicker('refresh')
+      }, 2000);
+    }
   },
   teamMembers: function(){
     let organizationIds = Roles.getGroupsForUser(Meteor.userId());
     let usersIds = [];
-    let members = [];
 
     organizationIds.forEach(function(orgId){
       usersIds = _.union(usersIds, _.pluck(Roles.getUsersInRole(['member', 'owner'], orgId).fetch(), '_id'));
     });
-    usersIds.forEach(function(id){
-      members.push({
+    let members = usersIds.map(function(id){
+      return {
         _id: id,
         fullName: getFullName(id)
-      });
+      };
     });
     return members;
   }
@@ -34,7 +38,7 @@ Template.Projects_find.events({
     } else {
       delete tmpl.filter.name;
     }
-    tmpl.view.parentView._templatetmplance.filter.set(tmpl.filter); 
+    tmpl.view.parentView._templateInstance.filter.set(tmpl.filter); 
   },
   'click .reset-filters': function(event, tmpl){
     event.preventDefault();
@@ -42,11 +46,12 @@ Template.Projects_find.events({
     tmpl.$(".filter_client").selectpicker('deselectAll');
     tmpl.$(".filter_team").selectpicker('deselectAll');
     tmpl.$(".project-name").val('');
-    tmpl.view.parentView._templatetmplance.filter.set({});
+    tmpl.view.parentView._templateInstance.filter.set({});
   }
 });
 
 Template.Projects_find.onRendered(function(){
+  this.isRendered = true;
   let filter = this.filter;
 
   this.$('.filter_client').selectpicker({
@@ -72,5 +77,6 @@ Template.Projects_find.onRendered(function(){
 });
 
 Template.Projects_find.onCreated(function(){
+  this.isRendered = false;
   this.filter = {};
 });

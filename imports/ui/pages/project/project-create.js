@@ -31,7 +31,7 @@ Template.Project_create.events({
     target.reset();
     
     Meteor.call('Project_create', projectAttributes, handleMethodResult(()=>{
-      ModalManager.gettmplanceByElement(event.target).close();
+      ModalManager.getInstanceByElement(event.target).close();
     }));
   }
 });
