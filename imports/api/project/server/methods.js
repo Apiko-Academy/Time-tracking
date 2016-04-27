@@ -13,16 +13,15 @@ Meteor.methods({
     let project = Project.findOne({name: projectAttributes.name, managers: this.userId});
 
     if(!project && this.userId){
-      return Project.insert({
-        name: projectAttributes.name,
-        clientId: projectAttributes.clientId,
+      projectAttributes = _.extend(projectAttributes, {
         createdAt: new Date(),
         managers: [this.userId],
-        workers: [],
-        color: projectAttributes.color
+        workers: []
       });
+
+      return Project.insert(projectAttributes);
     } else if(project){
-      return project._id;
+      throw new Meteor.Error('Project is already exists');
     }
   },
 
