@@ -54,19 +54,10 @@ Meteor.methods({
       Roles.setUserRoles(organisationOwner, ['owner'], organisationData._id);
 
       if (Roles.userIsInRole(organisationOwner, 'owner', 'general_group') && Roles.userIsInRole(organisationOwner, 'owner', organisationData._id)) {
-        Roles.removeUsersFromRoles(element, ['owner'], 'general_group');
+        Roles.removeUsersFromRoles(organisationOwner, ['owner'], 'general_group');
       }
     });
-    Organisation.update({_id: organisationData._id}, {$set: {
-      description: organisationData.description,
-      name: organisationData.name,
-      profile: {
-        companySite: organisationData.profile.companySite,
-        iconUrl: organisationData.profile.iconUrl
-      },
-      users: organisationData.users,
-      owners: organisationData.owners
-    }});
+    Organisation.update({_id: organisationData._id}, {$set: organisationData});
   },
   addUsersToRoles: function(userId, role, organisationId) {
     Roles.addUsersToRoles(userId, role, organisationId);

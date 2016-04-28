@@ -18,10 +18,7 @@ Router.route('/editOrganisation/:_id', {
   name: 'organisationSettings',
   template: 'organisationSettings',
   waitOn: function(){
-    return [
-      Meteor.subscribe('current.organisation', this.params._id),
-      Meteor.subscribe('users')
-    ]
+    return Meteor.subscribe('current.organisation', this.params._id);
   },
   data: function(){
     return Organisation.findOne();

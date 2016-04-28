@@ -47,6 +47,7 @@ iron:location@1.0.11
 iron:middleware-stack@1.0.11
 iron:router@1.0.12
 iron:url@1.0.11
+jagi:reactive-array@0.1.0
 jquery@1.11.7
 jss:anti-search-source@1.0.2
 juliancwirko:s-alert@3.1.4
@@ -81,6 +82,7 @@ reactive-dict@1.1.6
 reactive-var@1.0.8
 reload@1.1.7
 retry@1.0.6
+reywood:publish-composite@1.4.2
 routepolicy@1.0.9
 service-configuration@1.0.8
 session@1.1.4
@@ -90,6 +92,7 @@ spacebars-compiler@1.0.10
 srp@1.0.7
 standard-minifier-css@1.0.5
 standard-minifier-js@1.0.5
+stevezhu:lodash@3.10.1
 stylus@2.511.4
 templating@1.1.8
 templating-tools@1.0.3

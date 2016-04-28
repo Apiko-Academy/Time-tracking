@@ -14,19 +14,28 @@ Template.organisationSettings.onCreated(function () {
   loadFilePicker('AMxXlNUEKQ1OgRo47XtKSz');
   this.iconUrl = new ReactiveVar(this.data.profile.iconUrl);
   this.organisationUsers = new ReactiveVar(this.data.users);
-  this.owner = new ReactiveVar(this.data.owners);
+  this.organisationOwners = new ReactiveArray();
+  this.organisationOwners.set(0, this.data.owners);
+
   this.usersAndRolesInOrganisation = function (userId, eventPressed) {
-    let owners = this.owner.get();
+    let owners = this.organisationOwners.get(0);
     let ownerWithoutUserId = _.without(owners, userId);
     if (eventPressed === 'add-user-to-owner') {
-      owners.push(userId)
-      this.owner.set(owners);
+
+      owners.push(userId);
+      this.organisationOwners.set(0, owners);
+      console.log(this)
+      console.log(this.organisationOwners.get(0))
     } else if (eventPressed === 'remove-user-from-owners') {
-      this.owner.set(ownerWithoutUserId);
+
+      this.organisationOwners.set(ownerWithoutUserId);
+
     } else if (eventPressed === 'remove-from-organisation-users'){
+
       let usersInOrganisation = _.without(this.organisationUsers.get(), userId);
-      this.owner.set(ownerWithoutUserId);
+      this.organisationOwners.set(ownerWithoutUserId);
       this.organisationUsers.set(usersInOrganisation);
+
     }
   };
 });
@@ -40,15 +49,16 @@ Template.organisationSettings.helpers({
     return Meteor.users.find({_id: {$in: tmpl.organisationUsers.get()}});
   },
   isUserInRoleOwner () {
-    let owners = Template.instance().owner.get();
-    if (_.contains(owners, this._id)) {
+    let tmpl = Template.instance();
+    console.log(tmpl.organisationOwners.get(0))
+    if (_.contains(tmpl.organisationOwners.get(0), this._id)) {
       return true;
     }
   },
   getName () {
     return getFullName(this);
   },
-  changeReactiveVarValue () {
+  changeOrganisationUsers () {
     let tmpl = Template.instance();
     return function(value) {
       tmpl.organisationUsers.set(value);
@@ -83,7 +93,7 @@ Template.organisationSettings.events({
         iconUrl: tmpl.iconUrl.get()
       },
       users: tmpl.organisationUsers.get(),
-      owners: tmpl.owner.get()
+      owners: tmpl.organisationOwners.get()
     };
 
     Meteor.call('editOrganisation', data, handleMethodResult(() => {

@@ -15,8 +15,7 @@ Template.Users_select.helpers({
     let searchStr = Template.instance().searchStr.get();
     let query = {};
     if (this.users) {
-      let users = this.users.map((item) => {return item._id;});
-      query =  { _id: { $nin: users } };
+      query =  { _id: { $nin: this.users } };
     }
 
     if (searchStr && _.isString(searchStr)) {
