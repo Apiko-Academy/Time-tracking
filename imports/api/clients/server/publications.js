@@ -1,5 +1,5 @@
 import { Meteor } from 'meteor/meteor';
-import '../../../lib/clients.js';
+import Clients from '../../../api/clients/clients.js';
 
 
 Meteor.publish('clients', function() {

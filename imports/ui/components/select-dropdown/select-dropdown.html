@@ -2,7 +2,6 @@
   <select class="{{class}} form-control" {{multiple}} data-live-search={{liveSearch}} title={{title}} name={{name}}>
     {{#each optionValues}}
       <option value="{{_id}}">{{name}}</option>
-      {{refresh}}
     {{else}}
         <option data-divider="true"></option>
         <option disabled>{{name}} list are empty</option>

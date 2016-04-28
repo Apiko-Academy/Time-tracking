@@ -11,10 +11,8 @@ Template.Project_list_item.helpers({
     }
   },
   workers: function(){
-    let names = [];
-    
-    this.workers.forEach(function(id){
-      names.push(getFullName(id));
+    let names = this.workers.map(function(id){
+      return getFullName(id);
     });
 
     return names;

@@ -5,6 +5,10 @@ import '../../components/select-dropdown/select-dropdown.js';
 import {getFullName} from '../../../modules/users.js';
 
 Template.Projects_find.helpers({
+  clients: function(){
+    console.log('clients helper');
+    return Clients.find();
+  },
   clientFilterChanged: function(){
     let filter = Template.instance().filter;
     return function(event){

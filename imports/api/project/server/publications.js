@@ -1,5 +1,5 @@
 import { Meteor } from 'meteor/meteor';
-import '../../../lib/project.js';
+import Project from'../../../api/project/project.js';
 
 Meteor.publish('projects', function () {
   let userId = this.userId;

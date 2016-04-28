@@ -41,6 +41,7 @@ Template.Project_create.events({
 
 Template.Project_create.helpers({
   clients: function(){
+    console.log('Project_create client helper run');
   	return Clients.find();
   }
 });
