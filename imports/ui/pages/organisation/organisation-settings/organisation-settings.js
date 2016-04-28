@@ -1,7 +1,9 @@
 import './organisation-settings.html';
 import './modal.html';
+import './users-table.html';
 
 import './modal.js';
+import './users-table.js';
 import '../../../../lib/organisation.js';
 
 import { getFullName } from '../../../../modules/users.js';
@@ -15,7 +17,6 @@ Template.organisationSettings.onCreated(function () {
   this.iconUrl = new ReactiveVar(this.data.profile.iconUrl);
   this.organisationUsers = new ReactiveArray(this.data.users);
   this.organisationOwners = new ReactiveArray(this.data.owners);
-  console.log(this)
 
   this.usersRolesInOrganisation = function (userId, eventPressed) {
     if (eventPressed === 'add-user-to-owner') {
@@ -41,22 +42,17 @@ Template.organisationSettings.helpers({
     let tmpl = Template.instance();
     return Meteor.users.find({_id: {$in: tmpl.organisationUsers.array()}});
   },
-  isUserInRoleOwner () {
-    let tmpl = Template.instance();
-    if (tmpl.organisationOwners.indexOf(this._id) > -1) {
-      return true;
-    }
-  },
-  getName () {
-    return getFullName(this);
-  },
   changeOrganisationUsers () {
     let tmpl = Template.instance();
     return function(value) {
       tmpl.organisationUsers.push(value);
     }
   },
-  reactiveVar () {
+  organisationOwners() {
+    let tmpl = Template.instance();
+    return tmpl.organisationOwners.array();
+  },
+  organisationUsers () {
     let tmpl = Template.instance();
     return tmpl.organisationUsers.array();
   }
