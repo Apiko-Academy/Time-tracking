@@ -51,7 +51,9 @@ Template.Projects_find.helpers({
     let usersIds = [];
 
     organizationIds.forEach((orgId)=>{
-      usersIds = _.union(usersIds, _.pluck(Roles.getUsersInRole(['member', 'owner'], orgId).fetch(), '_id'));
+      usersIds = _.union(usersIds, 
+        _.pluck(Roles.getUsersInRole(['member', 'owner'], orgId).fetch(), '_id')
+      );
     });
     let members = usersIds.map((id)=>{
       return {
