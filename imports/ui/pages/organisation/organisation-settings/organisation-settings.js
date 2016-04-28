@@ -7,7 +7,7 @@ import '../../../../lib/organisation.js';
 import { handleMethodResult } from '../../../../modules/handle-method-result.js';
 import { Mongo } from 'meteor/mongo';
 import { outputHandler } from '../../../../modules/output-handler.js';
-import {ReactiveArray} from 'meteor/manuel:reactivearray';
+import { ReactiveArray } from 'meteor/manuel:reactivearray';
 
 Template.organisationSettings.onCreated(function () {
   loadFilePicker('AMxXlNUEKQ1OgRo47XtKSz');
