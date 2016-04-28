@@ -5,12 +5,8 @@ import './project-create.js';
 
 import 'meteor/trsdln:modals';
 
-Template.Projects.events({
-  'click .project-create': function(event, tmpl){
-    event.preventDefault();
-
-    ModalManager.open('Project_create');
-  }
+Template.Projects.onCreated(function(){
+  this.filter = new ReactiveVar( {} );
 });
 
 Template.Projects.helpers({
@@ -25,6 +21,10 @@ Template.Projects.helpers({
   }
 });
 
-Template.Projects.onCreated(function(){
-  this.filter = new ReactiveVar( {} );
+Template.Projects.events({
+  'click .project-create': function(event, tmpl){
+    event.preventDefault();
+
+    ModalManager.open('Project_create');
+  }
 });

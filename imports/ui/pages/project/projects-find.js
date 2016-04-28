@@ -4,6 +4,16 @@ import 'meteor/underscore';
 import '../../components/select-dropdown/select-dropdown.js';
 import {getFullName} from '../../../modules/users.js';
 
+Template.Projects_find.onCreated(function(){
+  this.isRendered = false;
+  this.filter = {};
+});
+
+Template.Projects_find.onRendered(function(){
+  this.isRendered = true;
+});
+
+
 Template.Projects_find.helpers({
   clients: function(){
     return Clients.find();
@@ -76,13 +86,4 @@ Template.Projects_find.events({
     tmpl.$(".project-name").val('');
     tmpl.data.filter({});
   }
-});
-
-Template.Projects_find.onRendered(function(){
-  this.isRendered = true;
-});
-
-Template.Projects_find.onCreated(function(){
-  this.isRendered = false;
-  this.filter = {};
 });

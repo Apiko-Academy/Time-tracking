@@ -4,11 +4,8 @@ import {getFullName} from '../../../modules/users.js';
 Template.Project_list_item.helpers({
   client: function() {
     let client = Clients.findOne({_id: this.clientId});
-    if(client){
-      return client.name;
-    } else {
-      return 'Without client';
-    }
+     
+    return !!client && client.name || 'Without client';
   },
   workers: function(){
     let names = this.workers.map(function(id){
@@ -18,10 +15,8 @@ Template.Project_list_item.helpers({
     return names;
   },
   managers: function(){
-    let names = [];
-    
-    this.managers.forEach(function(id){
-      names.push(getFullName(id));
+    let names = this.managers.map(function(id){
+      return getFullName(id);
     });
 
     return names;

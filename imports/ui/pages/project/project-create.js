@@ -4,6 +4,11 @@ import '../../components/select-dropdown/select-dropdown.js';
 
 import {  handleMethodResult } from '../../../modules/handle-method-result';
 
+Template.Project_create.helpers({
+  clients: function(){
+    return Clients.find();
+  }
+});
 
 Template.Project_create.events({
   'click .client-add': function(event, tmpl){
@@ -35,11 +40,5 @@ Template.Project_create.events({
     Meteor.call('project.create', projectAttributes, handleMethodResult(()=>{
       ModalManager.getInstanceByElement(event.target).close();
     }));
-  }
-});
-
-Template.Project_create.helpers({
-  clients: function(){
-  	return Clients.find();
   }
 });
