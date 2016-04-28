@@ -6,7 +6,6 @@ import './modal.js';
 import './users-table.js';
 import '../../../../lib/organisation.js';
 
-import { getFullName } from '../../../../modules/users.js';
 import { handleMethodResult } from '../../../../modules/handle-method-result.js';
 import { Mongo } from 'meteor/mongo';
 import { outputHandler } from '../../../../modules/output-handler.js';
