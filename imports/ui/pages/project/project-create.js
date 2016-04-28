@@ -1,4 +1,3 @@
-import 'meteor/jesperwe:bootstrap-select';
 import 'meteor/trsdln:modals';
 import './project-create.html';
 import '../../components/select-dropdown/select-dropdown.js';
@@ -15,8 +14,8 @@ Template.Project_create.events({
     Meteor.call('client.create', clientName.val(), handleMethodResult((res) =>{
       clientName.val("");
       tmpl.$('.select-client')
-        .selectpicker('refresh')
-        .selectpicker('val', res);
+        .val(res)
+        .trigger("change");
       })
     );
   },
@@ -31,6 +30,8 @@ Template.Project_create.events({
       color: ''
     }
 
+    console.log(projectAttributes);
+
     target.reset();
     
     Meteor.call('project.create', projectAttributes, handleMethodResult(()=>{
@@ -41,7 +42,6 @@ Template.Project_create.events({
 
 Template.Project_create.helpers({
   clients: function(){
-    console.log('Project_create client helper run');
   	return Clients.find();
   }
 });

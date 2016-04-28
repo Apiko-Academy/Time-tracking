@@ -1,12 +1,12 @@
 <template name="Projects_find">
   <form class="find-form">
     <div class="input-group">
-      <div class="input-group-btn">
+      <div class="input-group-addon filter-select">
         {{> Select_dropdown optionValues=clients multiple='multiple' class='filter-client' 
           liveSearch='true' title='Filter client' name='Clients' onChanged=clientFilterChanged 
         }}
       </div>
-      <div class="input-group-btn">
+      <div class="input-group-addon filter-select">
         {{> Select_dropdown optionValues=teamMembers multiple='multiple' class='filter-team' 
           liveSearch='true' title='Filter team' name='Team' onChanged=teamFilterChanged 
         }}

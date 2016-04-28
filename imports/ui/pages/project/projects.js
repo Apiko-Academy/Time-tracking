@@ -20,15 +20,6 @@ Template.Projects.helpers({
       filter.set(value);
     }
   },
-/*  clients: function(){
-    console.log('clients helpers run in projects.js');
-  	let clients = Clients.find().fetch(); 
-    clients.unshift({
-    	_id: '',
-    	name: 'Without client'
-    });
-    return clients;
-  },*/
   projects: function(){
     return Project.find(Template.instance().filter.get());
   }

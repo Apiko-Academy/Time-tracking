@@ -6,7 +6,6 @@ import {getFullName} from '../../../modules/users.js';
 
 Template.Projects_find.helpers({
   clients: function(){
-    console.log('clients helper');
     return Clients.find();
   },
   clientFilterChanged: function(){

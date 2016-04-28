@@ -47,7 +47,6 @@ iron:location@1.0.11
 iron:middleware-stack@1.0.11
 iron:router@1.0.12
 iron:url@1.0.11
-jesperwe:bootstrap-select@1.7.4_4
 jquery@1.11.8
 jss:anti-search-source@1.0.2
 juliancwirko:s-alert@3.1.4
@@ -70,6 +69,7 @@ modules-runtime@0.6.3
 mongo@1.1.7
 mongo-id@1.0.4
 natestrauser:filepicker-plus@2.0.0
+natestrauser:select2@4.0.2
 natestrauser:x-editable-bootstrap@1.5.2_4
 npm-bcrypt@0.8.5
 npm-mongo@1.4.43
