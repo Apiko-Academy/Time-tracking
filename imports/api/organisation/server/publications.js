@@ -14,14 +14,21 @@ Meteor.publish('organisation', function() {
   return Organisation.find({ _id: { $in: organizationIds } });
 });
 
-Meteor.publishComposite('current.organisation', {
-  find: (organisationId) => {
-    return Organisation.find({_id: organisationId});
-  },
-  children: [{
-    find: (organisation) => {
-      let users = _.flatten(organisation.map((item) => _.union(item.users, item.owners)));
-      Meteor.users.find({ _id: {$in: users} });
-    }
-  }]
+Meteor.publishComposite('current.organisation', function(organisationId){
+  return {
+    find: function() {
+      return Organisation.find({_id: organisationId});
+    },
+    children: [
+      {
+        find: function () {
+          let usersArray = _.flatten(Organisation.find({_id: organisationId}).map(
+              (item)=> {
+                return _.union(item.users, item.owners);
+              }));
+          Meteor.users.find({_id: {$in: usersArray}});
+        }
+      }
+    ]
+  }
 });

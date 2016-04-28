@@ -8,13 +8,13 @@ import { handleMethodResult } from '../../../../modules/handle-method-result.js'
 import { Mongo } from 'meteor/mongo';
 import { outputHandler } from '../../../../modules/output-handler.js';
 import { ReactiveArray } from 'meteor/manuel:reactivearray';
+//import { ReactiveVar } from 'meteor/reactive-var';
 
 Template.organisationSettings.onCreated(function () {
   loadFilePicker('AMxXlNUEKQ1OgRo47XtKSz');
   this.iconUrl = new ReactiveVar(this.data.profile.iconUrl);
   this.organisationUsers = new ReactiveArray(this.data.users);
   this.organisationOwners = new ReactiveArray(this.data.owners);
-
   this.usersRolesInOrganisation = function (userId, eventPressed) {
     let methodName = eventPressed === 'add-user-to-owners' ? 'push' : 'remove';
     this.organisationOwners[methodName](userId);
@@ -55,6 +55,7 @@ Template.organisationSettings.helpers({
     return tmpl.organisationUsers.array();
   }
 });
+
 Template.organisationSettings.events({
   'click #organisation-icon': function (event, tmpl) {
     filepicker.pick({
@@ -88,7 +89,8 @@ Template.organisationSettings.events({
   },
   'click .remove-from-organisation-users': function(event, tmpl){
     event.preventDefault();
-    tmpl.addOrRemoveUserFromOrganisation(event.target.value, 'remove');
+    console.log(tmpl.data._id)
+    tmpl.addOrRemoveUserFromOrganisation(tmpl.data._id, 'remove');
   },
   'click .add-user-to-owners': function(event, tmpl) {
     event.preventDefault();
@@ -96,6 +98,6 @@ Template.organisationSettings.events({
   },
   'click .remove-user-from-owners': function(event, tmpl) {
     event.preventDefault();
-    tmpl.usersRolesInOrganisation(event.target.value, 'remove-user-from-owners');
+    tmpl.usersRolesInOrganisation(event.target, 'remove-user-from-owners');
   }
 });

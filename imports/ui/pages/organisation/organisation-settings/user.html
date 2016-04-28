@@ -1,0 +1,14 @@
+<template name="userInOrganisation">
+  <tr>
+    <td><img  src="{{profile.profileImage}}" id="organisation-icon" alt="Organisation avatar" style="width:100px;"></td>
+    <td>{{getName}}</td>
+    <td><button class="btn btn-danger remove-from-organisation-users">Remove from users</button></td>
+    <td>
+      {{#if isUserInRoleOwner}}
+        <button class="btn btn-warning remove-user-from-owners">Remove from owners</button>
+      {{else}}
+        <button class="btn btn-info add-user-to-owners">Add user to owners</button>
+      {{/if}}
+    </td>
+  </tr>
+</template>
