@@ -1,6 +1,4 @@
 import './organisation-settings.html';
-import './modal.html';
-import './users-table.html';
 
 import './modal.js';
 import './users-table.js';
@@ -9,7 +7,7 @@ import '../../../../lib/organisation.js';
 import { handleMethodResult } from '../../../../modules/handle-method-result.js';
 import { Mongo } from 'meteor/mongo';
 import { outputHandler } from '../../../../modules/output-handler.js';
-import { ReactiveVar } from 'meteor/reactive-var';
+import {ReactiveArray} from 'meteor/manuel:reactivearray';
 
 Template.organisationSettings.onCreated(function () {
   loadFilePicker('AMxXlNUEKQ1OgRo47XtKSz');
@@ -18,16 +16,17 @@ Template.organisationSettings.onCreated(function () {
   this.organisationOwners = new ReactiveArray(this.data.owners);
 
   this.usersRolesInOrganisation = function (userId, eventPressed) {
-    if (eventPressed === 'add-user-to-owner') {
-      this.organisationOwners.push(userId);
-    } else {
-      this.organisationOwners.remove(userId);
-    }
+    let methodName = eventPressed === 'add-user-to-owners' ? 'push' : 'remove';
+    this.organisationOwners[methodName](userId);
   };
 
-  this.removeUserFromOrganisation = function (userId) {
+  this.addOrRemoveUserFromOrganisation = function (userId, eventPressed) {
+    if (eventPressed === 'remove') {
       this.organisationOwners.remove(userId);
       this.organisationUsers.remove(userId);
+    } else {
+      this.organisationUsers.push(userId);
+    }
   };
 });
 
@@ -43,8 +42,8 @@ Template.organisationSettings.helpers({
   },
   changeOrganisationUsers () {
     let tmpl = Template.instance();
-    return function(value) {
-      tmpl.organisationUsers.push(value);
+    return (value) => {
+      tmpl.addOrRemoveUserFromOrganisation(value);
     }
   },
   organisationOwners() {
@@ -73,10 +72,10 @@ Template.organisationSettings.events({
     event.preventDefault();
     let data =  {
       _id: tmpl.data._id,
-      name:  tmpl.$('[name=organisation-name]').val().trim(),
-      description:  tmpl.$('[name=organisation-description]').val().trim(),
+      name: event.target['organisation-name'].value.trim(),
+      description:  event.target['organisation-description'].value.trim(),
       profile: {
-        companySite:  tmpl.$('[name=company-site]').val().trim(),
+        companySite:  event.target['company-site'].value.trim(),
         iconUrl: tmpl.iconUrl.get()
       },
       users: tmpl.organisationUsers.array(),
@@ -89,11 +88,11 @@ Template.organisationSettings.events({
   },
   'click .remove-from-organisation-users': function(event, tmpl){
     event.preventDefault();
-    tmpl.removeUserFromOrganisation(event.target.value);
+    tmpl.addOrRemoveUserFromOrganisation(event.target.value, 'remove');
   },
   'click .add-user-to-owners': function(event, tmpl) {
     event.preventDefault();
-    tmpl.usersRolesInOrganisation(event.target.value, 'add-user-to-owner');
+    tmpl.usersRolesInOrganisation(event.target.value, 'add-user-to-owners');
   },
   'click .remove-user-from-owners': function(event, tmpl) {
     event.preventDefault();

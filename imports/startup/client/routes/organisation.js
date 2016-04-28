@@ -6,7 +6,6 @@ import '../../../ui/pages/organisation/organisation.js';
 
 import '../../../ui/pages/organisation/my-organisations.js';
 import '../../../ui/pages/organisation/organisation-settings/organisation-settings.js';
-import '../../../ui/pages/organisation/organisation-settings/organisation-settings.html';
 
 
 Router.route('/organisation', {
