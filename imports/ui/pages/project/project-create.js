@@ -30,8 +30,6 @@ Template.Project_create.events({
       color: ''
     }
 
-    console.log(projectAttributes);
-
     target.reset();
     
     Meteor.call('project.create', projectAttributes, handleMethodResult(()=>{

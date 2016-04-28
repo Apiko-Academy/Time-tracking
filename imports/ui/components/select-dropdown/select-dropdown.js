@@ -11,11 +11,6 @@ Template.Select_dropdown.onRendered(function(){
       this.data.onChanged(e);
     }
   }
-  /*this.autorun(()=>{
-    Template.currentData();
-    console.log("rerun", this.className);
-    this.$(className).select2('refresh');
-  });*/
 
   this.$(className).select2({
     dropdownAutoWidth : true,

@@ -1,20 +1,17 @@
 <template name="Projects_find">
   <form class="find-form">
-    <div class="input-group">
+    <div class="input-group input-group-filter">
       <div class="input-group-addon filter-select">
         {{> Select_dropdown optionValues=clients multiple='multiple' class='filter-client' 
-          liveSearch='true' title='Filter client' name='Clients' onChanged=clientFilterChanged 
+          liveSearch='true' title='Filter client' name='Clients' onChanged=clientFilterChanged setFilter=filter
         }}
       </div>
       <div class="input-group-addon filter-select">
         {{> Select_dropdown optionValues=teamMembers multiple='multiple' class='filter-team' 
-          liveSearch='true' title='Filter team' name='Team' onChanged=teamFilterChanged 
+          liveSearch='true' title='Filter team' name='Team' onChanged=teamFilterChanged setFilter=filter
         }}
       </div>
-      <input type="text" class="form-control form-control project-name" placeholder="Name" name="name"/>
-      <span class="input-group-btn">
-        <button class="btn btn-success apply-filter" type="button">Apply</button>
-      </span>
+      <input type="text" class="form-control project-name" placeholder="Name" name="name"/>
     </div>
     <button type="reset" class="btn btn-warning btn-xs pull-right reset-filters">Clear filters</button>
   </form>

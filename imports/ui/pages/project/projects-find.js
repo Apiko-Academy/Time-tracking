@@ -10,6 +10,8 @@ Template.Projects_find.helpers({
   },
   clientFilterChanged: function(){
     let filter = Template.instance().filter;
+    let setFilter = Template.instance().data.filter;
+
     return function(event){
       let selectVal = $(event.target).val();
       if(selectVal){
@@ -17,10 +19,13 @@ Template.Projects_find.helpers({
       } else {
         delete filter.clientId;
       }
+      setFilter(filter);
     }
   },
   teamFilterChanged: function(){
     let filter = Template.instance().filter;
+    let setFilter = Template.instance().data.filter;
+
     return function(event){
       let selectVal = $(event.target).val();
       if(selectVal){
@@ -28,6 +33,7 @@ Template.Projects_find.helpers({
       } else {
         delete filter.$or;
       }
+      setFilter(filter);
     }
   },
   teamMembers: ()=>{
@@ -48,7 +54,7 @@ Template.Projects_find.helpers({
 });
 
 Template.Projects_find.events({
-  'click .apply-filter': function(event, tmpl){
+  'change .project-name': function(event, tmpl){
     event.preventDefault();
     let name = tmpl.$(".project-name").val();
     let filter = tmpl.filter;
@@ -65,8 +71,8 @@ Template.Projects_find.events({
   'click .reset-filters': (event, tmpl)=>{
     event.preventDefault();
     
-    tmpl.$(".filter-client").selectpicker('deselectAll');
-    tmpl.$(".filter-team").selectpicker('deselectAll');
+    tmpl.$(".filter-client").val(null).trigger("change");
+    tmpl.$(".filter-team").val(null).trigger("change");
     tmpl.$(".project-name").val('');
     tmpl.data.filter({});
   }

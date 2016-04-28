@@ -16,7 +16,7 @@ Template.Projects.events({
 Template.Projects.helpers({
   setFilter: function(){
     let filter = Template.instance().filter;
-    return function(value){
+    return function(value = {}){
       filter.set(value);
     }
   },
