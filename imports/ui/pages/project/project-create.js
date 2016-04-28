@@ -14,10 +14,10 @@ Template.Project_create.events({
   'click .client-add': function(event, tmpl){
     event.preventDefault();
 
-    let clientName = tmpl.$('.client-name');
+    let clientNameInput = tmpl.$('.client-name');
 
-    Meteor.call('client.create', clientName.val(), handleMethodResult((res) =>{
-      clientName.val("");
+    Meteor.call('client.create', clientNameInput.val(), handleMethodResult((res) =>{
+      clientNameInput.val("");
       tmpl.$('.select-client')
         .val(res)
         .trigger("change");
