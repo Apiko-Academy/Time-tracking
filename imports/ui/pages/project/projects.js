@@ -14,6 +14,12 @@ Template.Projects.events({
 });
 
 Template.Projects.helpers({
+  setFilter: function(){
+    let filter = Template.instance().filter;
+    return function(value){
+      filter.set(value);
+    }
+  },
   clients: function(){
   	let clients = Clients.find().fetch(); 
     clients.unshift({

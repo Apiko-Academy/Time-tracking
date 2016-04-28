@@ -48,14 +48,16 @@ Template.Projects_find.events({
   'click .apply-filter': function(event, tmpl){
     event.preventDefault();
     let name = tmpl.$(".project-name").val();
+    let filter = tmpl.filter;
 
     if(name){
-      tmpl.filter.name = {$regex: name + ".*"};
+      filter.name = {$regex: name + ".*"};
     } else {
-      delete tmpl.filter.name;
+      delete filter.name;
     }
 
-    tmpl.view.parentView.parentView._templateInstance.filter.set(tmpl.filter); 
+    tmpl.data.filter(filter);
+
   },
   'click .reset-filters': (event, tmpl)=>{
     event.preventDefault();
@@ -63,7 +65,7 @@ Template.Projects_find.events({
     tmpl.$(".filter-client").selectpicker('deselectAll');
     tmpl.$(".filter-team").selectpicker('deselectAll');
     tmpl.$(".project-name").val('');
-    tmpl.view.parentView.parentView._templateInstance.filter.set({});
+    tmpl.data.filter({});
   }
 });
 
