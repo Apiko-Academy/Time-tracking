@@ -12,7 +12,7 @@ Template.Project_create.events({
 
     let clientName = tmpl.$('.client-name');
 
-    Meteor.call('clientCreate', clientName.val(), handleMethodResult((res) =>{
+    Meteor.call('client.create', clientName.val(), handleMethodResult((res) =>{
       clientName.val("");
       tmpl.$('.select-client')
         .selectpicker('refresh')
@@ -33,7 +33,7 @@ Template.Project_create.events({
 
     target.reset();
     
-    Meteor.call('projectCreate', projectAttributes, handleMethodResult(()=>{
+    Meteor.call('project.create', projectAttributes, handleMethodResult(()=>{
       ModalManager.getInstanceByElement(event.target).close();
     }));
   }

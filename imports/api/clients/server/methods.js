@@ -2,7 +2,7 @@ import { Meteor } from 'meteor/meteor';
 import { check } from 'meteor/check';
 
 Meteor.methods({
-  clientCreate: function(clientName) {
+  'client.create': function(clientName) {
     check(clientName, String);
 
     let client = Clients.findOne({name: clientName, createdBy: this.userId});

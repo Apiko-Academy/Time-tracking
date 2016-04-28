@@ -2,7 +2,7 @@ import { Meteor } from 'meteor/meteor';
 import { check } from 'meteor/check';
 
 Meteor.methods({
-  projectCreate: function(projectAttributes) {
+  'project.create': function(projectAttributes) {
     check(projectAttributes, {
       name: String,
       clientId: String,
