@@ -13,32 +13,25 @@ import { ReactiveVar } from 'meteor/reactive-var';
 Template.organisationSettings.onCreated(function () {
   loadFilePicker('AMxXlNUEKQ1OgRo47XtKSz');
   this.iconUrl = new ReactiveVar(this.data.profile.iconUrl);
-  this.organisationUsers = new ReactiveVar(this.data.users);
-  this.organisationOwners = new ReactiveArray();
-  this.organisationOwners.set(0, this.data.owners);
+  this.organisationUsers = new ReactiveArray(this.data.users);
+  this.organisationOwners = new ReactiveArray(this.data.owners);
+  console.log(this)
 
-  this.usersAndRolesInOrganisation = function (userId, eventPressed) {
-    let owners = this.organisationOwners.get(0);
-    let ownerWithoutUserId = _.without(owners, userId);
+  this.usersRolesInOrganisation = function (userId, eventPressed) {
     if (eventPressed === 'add-user-to-owner') {
-
-      owners.push(userId);
-      this.organisationOwners.set(0, owners);
-      console.log(this)
-      console.log(this.organisationOwners.get(0))
-    } else if (eventPressed === 'remove-user-from-owners') {
-
-      this.organisationOwners.set(ownerWithoutUserId);
-
-    } else if (eventPressed === 'remove-from-organisation-users'){
-
-      let usersInOrganisation = _.without(this.organisationUsers.get(), userId);
-      this.organisationOwners.set(ownerWithoutUserId);
-      this.organisationUsers.set(usersInOrganisation);
-
+      this.organisationOwners.push(userId);
+    } else {
+      this.organisationOwners.remove(userId);
     }
   };
+
+  this.removeUserFromOrganisation = function (userId) {
+      this.organisationOwners.remove(userId);
+      this.organisationUsers.remove(userId);
+  };
 });
+
+
 Template.organisationSettings.helpers({
   iconUrl(){
     let tmpl = Template.instance();
@@ -46,12 +39,11 @@ Template.organisationSettings.helpers({
   },
   users () {
     let tmpl = Template.instance();
-    return Meteor.users.find({_id: {$in: tmpl.organisationUsers.get()}});
+    return Meteor.users.find({_id: {$in: tmpl.organisationUsers.array()}});
   },
   isUserInRoleOwner () {
     let tmpl = Template.instance();
-    console.log(tmpl.organisationOwners.get(0))
-    if (_.contains(tmpl.organisationOwners.get(0), this._id)) {
+    if (tmpl.organisationOwners.indexOf(this._id) > -1) {
       return true;
     }
   },
@@ -61,12 +53,12 @@ Template.organisationSettings.helpers({
   changeOrganisationUsers () {
     let tmpl = Template.instance();
     return function(value) {
-      tmpl.organisationUsers.set(value);
+      tmpl.organisationUsers.push(value);
     }
   },
   reactiveVar () {
     let tmpl = Template.instance();
-    return tmpl.organisationUsers.get();
+    return tmpl.organisationUsers.array();
   }
 });
 Template.organisationSettings.events({
@@ -92,8 +84,8 @@ Template.organisationSettings.events({
         companySite:  tmpl.$('[name=company-site]').val().trim(),
         iconUrl: tmpl.iconUrl.get()
       },
-      users: tmpl.organisationUsers.get(),
-      owners: tmpl.organisationOwners.get()
+      users: tmpl.organisationUsers.array(),
+      owners: tmpl.organisationOwners.array()
     };
 
     Meteor.call('editOrganisation', data, handleMethodResult(() => {
@@ -102,14 +94,14 @@ Template.organisationSettings.events({
   },
   'click .remove-from-organisation-users': function(event, tmpl){
     event.preventDefault();
-    tmpl.usersAndRolesInOrganisation(event.target.value, 'remove-from-organisation-users');
+    tmpl.removeUserFromOrganisation(event.target.value);
   },
   'click .add-user-to-owners': function(event, tmpl) {
     event.preventDefault();
-    tmpl.usersAndRolesInOrganisation(event.target.value, 'add-user-to-owner');
+    tmpl.usersRolesInOrganisation(event.target.value, 'add-user-to-owner');
   },
   'click .remove-user-from-owners': function(event, tmpl) {
     event.preventDefault();
-    tmpl.usersAndRolesInOrganisation(event.target.value, 'remove-user-from-owners');
+    tmpl.usersRolesInOrganisation(event.target.value, 'remove-user-from-owners');
   }
 });

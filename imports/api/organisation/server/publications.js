@@ -15,25 +15,17 @@ Meteor.publish('organisation', function() {
 });
 
 Meteor.publishComposite('current.organisation', function(organisationId){
+  let organisation = Organisation.find({_id: organisationId});
   return {
     find: function() {
-      return Organisation.find({_id: organisationId});
+      return organisation;
     },
     children: [
       {
         find: function () {
-          let organisatioUsers = Organisation.find({_id: organisationId}, {fields: {users: 1}});
-          return Meteor.users.find({_id: {$in: organisatioUsers}});
+          let usersArray = _.flatten(organisation.map((item)=> {return _.union(item.users, item.owners)}));
+          Meteor.users.find({_id: {$in: usersArray}});
         }
-      }, {
-        children: [
-          {
-            find: function() {
-              let organisatioOwners = Organisation.find({_id: organisationId}, {fields: {owners: 1}});
-              return Meteor.users.find({_id: {$in: organisatioOwners}});
-            }
-          }
-        ]
       }
     ]
   }

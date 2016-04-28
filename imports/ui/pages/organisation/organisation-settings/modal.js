@@ -6,9 +6,7 @@ Template.modalOrganisationEdit.helpers({
     let tmpl = Template.instance();
     let self = this;
     return function (itemId) {
-      let selected = tmpl.data.reactiveVar;
-      selected.push(itemId);
-      self.changeOrganisationUsers(_.uniq(selected));
+      self.changeOrganisationUsers(itemId);
       return Meteor.users.find({_id: {$nin: tmpl.data.reactiveVar}}).fetch();
     }
   },
