@@ -10,7 +10,6 @@ Accounts.onCreateUser((options, user) => {
   }
 
   if (options.profile) {
-    options.profile.emailHash = Gravatar.hash( user.emails[0].address || '');
   	options.profile.profileImage = noImage;
   	user.profile = options.profile;
   }
