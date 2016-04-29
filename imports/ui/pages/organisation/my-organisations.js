@@ -1,4 +1,5 @@
 import './my-organisations.html';
+import './organisation-settings/organisation-settings.html';
 
 import { getOrganisationIcon } from '../../../modules/organisation.js';
 import { getFullName } from '../../../modules/users.js';

@@ -32,7 +32,8 @@ Template.createOrganisation.events({
       profile: {
         iconUrl: iconUrl,
         companySite: companySite
-      }
+      },
+      users: [Meteor.userId()]
     };
 
     event.target.reset();

@@ -3,5 +3,8 @@ let regExEmail = (email) => {
 
   return regex.test(email);
 };
-
-export { regExEmail };
+let MongoId = Match.Where((id) => {
+  check(id, String);
+  return /[a-zA-Z0-9]{17,17}/.test(id);
+});
+export { regExEmail, MongoId };

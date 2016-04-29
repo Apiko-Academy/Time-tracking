@@ -18,13 +18,13 @@
           </a>
           <div class="media-body">
             <h4 class="media-heading">{{name}} 
-              {{#if isOwner}}<a href="#"><span class="glyphicon glyphicon-cog"></span></a>{{/if}}
+              {{#if isOwner}}<a href="{{pathFor route='organisationSettings'}}"><span class="glyphicon glyphicon-cog"></span></a>{{/if}}
             </h4>
             {{#if owners}}
               <p> <b>Owners: </b>
               {{#each owners}}
-                <span class="label label-primary">
-                  {{getUsername this}} 
+                <span class="label label-primary group-owners">
+                  {{getUsername this}}
                 </span>
               {{/each}}
               </p>
