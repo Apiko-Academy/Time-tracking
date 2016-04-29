@@ -14,11 +14,5 @@ let getProfileIcon = (profileId) => {
     return "/default-user.png";
   }
 };
-let useGravatar = (email, userId) => {
-  let options = {
-    size: 50
-  };
-  let imageUrl = Gravatar.imageUrl(email, options);
-  Meteor.users.update({_id: userId}, {$set: {'profile.profileImage': imageUrl}});
-};
-export { getFullName, getProfileIcon, useGravatar };
+
+export { getFullName, getProfileIcon };

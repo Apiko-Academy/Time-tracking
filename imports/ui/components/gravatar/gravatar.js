@@ -1,8 +1,9 @@
 import './gravatar.html';
 
 import { outputHandler } from '../../../modules/output-handler.js';
-import { useGravatar } from '../../../modules/users.js';
+import { useGravatar } from '../../../modules/gravatar.js';
 import { handleMethodResult } from '../../../modules/handle-method-result.js';
+
 
 Template.change_image.events({
   'click #uploadImage': function(event, tmpl) {
@@ -18,8 +19,8 @@ Template.change_image.events({
       });
   },
   'click #useGravatar': function (event, tmpl) {
-    //console.log(Meteor.user().emails[0].address)
-    let email = Meteor.user().emails[0].address;
-    useGravatar(email, Meteor.userId())
+      let email = Meteor.user().emails[0].address;
+      let imageUrl = useGravatar(email, Meteor.userId())
+      Meteor.users.update({_id: Meteor.userId()}, {$set: {'profile.profileImage': imageUrl}});
   }
-})
+});
