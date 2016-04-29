@@ -6,4 +6,5 @@ let getOrganisationIcon = (organisationId) => {
     return noImage;
   }
 };
+
 export { getOrganisationIcon };
