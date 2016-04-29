@@ -1,5 +1,8 @@
 import './gravatar.html';
 
+import { outputHandler } from '../../../modules/output-handler.js';
+import { handleMethodResult } from '../../../modules/handle-method-result.js';
+
 
 Template.change_image.onCreated(function(){
   //loadFilePicker('AMxXlNUEKQ1OgRo47XtKSz');
@@ -12,7 +15,8 @@ Template.change_image.events({
           multiple: false
         },
         function(InkBlobs){
-          updateUserProfile('profile.profileImage')('', InkBlobs.url);
+          //updateUserProfile('profile.profileImage')('', InkBlobs.url);
+          Meteor.call('user.image.update', Meteor.userId(), InkBlobs.url, handleMethodResult());
         },
         function(FPError){
           outputHandler(FPError.toString());

@@ -14,6 +14,7 @@ Template.userProfile.onCreated(function () {
   loadFilePicker('AMxXlNUEKQ1OgRo47XtKSz');
   this.subscribe('organisation');
 
+
   this.updateUserProfile = (fieldName) => {
     return function (response, newValue) {
       let userId    = Meteor.userId();
@@ -78,7 +79,7 @@ Template.userProfile.helpers({
     
     //seems like we dont need this additional filtering. Just take whole Organization
     return Organisation.find({ _id: { $in: organizationIds } }).fetch();
-  }
+  },
 });
 
 Template.userProfile.events({
