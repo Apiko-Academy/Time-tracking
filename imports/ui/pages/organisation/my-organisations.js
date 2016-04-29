@@ -1,7 +1,7 @@
 import './my-organisations.html';
+
 import { getOrganisationIcon } from '../../../modules/organisation.js';
 import { getFullName } from '../../../modules/users.js';
-import { Template } from 'meteor/templating';
 
 Template.myOrganisations.helpers({
   isOwner: function(){

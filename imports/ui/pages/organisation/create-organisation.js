@@ -1,6 +1,5 @@
 import './create-organisation.html';
 
-import { Template } from 'meteor/templating';
 import { loadFilePicker } from 'meteor/natestrauser:filepicker-plus';
 import { ReactiveVar } from 'meteor/reactive-var';
 import { handleMethodResult } from '../../../modules/handle-method-result.js';
@@ -61,7 +60,6 @@ Template.createOrganisation.events({
 
 Template.createOrganisation.helpers({
   iconUrl: function () {
-    let noImage = noImage;
     let iconUrl = Template.instance().iconUrl.get();
 
     return iconUrl || noImage;

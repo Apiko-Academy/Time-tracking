@@ -2,6 +2,7 @@ import './projects-find.html';
 import 'meteor/alanning:roles';
 import 'meteor/underscore';
 import '../../select-dropdown/select-dropdown.js';
+
 import {getFullName} from '../../../../modules/users.js';
 
 Template.Projects_find.onCreated(function(){

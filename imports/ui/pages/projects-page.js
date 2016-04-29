@@ -5,6 +5,9 @@ import '../components/project/create/project-create.js';
 
 import 'meteor/trsdln:modals';
 
+import Projects from '../../api/project/project.js';
+import Clients from '../../api/clients/clients.js';
+
 Template.Projects_page.onCreated(function(){
   this.filter = new ReactiveVar( {} );
 });

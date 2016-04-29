@@ -2,6 +2,7 @@ import './user-profile.html';
 
 import { Template } from 'meteor/templating';
 import { loadFilePicker } from 'meteor/natestrauser:filepicker-plus';
+import Oranization from '../../api/organisation/organisation.js';
 
 import '../../startup/client/config.js';
 import { handleMethodResult } from '../../modules/handle-method-result.js';
