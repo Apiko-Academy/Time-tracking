@@ -16,9 +16,6 @@ Template.userProfile.onCreated(function () {
 
 Template.userProfile.onRendered(function () {
   let fieldsConfig = [{
-    name: 'username',
-    title: 'Enter username'
-  }, {
     name: 'profile\\.firstName',
     title: 'Enter first name'
   }, {
