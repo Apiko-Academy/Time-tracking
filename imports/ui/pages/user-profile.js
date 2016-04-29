@@ -79,11 +79,6 @@ Template.userProfile.helpers({
     
     //seems like we dont need this additional filtering. Just take whole Organization
     return Organisation.find({ _id: { $in: organizationIds } }).fetch();
-  },
-  gravatarData () {
-    return {
-      id: Meteor.userId()
-    };
   }
 });
 
