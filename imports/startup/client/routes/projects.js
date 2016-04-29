@@ -1,6 +1,6 @@
 import 'meteor/mongo';
 
-import '../../../ui/pages/project/projects.js';
+import '../../../ui/pages/projects-page.js';
 
 Router.route('/projects', {
     name: 'projects',

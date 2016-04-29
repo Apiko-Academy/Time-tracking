@@ -1,7 +1,7 @@
-import './projects.html';
-import './projects-find.js';
-import './projects-list.js';
-import './project-create.js';
+import '../components/project/projects-page.html';
+import '../components/project/projects-find.js';
+import '../components/project/projects-list.js';
+import '../components/project/project-create.js';
 
 import 'meteor/trsdln:modals';
 
