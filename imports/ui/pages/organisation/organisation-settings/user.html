@@ -2,7 +2,7 @@
   <tr>
     <td><img  src="{{profile.profileImage}}" id="organisation-icon" alt="Organisation avatar" style="width:100px;"></td>
     <td>{{getName}}</td>
-    <td><button class="btn btn-danger remove-from-organisation-users">Remove from users</button></td>
+    <td><button class="btn btn-danger remove-from-organisation-users" value="{{_id}}">Remove from users</button></td>
     <td>
       {{#if isUserInRoleOwner}}
         <button class="btn btn-warning remove-user-from-owners">Remove from owners</button>

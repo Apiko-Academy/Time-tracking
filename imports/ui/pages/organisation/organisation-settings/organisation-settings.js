@@ -43,9 +43,7 @@ Template.organisationSettings.helpers({
   },
   changeOrganisationUsers () {
     let tmpl = Template.instance();
-    return (value) => {
-      tmpl.addOrRemoveUserFromOrganisation(value);
-    }
+    return tmpl.addOrRemoveUserFromOrganisation
   },
   organisationOwners() {
     let tmpl = Template.instance();
@@ -89,9 +87,8 @@ Template.organisationSettings.events({
     }));
   },
   'click .remove-from-organisation-users': function(event, tmpl){
-    console.log(tmpl)
     event.preventDefault();
-    tmpl.addOrRemoveUserFromOrganisation(tmpl.data._id, 'remove');
+    tmpl.addOrRemoveUserFromOrganisation(event.target.value, 'remove');
   },
   'click .add-user-to-owners': function(event, tmpl) {
     event.preventDefault();
