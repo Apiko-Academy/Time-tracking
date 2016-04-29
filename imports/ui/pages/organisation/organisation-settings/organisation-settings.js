@@ -8,7 +8,7 @@ import { handleMethodResult } from '../../../../modules/handle-method-result.js'
 import { Mongo } from 'meteor/mongo';
 import { outputHandler } from '../../../../modules/output-handler.js';
 import { ReactiveArray } from 'meteor/manuel:reactivearray';
-//import { ReactiveVar } from 'meteor/reactive-var';
+import { ReactiveVar } from 'meteor/reactive-var';
 
 Template.organisationSettings.onCreated(function () {
   loadFilePicker('AMxXlNUEKQ1OgRo47XtKSz');
@@ -31,7 +31,6 @@ Template.organisationSettings.onCreated(function () {
   };
 });
 
-
 Template.organisationSettings.helpers({
   iconUrl(){
     let tmpl = Template.instance();
@@ -48,6 +47,9 @@ Template.organisationSettings.helpers({
   usersRolesInOrganisation () {
     let tmpl = Template.instance();
     return tmpl.usersRolesInOrganisation;
+  },
+  currentOrganisation () {
+    return this;
   },
   organisationOwners() {
     let tmpl = Template.instance();
@@ -89,17 +91,5 @@ Template.organisationSettings.events({
     Meteor.call('editOrganisation', data, handleMethodResult(() => {
        Router.go('myorganisations');
     }));
-  },
-  ////'click .remove-from-organisation-users': function(event, tmpl){
-  ////  event.preventDefault();
-  ////  tmpl.addOrRemoveUserFromOrganisation(event.target.value, 'remove');
-  ////},
-  //'click .add-user-to-owners': function(event, tmpl) {
-  //  event.preventDefault();
-  //  tmpl.usersRolesInOrganisation(event.target.value, 'add-user-to-owners');
-  //},
-  //'click .remove-user-from-owners': function(event, tmpl) {
-  //  event.preventDefault();
-  //  tmpl.usersRolesInOrganisation(event.target, 'remove-user-from-owners');
-  //}
+  }
 });

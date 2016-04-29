@@ -1,6 +1,6 @@
 <template name="usersTable">
   <div class="table-responsive">
-    <table class="table table-stripped">
+    <table class="table">
       <tbody>
       {{#each users}}
         {{> userInOrganisation organisationOwners=organisationOwners user=this changeOrganisationUsers=changeOrganisationUsers usersRolesInOrganisation=usersRolesInOrganisation}}

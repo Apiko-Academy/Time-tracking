@@ -2,14 +2,17 @@ import './modal.js';
 import './user.html';
 
 import { getFullName } from '../../../../modules/users.js';
+import { getProfileIcon } from '../../../../modules/users.js';
 
 Template.userInOrganisation.helpers({
   getName () {
     return getFullName(this.user._id);
   },
   isUserInRoleOwner () {
-    let tmpl = Template.instance();
-    return tmpl.data.organisationOwners.indexOf(this.user._id) > -1;
+    return this.organisationOwners.indexOf(this.user._id) > -1;
+  },
+  profileImage () {
+    return getProfileIcon(this.user._id);
   }
 })
 

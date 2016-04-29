@@ -6,7 +6,6 @@ import './organisation-settings.js';
 Template.usersTable.helpers({
   organisationUsers () {
     let tmpl = Template.instance();
-    console.log(tmpl)
     return tmpl.data.organisationUsers;
   },
   organisationOwners () {
