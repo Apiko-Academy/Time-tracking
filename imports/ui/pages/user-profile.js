@@ -82,32 +82,6 @@ Template.userProfile.helpers({
   },
 });
 
-Template.userProfile.events({
-  //'click #user-avatar': function () {
-  //  filepicker.pick({
-  //      mimetypes: ['image/gif','image/jpeg','image/png'],
-  //      multiple: false
-  //    },
-  //    function(InkBlobs){
-  //      updateUserProfile('profile.profileImage')('', InkBlobs.url);
-  //    },
-  //    function(FPError){
-  //      outputHandler(FPError.toString());
-  //  });
-  //}
-});
-
-function updateUserProfile (fieldName) {
-  return function (response, newValue) {
-    let userId    = Meteor.userId();
-    let options   = {};
-
-    options[fieldName] = newValue;
-
-    Meteor.call('users.update', userId, options, handleMethodResult());
-  }
-}
-
 function validateEmail (email) {
   if (!regExEmail(email)) {
     return 'Enter valid email';

@@ -14,10 +14,11 @@ let getProfileIcon = (profileId) => {
     return "/default-user.png";
   }
 };
-let useGravatar = (userId) => {
-  let emails = Meteor.users.find({_id: userId}, {fields: {emails: 1}}).map((email) => {
-    return email.address;
-  });
-
+let useGravatar = (email, userId) => {
+  let options = {
+    size: 50
+  };
+  let imageUrl = Gravatar.imageUrl(email, options);
+  Meteor.users.update({_id: userId}, {$set: {'profile.profileImage': imageUrl}});
 };
-export { getFullName, getProfileIcon };
+export { getFullName, getProfileIcon, useGravatar };
