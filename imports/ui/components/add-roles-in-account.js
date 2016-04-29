@@ -1,14 +1,16 @@
 import { outputHandler } from '../../modules/output-handler.js';
 import { noImage } from '../../modules/images.js';
+import { Gravatar } from 'meteor/jparker:gravatar';
 
-Accounts.onCreateUser(function(options, user) {
+Accounts.onCreateUser((options, user) => {
 	
   if(!options || !user) {
     outputHandler('error creating user');
     return;
   }
-  
+
   if (options.profile) {
+    options.profile.emailHash = Gravatar.hash( user.emails[0].address || '');
   	options.profile.profileImage = noImage;
   	user.profile = options.profile;
   }

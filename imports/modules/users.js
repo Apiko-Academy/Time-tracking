@@ -14,4 +14,10 @@ let getProfileIcon = (profileId) => {
     return "/default-user.png";
   }
 };
+let useGravatar = (userId) => {
+  let emails = Meteor.users.find({_id: userId}, {fields: {emails: 1}}).map((email) => {
+    return email.address;
+  });
+
+};
 export { getFullName, getProfileIcon };
