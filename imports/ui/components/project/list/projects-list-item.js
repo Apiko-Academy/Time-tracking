@@ -1,5 +1,5 @@
 import './projects-list-item.html';
-import {getFullName} from '../../../modules/users.js';
+import {getFullName} from '../../../../modules/users.js';
 
 Template.Project_list_item.helpers({
   client: function() {

@@ -1,8 +1,8 @@
 import './projects-find.html';
 import 'meteor/alanning:roles';
 import 'meteor/underscore';
-import '../../components/select-dropdown/select-dropdown.js';
-import {getFullName} from '../../../modules/users.js';
+import '../../select-dropdown/select-dropdown.js';
+import {getFullName} from '../../../../modules/users.js';
 
 Template.Projects_find.onCreated(function(){
   this.isRendered = false;

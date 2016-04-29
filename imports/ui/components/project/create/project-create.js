@@ -1,8 +1,8 @@
 import 'meteor/trsdln:modals';
 import './project-create.html';
-import '../../components/select-dropdown/select-dropdown.js';
+import '../../select-dropdown/select-dropdown.js';
 
-import {  handleMethodResult } from '../../../modules/handle-method-result';
+import {  handleMethodResult } from '../../../../modules/handle-method-result';
 
 Template.Project_create.helpers({
   clients: function(){
