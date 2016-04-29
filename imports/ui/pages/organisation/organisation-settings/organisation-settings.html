@@ -28,7 +28,7 @@
         Add users to organisation
       </button>
       {{>modalOrganisationEdit organisation=this changeOrganisationUsers=changeOrganisationUsers organisationUsers=organisationUsers organisationOwners=organisationOwners}}
-      {{>usersTable users=users organisationOwners=organisationOwners}}
+      {{>usersTable users=users organisationOwners=organisationOwners changeOrganisationUsers=changeOrganisationUsers usersRolesInOrganisation=usersRolesInOrganisation}}
       <div class="clearer"></div>
       <div class="row">
         <div class="col-sm-4"></div>

@@ -16,12 +16,12 @@ Template.organisationSettings.onCreated(function () {
   this.organisationUsers = new ReactiveArray(this.data.users);
   this.organisationOwners = new ReactiveArray(this.data.owners);
 
-  this.usersRolesInOrganisation = function (userId, eventPressed) {
+  this.usersRolesInOrganisation = (userId, eventPressed) => {
     let methodName = eventPressed === 'add-user-to-owners' ? 'push' : 'remove';
     this.organisationOwners[methodName](userId);
   };
 
-  this.addOrRemoveUserFromOrganisation = function (userId, eventPressed) {
+  this.addOrRemoveUserFromOrganisation =  (userId, eventPressed) => {
     if (eventPressed === 'remove') {
       this.organisationOwners.remove(userId);
       this.organisationUsers.remove(userId);
@@ -43,7 +43,11 @@ Template.organisationSettings.helpers({
   },
   changeOrganisationUsers () {
     let tmpl = Template.instance();
-    return tmpl.addOrRemoveUserFromOrganisation
+    return tmpl.addOrRemoveUserFromOrganisation;
+  },
+  usersRolesInOrganisation () {
+    let tmpl = Template.instance();
+    return tmpl.usersRolesInOrganisation;
   },
   organisationOwners() {
     let tmpl = Template.instance();
@@ -86,16 +90,16 @@ Template.organisationSettings.events({
        Router.go('myorganisations');
     }));
   },
-  'click .remove-from-organisation-users': function(event, tmpl){
-    event.preventDefault();
-    tmpl.addOrRemoveUserFromOrganisation(event.target.value, 'remove');
-  },
-  'click .add-user-to-owners': function(event, tmpl) {
-    event.preventDefault();
-    tmpl.usersRolesInOrganisation(event.target.value, 'add-user-to-owners');
-  },
-  'click .remove-user-from-owners': function(event, tmpl) {
-    event.preventDefault();
-    tmpl.usersRolesInOrganisation(event.target, 'remove-user-from-owners');
-  }
+  ////'click .remove-from-organisation-users': function(event, tmpl){
+  ////  event.preventDefault();
+  ////  tmpl.addOrRemoveUserFromOrganisation(event.target.value, 'remove');
+  ////},
+  //'click .add-user-to-owners': function(event, tmpl) {
+  //  event.preventDefault();
+  //  tmpl.usersRolesInOrganisation(event.target.value, 'add-user-to-owners');
+  //},
+  //'click .remove-user-from-owners': function(event, tmpl) {
+  //  event.preventDefault();
+  //  tmpl.usersRolesInOrganisation(event.target, 'remove-user-from-owners');
+  //}
 });

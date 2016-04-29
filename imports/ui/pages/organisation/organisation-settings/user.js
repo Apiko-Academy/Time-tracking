@@ -3,31 +3,27 @@ import './user.html';
 
 import { getFullName } from '../../../../modules/users.js';
 
-Template.userInOrganisation.onCreated(function () {
-  //console.log(Template.currentData())
-})
-
 Template.userInOrganisation.helpers({
   getName () {
-    return getFullName(this);
+    return getFullName(this.user._id);
   },
   isUserInRoleOwner () {
     let tmpl = Template.instance();
-    //return tmpl.data.organisationOwners.indexOf(this._id) > -1;
+    return tmpl.data.organisationOwners.indexOf(this.user._id) > -1;
   }
 })
 
 Template.userInOrganisation.events({
-  //'click .remove-from-organisation-users': function(event, tmpl){
-  //  event.preventDefault();
-  //  tmpl.addOrRemoveUserFromOrganisation(tmpl.data._id, 'remove');
-  //},
-  //'click .add-user-to-owners': function(event, tmpl) {
-  //  event.preventDefault();
-  //  tmpl.usersRolesInOrganisation(event.target.value, 'add-user-to-owners');
-  //},
-  //'click .remove-user-from-owners': function(event, tmpl) {
-  //  event.preventDefault();
-  //  tmpl.usersRolesInOrganisation(event.target, 'remove-user-from-owners');
-  //}
+  'click .remove-from-organisation-users': function(event){
+    event.preventDefault();
+    this.changeOrganisationUsers(this.user._id, 'remove');
+  },
+  'click .add-user-to-owners': function(event) {
+    event.preventDefault();
+    this.usersRolesInOrganisation(this.user._id, 'add-user-to-owners');
+  },
+  'click .remove-user-from-owners': function(event) {
+    event.preventDefault();
+    this.usersRolesInOrganisation(this.user._id, 'remove-user-from-owners');
+  }
 });

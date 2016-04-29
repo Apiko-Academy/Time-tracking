@@ -3,7 +3,7 @@
     <table class="table table-stripped">
       <tbody>
       {{#each users}}
-        {{> userInOrganisation}}
+        {{> userInOrganisation organisationOwners=organisationOwners user=this changeOrganisationUsers=changeOrganisationUsers usersRolesInOrganisation=usersRolesInOrganisation}}
       {{/each}}
       </tbody>
     </table>
