@@ -20,7 +20,6 @@ Template.Projects_find.helpers({
         delete currentFilter.clientId;
       }
       filter.set(currentFilter);
-      console.log(currentFilter);
     }
   },
   teamFilterChanged: function(){
