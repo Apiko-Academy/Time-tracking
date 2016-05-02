@@ -6,9 +6,9 @@ import { Template } from 'meteor/templating';
 
 Template.Select_dropdown.onRendered(function(){
   let className = '.' + this.data.class;
-  let eventCallback = (e)=>{
+  let eventCallback = (event)=>{
     if(_.isFunction(this.data.onChanged)){  
-      this.data.onChanged(e);
+      this.data.onChanged(this.$(event.target).val());
     }
   }
 

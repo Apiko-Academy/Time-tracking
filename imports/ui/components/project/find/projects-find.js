@@ -5,49 +5,38 @@ import '../../select-dropdown/select-dropdown.js';
 
 import {getFullName} from '../../../../modules/users.js';
 
-Template.Projects_find.onCreated(function(){
-  this.isRendered = false;
-  this.filter = {};
-});
-
-Template.Projects_find.onRendered(function(){
-  this.isRendered = true;
-});
-
-
 Template.Projects_find.helpers({
   clients: function(){
     return Clients.find();
   },
   clientFilterChanged: function(){
-    let filter = Template.instance().filter;
-    let setFilter = Template.instance().data.filter;
+    let filter = Template.instance().data.filter;
+    let currentFilter = filter.get();
 
-    return function(event){
-      let selectVal = $(event.target).val();
+    return function(selectVal){
       if(selectVal){
-        filter.clientId = {$in: selectVal};
+        currentFilter.clientId = {$in: selectVal};  
       } else {
-        delete filter.clientId;
+        delete currentFilter.clientId;
       }
-      setFilter(filter);
+      filter.set(currentFilter);
+      console.log(currentFilter);
     }
   },
   teamFilterChanged: function(){
-    let filter = Template.instance().filter;
-    let setFilter = Template.instance().data.filter;
+    let filter = Template.instance().data.filter;
+    let currentFilter = filter.get();
 
-    return function(event){
-      let selectVal = $(event.target).val();
+    return function(selectVal){
       if(selectVal){
-        filter.$or = [{workers: {$all: selectVal}}, {managers: {$all: selectVal}}];
+        currentFilter.$or = [{workers: {$all: selectVal}}, {managers: {$all: selectVal}}];
       } else {
-        delete filter.$or;
+        delete currentFilter.$or;
       }
-      setFilter(filter);
+      filter.set(currentFilter);
     }
   },
-  teamMembers: ()=>{
+  teamMembers: function(){
     let organizationIds = Roles.getGroupsForUser(Meteor.userId());
     let usersIds = [];
 
@@ -56,29 +45,29 @@ Template.Projects_find.helpers({
         _.pluck(Roles.getUsersInRole(['member', 'owner'], orgId).fetch(), '_id')
       );
     });
-    let members = usersIds.map((id)=>{
+    return usersIds.map((id)=>{
       return {
         _id: id,
         name: getFullName(id)
       };
     });
-    return members;
   }
 });
 
 Template.Projects_find.events({
-  'change .project-name': function(event, tmpl){
+  'keyup .project-name': function(event, tmpl){
     event.preventDefault();
     let name = tmpl.$(".project-name").val();
-    let filter = tmpl.filter;
+    let filter = tmpl.data.filter;
+    let currentFilter = filter.get();
 
     if(name){
-      filter.name = {$regex: name + ".*"};
+      currentFilter.name = {$regex: name + ".*"};
     } else {
-      delete filter.name;
+      delete currentFilter.name;
     }
 
-    tmpl.data.filter(filter);
+    filter.set(currentFilter);
 
   },
   'click .reset-filters': (event, tmpl)=>{
@@ -87,6 +76,6 @@ Template.Projects_find.events({
     tmpl.$(".filter-client").val(null).trigger("change");
     tmpl.$(".filter-team").val(null).trigger("change");
     tmpl.$(".project-name").val('');
-    tmpl.data.filter({});
+    tmpl.data.filter.set({});
   }
 });

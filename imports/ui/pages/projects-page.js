@@ -13,11 +13,8 @@ Template.Projects_page.onCreated(function(){
 });
 
 Template.Projects_page.helpers({
-  setFilter: function(){
-    let filter = Template.instance().filter;
-    return function(value = {}){
-      filter.set(value);
-    }
+  filter: function(){
+    return Template.instance().filter;
   },
   projects: function(){
     return Project.find(Template.instance().filter.get());
