@@ -6,7 +6,3 @@ import '../imports/api/users/server/publications.js';
 import '../imports/lib/organisation.js';
 import '../imports/api/organisation/server/methods.js';
 import '../imports/api/organisation/server/publications.js';
-
-Meteor.startup(() => {
-
-});
