@@ -1,22 +1,24 @@
 <template name="userProfile">
   <div class="user-info">
-		<div class="panel panel-default">
+		<div class="panel panel-default user-editing">
 		  <div class="panel-heading">
 			  Profile information
 		  </div>
 		  <div class="panel-body">
-			  <div id="user-avatar" class="icon thumbnail">
-				  <img  src="{{this.profile.profileImage}}" alt="User's avatar" width="85" height="85">
-				  <span class="change-icon">Change Avatar</span>
-			  </div>
-			  <div class="profile-fields">
+        <div class="change-user-picture">
+          <div id="user-avatar" class="icon thumbnail">
+            <img  src="{{profile.profileImage}}" class="user-profile-image" alt="User's avatar">
+          </div>
+            {{>changeImage}}
+        </div>
+        <div class="profile-fields">
 				  <p>
 					  <span class="profile-field">First Name: </span>
-					  <a href="#" id="profile.firstName" class="editable editable-click">{{this.profile.firstName}}</a>
+					  <a href="#" id="profile.firstName" class="editable editable-click">{{profile.firstName}}</a>
 				  </p>
 				  <p>
 					  <span class="profile-field">Last Name: </span>
-					  <a href="#" id="profile.lastName" class="editable editable-click">{{this.profile.lastName}}</a>
+					  <a href="#" id="profile.lastName" class="editable editable-click">{{profile.lastName}}</a>
 				  </p>
 				  <p>
 					  <span class="profile-field">E-mail: </span>
