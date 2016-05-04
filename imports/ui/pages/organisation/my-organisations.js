@@ -13,5 +13,11 @@ Template.myOrganisations.helpers({
   },
   iconUrl: function(){
     return getOrganisationIcon(this._id);
+  },
+  noOrganisation () {
+    let noOrganisationFounded = 'No organisation founded';
+    if (Organisation.find().count() === 0) {
+      return noOrganisationFounded;
+    }
   }
 });
