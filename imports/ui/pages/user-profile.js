@@ -83,9 +83,7 @@ Template.userProfile.helpers({
 });
 
 function validateEmail (email) {
-  if (!regExEmail(email)) {
-    return 'Enter valid email';
-  }
+  check(email, regExEmail);
 }
 
 function validateOnRequire (value) {
