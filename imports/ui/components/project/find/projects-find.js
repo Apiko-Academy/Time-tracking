@@ -3,6 +3,8 @@ import 'meteor/alanning:roles';
 import 'meteor/underscore';
 import '../../select-dropdown/select-dropdown.js';
 
+import Clients from '../../../../api/clients/clients.js';
+import { Template } from 'meteor/templating';
 import {getFullName} from '../../../../modules/users.js';
 
 Template.Projects_find.helpers({
@@ -10,29 +12,13 @@ Template.Projects_find.helpers({
     return Clients.find();
   },
   clientFilterChanged: function(){
-    let filter = Template.instance().data.filter;
-    let currentFilter = filter.get();
-
-    return function(selectVal){
-      if(selectVal){
-        currentFilter.clientId = {$in: selectVal};  
-      } else {
-        delete currentFilter.clientId;
-      }
-      filter.set(currentFilter);
+    return (selectVal)=>{
+      this.onFilterChange('clientFilter', selectVal);
     }
   },
   teamFilterChanged: function(){
-    let filter = Template.instance().data.filter;
-    let currentFilter = filter.get();
-
-    return function(selectVal){
-      if(selectVal){
-        currentFilter.$or = [{workers: {$all: selectVal}}, {managers: {$all: selectVal}}];
-      } else {
-        delete currentFilter.$or;
-      }
-      filter.set(currentFilter);
+    return (selectVal)=>{
+      this.onFilterChange('teamFilter', selectVal);
     }
   },
   teamMembers: function(){
@@ -56,25 +42,18 @@ Template.Projects_find.helpers({
 Template.Projects_find.events({
   'keyup .project-name': function(event, tmpl){
     event.preventDefault();
-    let name = tmpl.$(".project-name").val();
-    let filter = tmpl.data.filter;
-    let currentFilter = filter.get();
-
-    if(name){
-      currentFilter.name = {$regex: name + ".*"};
-    } else {
-      delete currentFilter.name;
-    }
-
-    filter.set(currentFilter);
-
+    let nameFilterVal = tmpl.$(".project-name").val();
+    tmpl.data.onFilterChange('nameFilter', nameFilterVal);
   },
+
   'click .reset-filters': (event, tmpl)=>{
     event.preventDefault();
     
     tmpl.$(".filter-client").val(null).trigger("change");
     tmpl.$(".filter-team").val(null).trigger("change");
     tmpl.$(".project-name").val('');
-    tmpl.data.filter.set({});
+    tmpl.data.onFilterChange('nameFilter', null);
+    tmpl.data.onFilterChange('clientFilter', null);
+    tmpl.data.onFilterChange('teamFilter', null);
   }
 });

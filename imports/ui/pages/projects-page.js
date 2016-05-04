@@ -1,23 +1,44 @@
-import '../components/project/projects-page.html';
+import './projects-page.html';
 import '../components/project/find/projects-find.js';
 import '../components/project/list/projects-list.js';
 import '../components/project/create/project-create.js';
 
 import 'meteor/trsdln:modals';
 
-import Projects from '../../api/project/project.js';
-import Clients from '../../api/clients/clients.js';
+import { Template } from 'meteor/templating';
+import Project from '../../api/project/project.js';
 
 Template.Projects_page.onCreated(function(){
-  this.filter = new ReactiveVar( {} );
+  this.clientFilter = new ReactiveVar( null );
+  this.teamFilter = new ReactiveVar( null );
+  this.nameFilter = new ReactiveVar( null );
 });
 
 Template.Projects_page.helpers({
-  filter: function(){
-    return Template.instance().filter;
+  onFilterChange: function(){
+    let inst = Template.instance();
+    return function(filterType, filterValue){
+      inst[filterType].set(filterValue);
+    }
   },
   projects: function(){
-    return Project.find(Template.instance().filter.get());
+    let inst = Template.instance();
+    let query = {};
+    let selectedClientsId = inst.clientFilter.get();
+    let selectedTeamId = inst.teamFilter.get();
+    let selectedName = inst.nameFilter.get();
+
+    if(selectedClientsId){
+      query.clientId = {$in: selectedClientsId};
+    }
+    if(selectedTeamId){
+      query.$or = [{workers: {$all: selectedTeamId}}, {managers: {$all: selectedTeamId}}];
+    }
+    if(selectedName){
+      query.name = {$regex: selectedName + ".*"};
+    }
+
+    return Project.find(query);
   }
 });
 

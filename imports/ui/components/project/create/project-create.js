@@ -2,7 +2,10 @@ import 'meteor/trsdln:modals';
 import './project-create.html';
 import '../../select-dropdown/select-dropdown.js';
 
-import {  handleMethodResult } from '../../../../modules/handle-method-result';
+import Clients from '../../../../api/clients/clients.js';
+import { handleMethodResult } from '../../../../modules/handle-method-result';
+import { Meteor } from 'meteor/meteor';
+import { Template } from 'meteor/templating';
 
 Template.Project_create.helpers({
   clients: function(){

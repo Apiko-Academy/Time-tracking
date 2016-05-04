@@ -1,5 +1,8 @@
 import './projects-list-item.html';
+
+import Clients from '../../../../api/clients/clients.js';
 import {getFullName} from '../../../../modules/users.js';
+import { Template } from 'meteor/templating';
 
 Template.Project_list_item.helpers({
   client: function() {
@@ -8,17 +11,13 @@ Template.Project_list_item.helpers({
     return !!client && client.name || 'Without client';
   },
   workers: function(){
-    let names = this.workers.map(function(id){
+    return this.workers.map(function(id){
       return getFullName(id);
     });
-
-    return names;
   },
   managers: function(){
-    let names = this.managers.map(function(id){
+    return this.managers.map(function(id){
       return getFullName(id);
     });
-
-    return names;
   }
 });

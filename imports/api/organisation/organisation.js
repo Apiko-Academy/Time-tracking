@@ -1,5 +1,3 @@
 import { Mongo } from 'meteor/mongo';
 
-Organisation = new Mongo.Collection('organisation');
-
-export default Organisation;
+export default Organisation = new Mongo.Collection('organisation');
