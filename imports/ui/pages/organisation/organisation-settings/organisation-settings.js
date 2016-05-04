@@ -9,9 +9,9 @@ import { Mongo } from 'meteor/mongo';
 import { outputHandler } from '../../../../modules/output-handler.js';
 import { ReactiveArray } from 'meteor/manuel:reactivearray';
 import { ReactiveVar } from 'meteor/reactive-var';
+import { changeIcon } from '../../../../modules/filepicker.js';
 
 Template.organisationSettings.onCreated(function () {
-  loadFilePicker('AMxXlNUEKQ1OgRo47XtKSz');
   this.iconUrl = new ReactiveVar(this.data.profile.iconUrl);
   this.organisationUsers = new ReactiveArray(this.data.users);
   this.organisationOwners = new ReactiveArray(this.data.owners);
@@ -27,6 +27,14 @@ Template.organisationSettings.onCreated(function () {
       this.organisationUsers.remove(userId);
     } else {
       this.organisationUsers.push(userId);
+    }
+  };
+
+  this.onImageLoad = (error, result) => {
+    if(error) {
+      outputHandler(result.toString());
+    } else {
+      this.iconUrl.set(result);
     }
   };
 });
@@ -63,16 +71,7 @@ Template.organisationSettings.helpers({
 
 Template.organisationSettings.events({
   'click #organisation-icon': function (event, tmpl) {
-    filepicker.pick({
-          mimetypes: ['image/gif','image/jpeg','image/png'],
-          multiple: false
-        },
-        function(InkBlobs){
-          tmpl.iconUrl.set(InkBlobs.url);
-        },
-        function(FPError){
-          outputHandler(FPError.toString());
-        });
+    changeIcon(tmpl.onImageLoad);
   },
   'submit .edit-organisation-form': function(event, tmpl) {
     event.preventDefault();
