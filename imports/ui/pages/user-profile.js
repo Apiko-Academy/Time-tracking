@@ -1,4 +1,5 @@
 import './user-profile.html';
+import './user-organization.js';
 
 import { Template } from 'meteor/templating';
 import { loadFilePicker } from 'meteor/natestrauser:filepicker-plus';

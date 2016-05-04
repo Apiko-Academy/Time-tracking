@@ -36,9 +36,7 @@
 		  <div class="panel-body">
 			  <div class="user-organizations">
 				  {{#each organizations}}
-					  <a href="{{profile.companySite}}" target="_blank">
-						  <img src="{{profile.iconUrl}}" alt="Company site" width="42" height="42">
-					  </a>
+					  {{>userOrganization}}
 				  {{/each}}
 			  </div>
 		  </div>
