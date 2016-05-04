@@ -20,7 +20,7 @@ Template.changeImage.events({
       });
   },
   'click .useGravatar': function (event, tmpl) {
-      let email = getUserEmail();
+      let email = getUserEmail(Meteor.userId());
       let imageUrl = useGravatar(email, Meteor.userId())
       Meteor.users.update({_id: Meteor.userId()}, {$set: {'profile.profileImage': imageUrl}});
   }
