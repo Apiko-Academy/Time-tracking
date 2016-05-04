@@ -1,6 +1,5 @@
 import { outputHandler } from '../../modules/output-handler.js';
 import { noImage } from '../../modules/images.js';
-import { Gravatar } from 'meteor/jparker:gravatar';
 
 Accounts.onCreateUser((options, user) => {
 	

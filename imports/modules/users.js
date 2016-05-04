@@ -5,6 +5,7 @@ let getFullName = (userId) => {
     return userItem.profile.firstName + ' ' + userItem.profile.lastName;
   }
 };
+
 let getProfileIcon = (profileId) => {
   let user = Meteor.users.findOne({_id: profileId});
 
@@ -15,4 +16,8 @@ let getProfileIcon = (profileId) => {
   }
 };
 
-export { getFullName, getProfileIcon };
+let getUserEmail = () => {
+  return Meteor.user().emails[0].address;
+};
+
+export { getFullName, getProfileIcon, getUserEmail };
