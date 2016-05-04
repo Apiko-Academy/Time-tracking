@@ -6,7 +6,7 @@ import '../components/project/create/project-create.js';
 import 'meteor/trsdln:modals';
 
 import { Template } from 'meteor/templating';
-import Project from '../../api/project/project.js';
+import { Project } from '../../api/project/project.js';
 
 Template.Projects_page.onCreated(function(){
   this.clientFilter = new ReactiveVar( null );
@@ -35,7 +35,7 @@ Template.Projects_page.helpers({
       query.$or = [{workers: {$all: selectedTeamId}}, {managers: {$all: selectedTeamId}}];
     }
     if(selectedName){
-      query.name = {$regex: selectedName + ".*"};
+      query.name = new RegExp(selectedName, 'gi');
     }
 
     return Project.find(query);

@@ -1,6 +1,6 @@
 import './projects-list-item.html';
 
-import Clients from '../../../../api/clients/clients.js';
+import { Clients } from '../../../../api/clients/clients.js';
 import {getFullName} from '../../../../modules/users.js';
 import { Template } from 'meteor/templating';
 

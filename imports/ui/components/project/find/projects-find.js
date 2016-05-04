@@ -3,9 +3,9 @@ import 'meteor/alanning:roles';
 import 'meteor/underscore';
 import '../../select-dropdown/select-dropdown.js';
 
-import Clients from '../../../../api/clients/clients.js';
+import { Clients } from '../../../../api/clients/clients.js';
 import { Template } from 'meteor/templating';
-import {getFullName} from '../../../../modules/users.js';
+import { getFullName } from '../../../../modules/users.js';
 
 Template.Projects_find.helpers({
   clients: function(){
@@ -48,12 +48,14 @@ Template.Projects_find.events({
 
   'click .reset-filters': (event, tmpl)=>{
     event.preventDefault();
-    
+    let filterNames = ['nameFilter', 'clientFilter', 'teamFilter'];
+
     tmpl.$(".filter-client").val(null).trigger("change");
     tmpl.$(".filter-team").val(null).trigger("change");
     tmpl.$(".project-name").val('');
-    tmpl.data.onFilterChange('nameFilter', null);
-    tmpl.data.onFilterChange('clientFilter', null);
-    tmpl.data.onFilterChange('teamFilter', null);
+
+    filterNames.forEach(function(filter){
+      tmpl.data.onFilterChange(filter, null);
+    });
   }
 });

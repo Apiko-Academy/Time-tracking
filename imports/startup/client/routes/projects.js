@@ -1,7 +1,5 @@
 import { Meteor } from 'meteor/meteor';
 
-import 'meteor/mongo';
-
 import '../../../ui/pages/projects-page.js';
 
 Router.route('/projects', {

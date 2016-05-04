@@ -2,10 +2,10 @@ import './organisation-settings.html';
 
 import './modal.js';
 import './users-table.js';
-import Organisation from '../../../../api/organisation/organisation.js';
 
 import { handleMethodResult } from '../../../../modules/handle-method-result.js';
 import { Mongo } from 'meteor/mongo';
+import { Organisation } from '../../../../api/organisation/organisation.js';
 import { outputHandler } from '../../../../modules/output-handler.js';
 import { ReactiveArray } from 'meteor/manuel:reactivearray';
 import { ReactiveVar } from 'meteor/reactive-var';
