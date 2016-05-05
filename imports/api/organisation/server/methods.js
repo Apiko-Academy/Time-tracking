@@ -1,6 +1,7 @@
 import { Meteor } from 'meteor/meteor';
 import { check } from 'meteor/check';
 import { MongoId } from '../../../modules/regex.js';
+import { Organisation } from '../../organisation/organisation.js';
 
 Meteor.methods({
   organisationInsert: function(organisationAttributes) {
