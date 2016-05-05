@@ -3,6 +3,7 @@ import './user-organization.js';
 
 import { Template } from 'meteor/templating';
 import { loadFilePicker } from 'meteor/natestrauser:filepicker-plus';
+import { Organisation } from '../../api/organisation/organisation.js';
 
 import '../../startup/client/config.js';
 import '../components/gravatar/gravatar.js';
