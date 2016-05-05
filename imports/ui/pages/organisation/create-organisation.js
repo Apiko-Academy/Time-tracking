@@ -11,13 +11,6 @@ import { changeIcon } from '../../../modules/filepicker.js';
 
 Template.createOrganisation.onCreated(function () {
   this.iconUrl = new ReactiveVar();
-  this.onImageLoad = (error, result) => {
-    if(error) {
-      outputHandler(result.toString());
-    } else {
-      this.iconUrl.set(result);
-    }
-  }
 });
 
 Template.createOrganisation.events({
@@ -50,10 +43,12 @@ Template.createOrganisation.events({
     Meteor.call('organisationInsert', organisation, handleMethodResult(()=>{
       Router.go('myorganisations');
     }));
-
   },
+
   'click #organisation-icon': function (event, tmpl) {
-    changeIcon(tmpl.onImageLoad);
+    changeIcon( (result) => {
+      tmpl.iconUrl.set(result);
+    });
   }
 });
 

@@ -29,14 +29,6 @@ Template.organisationSettings.onCreated(function () {
       this.organisationUsers.push(userId);
     }
   };
-
-  this.onImageLoad = (error, result) => {
-    if(error) {
-      outputHandler(result.toString());
-    } else {
-      this.iconUrl.set(result);
-    }
-  };
 });
 
 Template.organisationSettings.helpers({
@@ -71,7 +63,9 @@ Template.organisationSettings.helpers({
 
 Template.organisationSettings.events({
   'click #organisation-icon': function (event, tmpl) {
-    changeIcon(tmpl.onImageLoad);
+    changeIcon( (result) => {
+      tmpl.iconUrl.set(result);
+    });
   },
   'submit .edit-organisation-form': function(event, tmpl) {
     event.preventDefault();
