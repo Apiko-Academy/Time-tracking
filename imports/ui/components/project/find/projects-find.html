@@ -11,8 +11,10 @@
           liveSearch='true' title='Filter team' name='Team' onChanged=teamFilterChanged
         }}
       </div>
-      <input type="text" class="form-control project-name" placeholder="Name" name="name"/>
+      <input type="text" class="input-group-addon form-control project-name" placeholder="Name" name="name"/>
+      <span class="input-group-btn">
+        <button type="reset" class="btn btn-warning btn-block reset-filters">Clear filters</button>
+      </span>
     </div>
-    <button type="reset" class="btn btn-warning btn-xs pull-right reset-filters">Clear filters</button>
   </form>
 </template>

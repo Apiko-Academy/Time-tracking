@@ -9,13 +9,13 @@
         <form class="project-create-form">
         <div class="modal-body">
             <div class="input-group">
-              <input type="text" class="form-control" placeholder="Name" name="name" />
+              <input type="text" class="input-group-addon form-control" placeholder="Name" name="name" />
               <div class="input-group-addon ">
                 {{> Select_dropdown optionValues=clients class='select-client' 
                   liveSearch='true' title='Select client' name='clients' }}
               </div>
               <div class="input-group">
-                <input type="text" class="form-control client-name" placeholder="Add client">
+                <input type="text" class="input-group-addon form-control client-name" placeholder="Add client">
                 <span class="input-group-btn">
                   <button class="btn btn-primary client-add">Add</button>
                 </span>
