@@ -32,7 +32,7 @@ Template.Projects_page.helpers({
       query.clientId = {$in: selectedClientsId};
     }
     if(selectedTeamId){
-      query.$or = [{workers: {$all: selectedTeamId}}, {managers: {$all: selectedTeamId}}];
+      query.$or = [{workers: {$in: selectedTeamId}}, {managers: {$in: selectedTeamId}}];
     }
     if(selectedName){
       query.name = new RegExp(selectedName, 'gi');
