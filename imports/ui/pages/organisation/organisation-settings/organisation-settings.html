@@ -1,0 +1,46 @@
+<template name="organisationSettings">
+  <div class="jumbotron" id="organisation-settings">
+    <div class="edit-organisation-container">
+      <form class="edit-organisation-form">
+        <div class="form-group">
+          <label for="organisation-name">Organisation name :</label>
+          <input type="text" class="form-control" name="organisation-name" value="{{name}}">
+        </div>
+        <div class="form-group">
+          <label for="organisation-description">Description :</label>
+          <textarea class="form-control" name="organisation-description" rows="3" value="{{description}}"></textarea>
+        </div>
+        <div class="form-group">
+          <label for="company-site">Organisation site :</label>
+          <input type="text" class="form-control" name="company-site" value="{{profile.companySite}}">
+        </div>
+        <label for="organisation-icon" id="icon-label">Organisation icon :</label>
+        <div class="col-sm-12">
+          <div class="form-group">
+            <div class="icon" style="display: block;">
+              <img  src="{{iconUrl}}" id="organisation-icon" alt="Organisation avatar">
+              <span class="change-icon">Change Icon</span>
+            </div>
+          </div>
+        </div>
+        <br/>
+        <div class="wrapper-users-list"></div>
+        <button type="button" class="btn btn-def btn-md" data-toggle="modal" data-target="#addUsers">
+          Add users to organisation
+        </button>
+        {{>modalOrganisationEdit organisation=currentOrganisation changeOrganisationUsers=changeOrganisationUsers organisationUsers=organisationUsers organisationOwners=organisationOwners}}
+        {{>usersTable users=users organisationOwners=organisationOwners changeOrganisationUsers=changeOrganisationUsers usersRolesInOrganisation=usersRolesInOrganisation}}
+        <div class="clearer"></div>
+        <div class="row">
+          <div class="col-sm-4"></div>
+          <div class="col-sm-6">
+            <button type="submit" class="btn btn-success">Submit</button>
+            <a href="{{pathFor route='myorganisations'}}">
+              <button type="button" class="btn btn-danger">Cancel</button>
+            </a>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</template>

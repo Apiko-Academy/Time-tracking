@@ -33,7 +33,8 @@ Template.createOrganisation.events({
       profile: {
         iconUrl: iconUrl,
         companySite: companySite
-      }
+      },
+      users: [Meteor.userId()]
     };
 
     event.target.reset();
@@ -61,7 +62,6 @@ Template.createOrganisation.events({
 
 Template.createOrganisation.helpers({
   iconUrl: function () {
-    let noImage = noImage;
     let iconUrl = Template.instance().iconUrl.get();
 
     return iconUrl || noImage;

@@ -1,3 +1,5 @@
+import { MongoId } from './regex.js';
+
 let getFullName = (userId) => {
   let userItem = Meteor.users.findOne(userId);
 
@@ -5,6 +7,7 @@ let getFullName = (userId) => {
     return userItem.profile.firstName + ' ' + userItem.profile.lastName;
   }
 };
+
 let getProfileIcon = (profileId) => {
   let user = Meteor.users.findOne({_id: profileId});
 
@@ -14,4 +17,11 @@ let getProfileIcon = (profileId) => {
     return "/default-user.png";
   }
 };
-export { getFullName, getProfileIcon };
+
+let getUserEmail = (userId) => {
+  check(userId, MongoId)
+  let user = Meteor.users.findOne({_id: userId});
+  return user.emails[0].address;
+};
+
+export { getFullName, getProfileIcon, getUserEmail };

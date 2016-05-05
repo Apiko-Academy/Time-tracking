@@ -13,7 +13,10 @@ Template.Users_select.onCreated(function() {
 Template.Users_select.helpers({
   users: function() {
     let searchStr = Template.instance().searchStr.get();
-    let query = { _id: { $ne: Meteor.userId() } };
+    let query = {};
+    if (this.users) {
+      query =  { _id: { $nin: this.users } };
+    }
 
     if (searchStr && _.isString(searchStr)) {
       let searchRegExp = new RegExp(searchStr, 'i');

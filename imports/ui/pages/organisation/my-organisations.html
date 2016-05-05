@@ -10,30 +10,33 @@
       </a>
     </div>
 	</div>
-  {{#each organisations}}
-      <div class="col-lg-4 col-md-6 col-xs-12">
-      	<div class="media">
-          <a class="pull-left" href="#" data-toggle="tooltip" data-placement="bottom" title="{{name}}">
-            <img class="media-object group-icon" src="{{iconUrl}}">
-          </a>
-          <div class="media-body">
-            <h4 class="media-heading">{{name}} 
-              {{#if isOwner}}<a href="#"><span class="glyphicon glyphicon-cog"></span></a>{{/if}}
-            </h4>
-            {{#if owners}}
-              <p> <b>Owners: </b>
-              {{#each owners}}
-                <span class="label label-primary">
-                  {{getUsername this}} 
-                </span>
-              {{/each}}
-              </p>
-            {{/if}}
-            <b>Description: </b>
-            {{description}}
-          </div>
-        </div>
-      </div>
-  {{/each}}  
+    {{#unless organisations.count}}
+      <h3>No organisation found</h3>
+    {{/unless}}
+    {{#each organisations}}
+       <div class="col-lg-4 col-md-6 col-xs-12">
+          <div class="media">
+             <a class="pull-left" href="#">
+               <img class="media-object group-icon" src="{{iconUrl}}">
+             </a>
+             <div class="media-body">
+               <h4 class="media-heading">{{name}}
+                 {{#if isOwner}}<a href="{{pathFor route='organisationSettings'}}"><span class="glyphicon glyphicon-cog"></span></a>{{/if}}
+               </h4>
+               {{#if owners}}
+                 <p> <b>Owners: </b>
+                 {{#each owners}}
+                   <span class="label label-primary group-owners">
+                     {{getUsername this}}
+                   </span>
+                 {{/each}}
+                 </p>
+               {{/if}}
+               <b>Description: </b>
+               {{description}}
+             </div>
+           </div>
+         </div>
+    {{/each}}
   </div>
 </template>
