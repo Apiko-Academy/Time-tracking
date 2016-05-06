@@ -52,9 +52,9 @@ Template.createOrganisation.events({
     //});
 
     //new
-    //handleMethodResult( changeIcon((result) => {
-    //  tmpl.iconUrl.set(result);
-    //}));
+    changeIcon( handleMethodResult((result) => {
+      tmpl.iconUrl.set(result);
+    }));
 
     //V recommended
     //changeIcon( outputHandler((result) => {
@@ -62,10 +62,10 @@ Template.createOrganisation.events({
     //}));
 
     //my option
-    changeIcon({
-      onsuccess: (result) => tmpl.iconUrl.set(result),
-      onerror: outputHandler
-    });
+    //changeIcon({
+    //  onsuccess: (result) => tmpl.iconUrl.set(result),
+    //  onerror: outputHandler
+    //});
   }
 });
 

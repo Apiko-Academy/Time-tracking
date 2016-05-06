@@ -63,9 +63,9 @@ Template.organisationSettings.helpers({
 
 Template.organisationSettings.events({
   'click #organisation-icon': function (event, tmpl) {
-    changeIcon( (result) => {
+    changeIcon( handleMethodResult((result) => {
       tmpl.iconUrl.set(result);
-    });
+    }));
   },
   'submit .edit-organisation-form': function(event, tmpl) {
     event.preventDefault();
