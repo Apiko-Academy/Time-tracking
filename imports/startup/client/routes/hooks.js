@@ -1,5 +1,5 @@
 import './config.js';
-import '../../../ui/pages/permissions.html';
+import '../../../ui/components/permissions-page/permissions.html';
 
 import { Meteor } from 'meteor/meteor';
 

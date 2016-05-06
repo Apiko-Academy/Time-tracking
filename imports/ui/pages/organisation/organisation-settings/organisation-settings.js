@@ -1,5 +1,5 @@
 import './organisation-settings.html';
-import '../../permissions.html';
+import '../../../components/permissions-page/permissions.html';
 
 import './modal.js';
 import './users-table.js';
