@@ -1,4 +1,5 @@
 import './organisation-settings.html';
+import '../../../components/permissions-page/permissions.html';
 
 import './modal.js';
 import './users-table.js';
@@ -58,6 +59,9 @@ Template.organisationSettings.helpers({
   organisationUsers () {
     let tmpl = Template.instance();
     return tmpl.organisationUsers.array();
+  },
+  isOwner(){
+    return this.owners.indexOf(Meteor.userId()) !== -1;
   }
 });
 
