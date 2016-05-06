@@ -1,3 +1,9 @@
 <template name="permissions">
-	<h2>Please log in to view this page</h2>
+  <h2>
+    {{#if text}} 
+      {{text}} 
+    {{else}}
+      Please log in to view this page 
+    {{/if}}
+  </h2>
 </template>
