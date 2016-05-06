@@ -9,7 +9,14 @@ import { Template } from 'meteor/templating';
 
 Template.Project_create.helpers({
   clients: function(){
-    return Clients.find();
+    let clients = Clients.find().fetch();
+
+    clients.unshift({
+      _id: 'without client',
+      name: 'Without client'
+    });
+
+    return clients;
   }
 });
 

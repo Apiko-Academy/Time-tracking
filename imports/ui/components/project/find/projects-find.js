@@ -9,7 +9,14 @@ import { getFullName } from '../../../../modules/users.js';
 
 Template.Projects_find.helpers({
   clients: function(){
-    return Clients.find();
+    let clients = Clients.find().fetch();
+
+    clients.unshift({
+      _id: 'without client',
+      name: 'Without client'
+    });
+
+    return clients;
   },
   clientFilterChanged: function(){
     return (selectVal)=>{
