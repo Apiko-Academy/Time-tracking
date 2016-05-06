@@ -46,8 +46,25 @@ Template.createOrganisation.events({
   },
 
   'click #organisation-icon': function (event, tmpl) {
-    changeIcon( (result) => {
-      tmpl.iconUrl.set(result);
+    //old
+    //changeIcon( (result) => {
+    //  tmpl.iconUrl.set(result);
+    //});
+
+    //new
+    //handleMethodResult( changeIcon((result) => {
+    //  tmpl.iconUrl.set(result);
+    //}));
+
+    //V recommended
+    //changeIcon( outputHandler((result) => {
+    //  tmpl.iconUrl.set(result);
+    //}));
+
+    //my option
+    changeIcon({
+      onsuccess: (result) => tmpl.iconUrl.set(result),
+      onerror: outputHandler
     });
   }
 });
