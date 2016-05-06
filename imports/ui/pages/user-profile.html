@@ -1,50 +1,50 @@
 <template name="userProfile">
-  <div id="user-avatar" class="icon">
-    <img  src="{{this.profile.profileImage}}" alt="User's avatar" width="85" height="85">
-    <span class="change-icon">Change Avatar</span>
-  </div>
-  
   <div class="user-info">
-    <table id="user-profile" class="table table-bordered table-striped">
-      <tbody>
-        <tr>
-          <td>Username</td>
-          <td> 
-            <a href="#" id="username" class="editable editable-click">{{this.username}}</a>
-          </td>
-        </tr>
-        <tr>
-          <td>First name</td>
-          <td>
-            <a href="#" id="profile.firstName" class="editable editable-click">{{this.profile.firstName}}</a>
-          </td>
-        </tr>
-        <tr>
-          <td>Last name</td>
-          <td>
-            <a href="#" id="profile.lastName" class="editable editable-click">{{this.profile.lastName}}</a>
-          </td>
-        </tr>
-        <tr>
-          <td>Email</td>
-          <td>
-            <a href="#" id="emails.0.address" class="editable editable-click">{{email}}</a>
+		<div class="panel panel-default user-editing">
+		  <div class="panel-heading">
+			  Profile information
+		  </div>
+		  <div class="panel-body">
+        <div class="change-user-picture">
+          <div id="user-avatar" class="icon thumbnail">
+            <img  src="{{profile.profileImage}}" class="user-profile-image" alt="User's avatar">
+          </div>
+            {{>changeImage}}
+        </div>
+        <div class="profile-fields">
+				  <p>
+					  <span class="profile-field">First Name: </span>
+					  <a href="#" id="profile.firstName" class="editable editable-click">{{profile.firstName}}</a>
+				  </p>
+				  <p>
+					  <span class="profile-field">Last Name: </span>
+					  <a href="#" id="profile.lastName" class="editable editable-click">{{profile.lastName}}</a>
+				  </p>
+				  <p>
+					  <span class="profile-field">E-mail: </span>
+					  <a href="#" id="emails.0.address" class="editable editable-click">{{email}}</a>
+					  {{#if isNotVerifiedEmail}}
+						  <span class="not-verified-email">not verified</span>
+					  {{/if}}
+				  </p>
+			  </div>
+		  </div>
+		</div>
 
-            {{#if isNotVerifiedEmail}}
-              <span class="not-verified-email">not verified</span>
-            {{/if}}
-          </td>
-        </tr>
-      </tbody>
-    </table>
-    <div class="user-organizations">
-      <h4><b>Organizations</b></h4>
-      {{#each organizations}}
-        <a href="{{profile.companySite}}" target="_blank">
-          <img src="{{profile.iconUrl}}" alt="Company site" width="42" height="42">
-        </a>
-      {{/each}}
-    </div>
+	  <div class="panel panel-default">
+		  <div class="panel-heading">
+			  Organizations
+		  </div>
+		  <div class="panel-body">
+			  <div class="user-organizations">
+				  {{#each organizations}}
+					  <a href="{{profile.companySite}}" target="_blank">
+						  <img src="{{profile.iconUrl}}" alt="Company site" class="user-organisation-img">
+					  </a>
+				  {{/each}}
+			  </div>
+		  </div>
+	  </div>
   </div>
   <div class="clearer"></div>
 </template>

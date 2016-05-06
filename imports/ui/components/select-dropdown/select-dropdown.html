@@ -1,0 +1,12 @@
+<template name="Select_dropdown">
+  <select class="{{class}} form-control" {{multiple}} title={{title}} name={{name}}>
+    {{#if optionValues}}
+      {{#each optionValues}}
+        <option value="{{_id}}">{{name}}</option>
+      {{/each}}
+    {{else}}
+        <option data-divider="true"></option>
+        <option disabled>{{name}} list are empty</option>
+    {{/if}}
+  </select>
+</template>

@@ -1,5 +1,7 @@
 import { Meteor } from 'meteor/meteor';
 import { check } from 'meteor/check';
+import { MongoId } from '../../../modules/regex.js';
+import { Organisation } from '../../organisation/organisation.js';
 
 Meteor.methods({
   organisationInsert: function(organisationAttributes) {
@@ -10,7 +12,8 @@ Meteor.methods({
       profile: {
         companySite: Match.Maybe(String),
         iconUrl: Match.Maybe(String)
-      }
+      },
+      users: [MongoId]
     });
 
     let organisationWithSameName = Organisation.findOne({ name: organisationAttributes.name });
@@ -56,7 +59,6 @@ Meteor.methods({
 
     _.each(organisationData.owners, function(organisationOwner) {
       Roles.setUserRoles(organisationOwner, ['owner'], organisationData._id);
-
       if (Roles.userIsInRole(organisationOwner, 'owner', 'general_group') && Roles.userIsInRole(organisationOwner, 'owner', organisationData._id)) {
         Roles.removeUsersFromRoles(organisationOwner, ['owner'], 'general_group');
       }

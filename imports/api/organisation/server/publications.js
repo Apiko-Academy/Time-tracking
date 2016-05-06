@@ -1,5 +1,6 @@
 import { Meteor } from 'meteor/meteor';
-import '../../../lib/organisation.js';
+
+import { Organisation } from'../organisation.js';
 
 Meteor.publish('all.users', function allUsers() {
   if (this.userId) {
@@ -12,4 +13,23 @@ Meteor.publish('organisation', function() {
   let organizationIds = Roles.getGroupsForUser(userId);
 
   return Organisation.find({ _id: { $in: organizationIds } });
+});
+
+Meteor.publishComposite('current.organisation', function(organisationId){
+  return {
+    find: function() {
+      return Organisation.find({_id: organisationId});
+    },
+    children: [
+      {
+        find: function () {
+          let usersArray = _.flatten(Organisation.find({_id: organisationId}).map(
+              (item)=> {
+                return _.union(item.users, item.owners);
+              }));
+          Meteor.users.find({_id: {$in: usersArray}});
+        }
+      }
+    ]
+  }
 });
