@@ -1,4 +1,5 @@
 <template name="organisationSettings">
+{{#if isOwner}}
   <div class="jumbotron" id="organisation-settings">
     <div class="edit-organisation-container">
       <form class="edit-organisation-form">
@@ -43,4 +44,7 @@
       </form>
     </div>
   </div>
+{{else}}
+  {{> permissions}}
+{{/if}}
 </template>
