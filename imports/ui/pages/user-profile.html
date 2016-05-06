@@ -1,17 +1,15 @@
 <template name="userProfile">
   <div class="user-info">
-		<div class="panel panel-default user-editing">
+		<div class="panel panel-default">
 		  <div class="panel-heading">
 			  Profile information
 		  </div>
 		  <div class="panel-body">
-        <div class="change-user-picture">
-          <div id="user-avatar" class="icon thumbnail">
-            <img  src="{{profile.profileImage}}" class="user-profile-image" alt="User's avatar">
-          </div>
-            {{>changeImage}}
-        </div>
-        <div class="profile-fields">
+			  <div id="user-avatar" class="icon thumbnail">
+				  <img  src="{{profile.profileImage}}" alt="User's avatar">
+				  <span class="change-icon">Change Avatar</span>
+			  </div>
+			  <div class="profile-fields">
 				  <p>
 					  <span class="profile-field">First Name: </span>
 					  <a href="#" id="profile.firstName" class="editable editable-click">{{profile.firstName}}</a>
@@ -38,9 +36,7 @@
 		  <div class="panel-body">
 			  <div class="user-organizations">
 				  {{#each organizations}}
-					  <a href="{{profile.companySite}}" target="_blank">
-						  <img src="{{profile.iconUrl}}" alt="Company site" class="user-organisation-img">
-					  </a>
+					  {{>userOrganization}}
 				  {{/each}}
 			  </div>
 		  </div>

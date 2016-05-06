@@ -1,3 +1,6 @@
+import { Organisation } from '../api/organisation/organisation.js';
+import { noImage } from './images.js';
+
 let getOrganisationIcon = (organisationId) => {
   let organization = Organisation.findOne({_id: organisationId});
   if (organization && organization.profile && organization.profile.iconUrl ) {

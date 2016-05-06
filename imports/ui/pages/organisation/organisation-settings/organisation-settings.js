@@ -1,11 +1,12 @@
 import './organisation-settings.html';
+import '../../../components/permissions-page/permissions.html';
 
 import './modal.js';
 import './users-table.js';
-import '../../../../lib/organisation.js';
 
 import { handleMethodResult } from '../../../../modules/handle-method-result.js';
 import { Mongo } from 'meteor/mongo';
+import { Organisation } from '../../../../api/organisation/organisation.js';
 import { outputHandler } from '../../../../modules/output-handler.js';
 import { ReactiveArray } from 'meteor/manuel:reactivearray';
 import { ReactiveVar } from 'meteor/reactive-var';
@@ -58,6 +59,9 @@ Template.organisationSettings.helpers({
   organisationUsers () {
     let tmpl = Template.instance();
     return tmpl.organisationUsers.array();
+  },
+  isOwner(){
+    return this.owners.indexOf(Meteor.userId()) !== -1;
   }
 });
 

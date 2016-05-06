@@ -1,0 +1,20 @@
+<template name="Projects_find">
+  <form class="find-form">
+    <div class="input-group input-group-filter">
+      <div class="input-group-addon filter-select">
+        {{> Select_dropdown optionValues=clients multiple='multiple' class='filter-client' 
+          liveSearch='true' title='Filter client' name='Clients' onChanged=clientFilterChanged
+        }}
+      </div>
+      <div class="input-group-addon filter-select">
+        {{> Select_dropdown optionValues=teamMembers multiple='multiple' class='filter-team' 
+          liveSearch='true' title='Filter team' name='Team' onChanged=teamFilterChanged
+        }}
+      </div>
+      <input type="text" class="input-group-addon form-control project-name" placeholder="Name" name="name"/>
+      <span class="input-group-btn">
+        <button type="reset" class="btn btn-warning btn-block reset-filters">Clear filters</button>
+      </span>
+    </div>
+  </form>
+</template>
