@@ -1,0 +1,10 @@
+<template name="Project_list_item">
+  <td>{{name}}</td>
+  <td>{{client}}</td>
+  <td>{{#each managers}}
+    <b>{{this}} </b>
+  {{/each}}
+  {{#each workers}}
+    , {{this}}
+  {{/each}}</td>
+</template>

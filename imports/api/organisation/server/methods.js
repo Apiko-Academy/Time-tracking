@@ -1,6 +1,7 @@
 import { Meteor } from 'meteor/meteor';
 import { check } from 'meteor/check';
 import { MongoId } from '../../../modules/regex.js';
+import { Organisation } from '../../organisation/organisation.js';
 
 Meteor.methods({
   organisationInsert: function(organisationAttributes) {
@@ -38,6 +39,7 @@ Meteor.methods({
 
     return organisationId;
   },
+
   editOrganisation: function (organisationData) {
     check(organisationData, {
       _id: MongoId,
@@ -50,9 +52,13 @@ Meteor.methods({
       users: [MongoId],
       owners: [MongoId]
     });
+
+    if(!Roles.userIsInRole(this.userId, 'owner', organisationData._id)){ 
+      throw new Meteor.Error('You dont have permissions to edit this organisation'); 
+    }
+
     _.each(organisationData.owners, function(organisationOwner) {
       Roles.setUserRoles(organisationOwner, ['owner'], organisationData._id);
-
       if (Roles.userIsInRole(organisationOwner, 'owner', 'general_group') && Roles.userIsInRole(organisationOwner, 'owner', organisationData._id)) {
         Roles.removeUsersFromRoles(organisationOwner, ['owner'], 'general_group');
       }
@@ -60,6 +66,9 @@ Meteor.methods({
     Organisation.update({_id: organisationData._id}, {$set: organisationData});
   },
   addUsersToRoles: function(userId, role, organisationId) {
+    if(!Roles.userIsInRole(this.userId, 'owner', organisationData._id)){ 
+      throw new Meteor.Error('You dont have permissions to edit this organisation'); 
+    }
     Roles.addUsersToRoles(userId, role, organisationId);
     return true;
   }

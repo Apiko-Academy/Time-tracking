@@ -1,7 +1,6 @@
 import { Meteor } from 'meteor/meteor';
-import 'meteor/mongo';
+import { Organisation } from '../../../api/organisation/organisation.js';
 
-import '../../../lib/organisation.js';
 import '../../../ui/pages/organisation/organisation.js';
 
 import '../../../ui/pages/organisation/my-organisations.js';

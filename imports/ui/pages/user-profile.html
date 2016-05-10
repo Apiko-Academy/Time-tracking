@@ -6,17 +6,17 @@
 		  </div>
 		  <div class="panel-body">
 			  <div id="user-avatar" class="icon thumbnail">
-				  <img  src="{{this.profile.profileImage}}" alt="User's avatar" width="85" height="85">
+				  <img  src="{{profile.profileImage}}" alt="User's avatar">
 				  <span class="change-icon">Change Avatar</span>
 			  </div>
 			  <div class="profile-fields">
 				  <p>
 					  <span class="profile-field">First Name: </span>
-					  <a href="#" id="profile.firstName" class="editable editable-click">{{this.profile.firstName}}</a>
+					  <a href="#" id="profile.firstName" class="editable editable-click">{{profile.firstName}}</a>
 				  </p>
 				  <p>
 					  <span class="profile-field">Last Name: </span>
-					  <a href="#" id="profile.lastName" class="editable editable-click">{{this.profile.lastName}}</a>
+					  <a href="#" id="profile.lastName" class="editable editable-click">{{profile.lastName}}</a>
 				  </p>
 				  <p>
 					  <span class="profile-field">E-mail: </span>
@@ -36,9 +36,7 @@
 		  <div class="panel-body">
 			  <div class="user-organizations">
 				  {{#each organizations}}
-					  <a href="{{profile.companySite}}" target="_blank">
-						  <img src="{{profile.iconUrl}}" alt="Company site" width="42" height="42">
-					  </a>
+					  {{>userOrganization}}
 				  {{/each}}
 			  </div>
 		  </div>
