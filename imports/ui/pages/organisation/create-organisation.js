@@ -46,9 +46,10 @@ Template.createOrganisation.events({
   },
 
   'click #organisation-icon': function (event, tmpl) {
-    changeIcon( handleMethodResult((result) => {
-      tmpl.iconUrl.set(result);
-    }));
+    changeIcon({
+      onsuccess: (result) => tmpl.iconUrl.set(result),
+      onerror: outputHandler
+    });
   }
 });
 

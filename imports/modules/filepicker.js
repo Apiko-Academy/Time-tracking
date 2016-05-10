@@ -4,16 +4,16 @@ import { outputHandler } from './output-handler.js';
 const KEY = 'AMxXlNUEKQ1OgRo47XtKSz';
 loadFilePicker(KEY);
 
-let changeIcon = (handler) => {
+let changeIcon = (callbacks) => {
 	filepicker.pick({
 			mimetypes: ['image/gif','image/jpeg','image/png'],
 			multiple: false
 		},
 		function(InkBlobs){
-			handler(false, InkBlobs.url);
+			callbacks.onsuccess(InkBlobs.url);
 		},
 		function(FPError){
-			handler(FPError);
+			callbacks.onerror(FPError.toString());
 		});
 };
 export { changeIcon };
