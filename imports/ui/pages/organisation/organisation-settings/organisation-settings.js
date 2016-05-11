@@ -20,11 +20,6 @@ Template.organisationSettings.onCreated(function () {
   this.iconUrl = new ReactiveVar(organizationIcon);
   this.organisationOwners = new ReactiveArray(this.data.owners);
 
-  this.usersRolesInOrganisation = (userId, eventPressed) => {
-    let methodName = eventPressed === 'add-user-to-owners' ? 'push' : 'remove';
-    this.organisationOwners[methodName](userId);
-  };
-
   this.addOrRemoveUserFromOrganisation =  (userId, eventPressed) => {
     if (eventPressed === 'remove') {
       this.organisationOwners.remove(userId);
@@ -48,9 +43,12 @@ Template.organisationSettings.helpers({
     let tmpl = Template.instance();
     return tmpl.addOrRemoveUserFromOrganisation;
   },
-  usersRolesInOrganisation () {
+  toggleOwner () {
     let tmpl = Template.instance();
-    return tmpl.usersRolesInOrganisation;
+    return function(userId, eventPressed) {
+      let methodName = eventPressed === 'add-user-to-owners' ? 'push' : 'remove';
+      tmpl.organisationOwners[methodName](userId);
+    }
   },
   currentOrganisation () {
     return this;

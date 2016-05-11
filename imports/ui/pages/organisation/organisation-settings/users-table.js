@@ -16,8 +16,7 @@ Template.usersTable.helpers({
     let tmpl = Template.instance();
     return tmpl.data.changeOrganisationMembers;
   },
-  usersRolesInOrganisation () {
-    let tmpl = Template.instance();
-    return tmpl.data.usersRolesInOrganisation;
+  toggleOwner () {
+    return Template.instance().data.toggleOwner;
   }
 });
