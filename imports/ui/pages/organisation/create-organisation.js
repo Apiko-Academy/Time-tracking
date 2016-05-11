@@ -6,14 +6,14 @@ import { ReactiveVar } from 'meteor/reactive-var';
 import { handleMethodResult } from '../../../modules/handle-method-result.js';
 import { outputHandler } from '../../../modules/output-handler.js';
 import { noImage } from '../../../modules/images.js';
+import { changeIcon } from '../../../modules/filepicker.js';
+
 
 Template.createOrganisation.onCreated(function () {
-  loadFilePicker('AMxXlNUEKQ1OgRo47XtKSz');
   this.iconUrl = new ReactiveVar();
 });
 
 Template.createOrganisation.events({
-
   'submit form': function(event, template) {
     event.preventDefault();
 
@@ -43,21 +43,14 @@ Template.createOrganisation.events({
     Meteor.call('organisationInsert', organisation, handleMethodResult(()=>{
       Router.go('myorganisations');
     }));
-
   },
+
   'click #organisation-icon': function (event, tmpl) {
-    filepicker.pick({
-        mimetypes: ['image/gif','image/jpeg','image/png'],
-        multiple: false
-      },
-      function(InkBlobs){
-        tmpl.iconUrl.set(InkBlobs.url);
-      },
-      function(FPError){
-        outputHandler(FPError.toString());
+    changeIcon({
+      onsuccess: (result) => tmpl.iconUrl.set(result),
+      onerror: outputHandler
     });
   }
-
 });
 
 Template.createOrganisation.helpers({

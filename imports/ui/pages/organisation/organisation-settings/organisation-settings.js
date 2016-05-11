@@ -10,9 +10,9 @@ import { Organisation } from '../../../../api/organisation/organisation.js';
 import { outputHandler } from '../../../../modules/output-handler.js';
 import { ReactiveArray } from 'meteor/manuel:reactivearray';
 import { ReactiveVar } from 'meteor/reactive-var';
+import { changeIcon } from '../../../../modules/filepicker.js';
 
 Template.organisationSettings.onCreated(function () {
-  loadFilePicker('AMxXlNUEKQ1OgRo47XtKSz');
   this.iconUrl = new ReactiveVar(this.data.profile.iconUrl);
   this.organisationUsers = new ReactiveArray(this.data.users);
   this.organisationOwners = new ReactiveArray(this.data.owners);
@@ -67,16 +67,10 @@ Template.organisationSettings.helpers({
 
 Template.organisationSettings.events({
   'click #organisation-icon': function (event, tmpl) {
-    filepicker.pick({
-          mimetypes: ['image/gif','image/jpeg','image/png'],
-          multiple: false
-        },
-        function(InkBlobs){
-          tmpl.iconUrl.set(InkBlobs.url);
-        },
-        function(FPError){
-          outputHandler(FPError.toString());
-        });
+    changeIcon({
+      onsuccess: (result) => tmpl.iconUrl.set(result),
+      onerror: outputHandler
+    });
   },
   'submit .edit-organisation-form': function(event, tmpl) {
     event.preventDefault();
