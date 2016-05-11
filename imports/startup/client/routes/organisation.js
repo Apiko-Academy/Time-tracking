@@ -19,7 +19,7 @@ Router.route('/editOrganisation/:_id', {
     return Meteor.subscribe('current.organisation', this.params._id);
   },
   data: function(){
-    return Organisation.findOne();
+    return Organisation.findOne(this.params._id);
   }
 });
 
@@ -35,7 +35,7 @@ Router.route('/my-organisations', {
   data: function(){
     return {
       organisations: function(){
-        return Organisation.find();
+        return Organisation.find({}, {sort: {createdAt: -1}});
       }
     }
   }
