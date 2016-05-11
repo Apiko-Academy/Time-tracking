@@ -15,8 +15,9 @@ import { getOrganisationIcon } from '../../../../modules/organisation.js';
 
 Template.organisationSettings.onCreated(function () {
   let organizationIcon = getOrganisationIcon(this.data._id);
+
+  this.organisationMembers = new ReactiveArray(this.data.members);
   this.iconUrl = new ReactiveVar(organizationIcon);
-  this.organisationUsers = new ReactiveArray(this.data.users);
   this.organisationOwners = new ReactiveArray(this.data.owners);
 
   this.usersRolesInOrganisation = (userId, eventPressed) => {
@@ -27,9 +28,9 @@ Template.organisationSettings.onCreated(function () {
   this.addOrRemoveUserFromOrganisation =  (userId, eventPressed) => {
     if (eventPressed === 'remove') {
       this.organisationOwners.remove(userId);
-      this.organisationUsers.remove(userId);
+      this.organisationMembers.remove(userId);
     } else {
-      this.organisationUsers.push(userId);
+      this.organisationMembers.push(userId);
     }
   };
 });
@@ -41,9 +42,9 @@ Template.organisationSettings.helpers({
   },
   users () {
     let tmpl = Template.instance();
-    return Meteor.users.find({_id: {$in: tmpl.organisationUsers.array()}});
+    return Meteor.users.find({_id: {$in: tmpl.organisationMembers.array()}});
   },
-  changeOrganisationUsers () {
+  changeOrganisationMembers () {
     let tmpl = Template.instance();
     return tmpl.addOrRemoveUserFromOrganisation;
   },
@@ -58,9 +59,9 @@ Template.organisationSettings.helpers({
     let tmpl = Template.instance();
     return tmpl.organisationOwners.array();
   },
-  organisationUsers () {
+  organisationMembers () {
     let tmpl = Template.instance();
-    return tmpl.organisationUsers.array();
+    return tmpl.organisationMembers.array();
   },
   isOwner(){
     return this.owners.indexOf(Meteor.userId()) !== -1;
@@ -84,7 +85,7 @@ Template.organisationSettings.events({
         companySite:  event.target['company-site'].value.trim(),
         iconUrl: tmpl.iconUrl.get()
       },
-      users: tmpl.organisationUsers.array(),
+      members: tmpl.organisationMembers.array(),
       owners: tmpl.organisationOwners.array()
     };
 

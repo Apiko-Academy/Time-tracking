@@ -14,11 +14,3 @@ Accounts.onCreateUser((options, user) => {
 
   return user;
 });
-
-Meteor.users.after.insert(function (userId, doc) {
-  
-  if (this._id) {
-    Roles.addUsersToRoles(this._id, ['owner'], 'general_group');
-  }
-
-});

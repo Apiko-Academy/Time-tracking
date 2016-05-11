@@ -3,6 +3,8 @@ import { check } from 'meteor/check';
 import { MongoId } from '../../../modules/regex.js';
 import { Organisation } from '../../organisation/organisation.js';
 
+import { Roles } from '../../../modules/Roles.js';
+
 Meteor.methods({
   organisationInsert: function(organisationAttributes) {
 
@@ -13,7 +15,7 @@ Meteor.methods({
         companySite: Match.Maybe(String),
         iconUrl: Match.Maybe(String)
       },
-      users: [MongoId]
+      members: [MongoId]
     });
 
     let organisationWithSameName = Organisation.findOne({ name: organisationAttributes.name });
@@ -27,17 +29,7 @@ Meteor.methods({
       createdAt: new Date()
     });
 
-    let organisationId = Organisation.insert(organisation);
-
-    if (organisationId) {
-      Roles.setUserRoles(this.userId, ['owner'], organisationId);
-
-      if (Roles.userIsInRole(this.userId, 'owner', 'general_group') && Roles.userIsInRole(this.userId, 'owner', organisationId)) {
-        Roles.removeUsersFromRoles(this.userId, ['owner'], 'general_group');
-      }
-    }
-
-    return organisationId;
+    return Organisation.insert(organisation);
   },
 
   editOrganisation: function (organisationData) {
@@ -49,27 +41,14 @@ Meteor.methods({
         companySite: Match.Optional(String),
         iconUrl: String
       },
-      users: [MongoId],
+      members: [MongoId],
       owners: [MongoId]
     });
 
-    if(!Roles.userIsInRole(this.userId, 'owner', organisationData._id)){ 
-      throw new Meteor.Error('You dont have permissions to edit this organisation'); 
+    if (! Roles.userHasRole(this.userId, organisationData, "owners")) {
+      throw new Meteor.Error("You don't have permissions to edit this organization");
     }
 
-    _.each(organisationData.owners, function(organisationOwner) {
-      Roles.setUserRoles(organisationOwner, ['owner'], organisationData._id);
-      if (Roles.userIsInRole(organisationOwner, 'owner', 'general_group') && Roles.userIsInRole(organisationOwner, 'owner', organisationData._id)) {
-        Roles.removeUsersFromRoles(organisationOwner, ['owner'], 'general_group');
-      }
-    });
     Organisation.update({_id: organisationData._id}, {$set: organisationData});
-  },
-  addUsersToRoles: function(userId, role, organisationId) {
-    if(!Roles.userIsInRole(this.userId, 'owner', organisationData._id)){ 
-      throw new Meteor.Error('You dont have permissions to edit this organisation'); 
-    }
-    Roles.addUsersToRoles(userId, role, organisationId);
-    return true;
   }
 });
