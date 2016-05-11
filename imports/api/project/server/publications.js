@@ -9,3 +9,12 @@ Meteor.publish('projects', function () {
   	this.ready();
   }
 });
+
+Meteor.publish('current.project', function(projectId){
+  let userId = this.userId;
+  if(userId){
+    return Project.find({_id: projectId, managers: userId});
+  } else {
+    this.ready();
+  }
+});
