@@ -3,7 +3,7 @@ import 'meteor/alanning:roles';
 import 'meteor/underscore';
 import '../../select-dropdown/select-dropdown.js';
 
-import { Clients } from '../../../../api/clients/clients.js';
+import { Clients } from '/imports/api/collections.js';
 import { Template } from 'meteor/templating';
 import { getFullName } from '../../../../modules/users.js';
 

@@ -7,7 +7,4 @@ Template.organisation.helpers({
   isUser: function() {
     return Meteor.userId();
   }
-  // isOwner: function () {
-  //   return antitoggl.isUserInRole('owner');
-  // }	
 });

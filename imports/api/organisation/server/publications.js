@@ -1,6 +1,5 @@
 import { Meteor } from 'meteor/meteor';
-
-import { Organisation } from'../organisation.js';
+import { Organisation } from '../../collections.js';
 
 Meteor.publish('all.users', function allUsers() {
   if (this.userId) {

@@ -2,7 +2,7 @@ import 'meteor/trsdln:modals';
 import './project-create.html';
 import '../../select-dropdown/select-dropdown.js';
 
-import { Clients } from '../../../../api/clients/clients.js';
+import { Clients } from '/imports/api/collections.js';
 import { handleMethodResult } from '../../../../modules/handle-method-result';
 import { Meteor } from 'meteor/meteor';
 import { Template } from 'meteor/templating';

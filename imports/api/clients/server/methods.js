@@ -1,6 +1,7 @@
 import { Meteor } from 'meteor/meteor';
 import { check } from 'meteor/check';
-import { Clients } from '../clients.js';
+
+import { Clients } from '../../collections.js';
 
 Meteor.methods({
   'client.create': function(clientName) {

@@ -6,7 +6,7 @@ import './users-table.js';
 
 import { handleMethodResult } from '../../../../modules/handle-method-result.js';
 import { Mongo } from 'meteor/mongo';
-import { Organisation } from '../../../../api/organisation/organisation.js';
+import { Organisation } from '/imports/api/collections.js';
 import { outputHandler } from '../../../../modules/output-handler.js';
 import { ReactiveArray } from 'meteor/manuel:reactivearray';
 import { ReactiveVar } from 'meteor/reactive-var';
@@ -19,7 +19,7 @@ Template.organisationSettings.onCreated(function () {
   this.organisationMembers = new ReactiveArray(this.data.members);
   this.iconUrl = new ReactiveVar(organizationIcon);
   this.organisationOwners = new ReactiveArray(this.data.owners);
-  
+
 });
 
 Template.organisationSettings.helpers({

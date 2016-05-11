@@ -1,5 +1,5 @@
 import { Meteor } from 'meteor/meteor';
-import { Organisation } from '../../../api/organisation/organisation.js';
+import { Organisation } from '/imports/api/collections.js';
 
 import '../../../ui/pages/organisation/organisation.js';
 
