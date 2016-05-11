@@ -10,12 +10,13 @@ import '../components/gravatar/gravatar.js';
 import { handleMethodResult } from '../../modules/handle-method-result.js';
 import { outputHandler } from '../../modules/output-handler.js';
 import { regExEmail } from '../../modules/regex.js';
+import { changeIcon } from '../../modules/filepicker.js';
 
 Template.userProfile.onCreated(function () {
   // should be defined other way: meteor settings or env var, I guess
   loadFilePicker('AMxXlNUEKQ1OgRo47XtKSz');
   this.subscribe('organisation');
-
+  this.iconUrl = new ReactiveVar();
 
   this.updateUserProfile = (fieldName) => {
     return function (response, newValue) {
@@ -81,6 +82,17 @@ Template.userProfile.helpers({
     
     //seems like we dont need this additional filtering. Just take whole Organization
     return Organisation.find({ _id: { $in: organizationIds } }).fetch();
+  }
+});
+
+Template.userProfile.events({
+  'click #user-avatar': function(event, tmpl) {
+    changeIcon({
+      onsuccess: (result) => tmpl.iconUrl.set(result),
+      onerror: outputHandler
+    });
+    let profileImage = tmpl.data.profile.profileImage;
+    profileImage = tmpl.iconUrl.get();
   }
 });
 

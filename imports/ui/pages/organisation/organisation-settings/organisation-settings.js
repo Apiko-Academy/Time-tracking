@@ -11,9 +11,11 @@ import { outputHandler } from '../../../../modules/output-handler.js';
 import { ReactiveArray } from 'meteor/manuel:reactivearray';
 import { ReactiveVar } from 'meteor/reactive-var';
 import { changeIcon } from '../../../../modules/filepicker.js';
+import { getOrganisationIcon } from '../../../../modules/organisation.js';
 
 Template.organisationSettings.onCreated(function () {
-  this.iconUrl = new ReactiveVar(this.data.profile.iconUrl);
+  let organizationIcon = getOrganisationIcon(this.data._id);
+  this.iconUrl = new ReactiveVar(organizationIcon);
   this.organisationUsers = new ReactiveArray(this.data.users);
   this.organisationOwners = new ReactiveArray(this.data.owners);
 
@@ -70,7 +72,7 @@ Template.organisationSettings.events({
     changeIcon({
       onsuccess: (result) => tmpl.iconUrl.set(result),
       onerror: outputHandler
-    });
+    })
   },
   'submit .edit-organisation-form': function(event, tmpl) {
     event.preventDefault();
