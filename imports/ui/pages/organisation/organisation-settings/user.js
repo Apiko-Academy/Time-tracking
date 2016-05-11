@@ -14,7 +14,7 @@ Template.userInOrganisation.helpers({
   profileImage () {
     return getProfileIcon(this.user._id);
   }
-})
+});
 
 Template.userInOrganisation.events({
   'click .remove-from-organisation-users': function(event){
