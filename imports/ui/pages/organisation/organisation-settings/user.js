@@ -19,7 +19,7 @@ Template.userInOrganisation.helpers({
 Template.userInOrganisation.events({
   'click .remove-from-organisation-users': function(event){
     event.preventDefault();
-    this.changeOrganisationUsers(this.user._id, 'remove');
+    this.changeOrganisationMembers(this.user._id, 'remove');
   },
   'click .add-user-to-owners': function(event) {
     event.preventDefault();

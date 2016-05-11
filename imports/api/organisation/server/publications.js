@@ -10,9 +10,8 @@ Meteor.publish('all.users', function allUsers() {
 
 Meteor.publish('organisation', function() {
   let userId = this.userId;
-  let organizationIds = Roles.getGroupsForUser(userId);
 
-  return Organisation.find({ _id: { $in: organizationIds } });
+  return Organisation.find({ members: userId });
 });
 
 Meteor.publishComposite('current.organisation', function(organisationId){
