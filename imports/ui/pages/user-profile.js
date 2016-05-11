@@ -10,7 +10,6 @@ import '../components/gravatar/gravatar.js';
 import { handleMethodResult } from '../../modules/handle-method-result.js';
 import { outputHandler } from '../../modules/output-handler.js';
 import { regExEmail } from '../../modules/regex.js';
-import { changeIcon } from '../../modules/filepicker.js';
 
 Template.userProfile.onCreated(function () {
   // should be defined other way: meteor settings or env var, I guess
@@ -81,16 +80,6 @@ Template.userProfile.helpers({
     
     //seems like we dont need this additional filtering. Just take whole Organization
     return Organisation.find({ _id: { $in: organizationIds } }).fetch();
-  }
-});
-
-Template.userProfile.events({
-  "click .change-icon": function() {
-    console.log("clicked on change avatar");
-    changeIcon({
-      onsuccess: (result) => console.log("new icon url: ",result),
-      onerror: outputHandler
-    });
   }
 });
 
