@@ -3,7 +3,7 @@ import { check } from 'meteor/check';
 import { MongoId } from '../../../modules/regex.js';
 import { Organisation } from '../../organisation/organisation.js';
 
-import { userHasRole } from '../../../modules/checkRole.js';
+import { Roles } from '../../../modules/Roles.js';
 
 Meteor.methods({
   organisationInsert: function(organisationAttributes) {
@@ -29,9 +29,7 @@ Meteor.methods({
       createdAt: new Date()
     });
 
-    let organisationId = Organisation.insert(organisation);
-
-    return organisationId;
+    return Organisation.insert(organisation);
   },
 
   editOrganisation: function (organisationData) {
@@ -47,7 +45,7 @@ Meteor.methods({
       owners: [MongoId]
     });
 
-    if (! userHasRole(this.userId, Organisation.findOne(organisationData._id), "owners")) {
+    if (! Roles.userHasRole(this.userId, organisationData, "owners")) {
       throw new Meteor.Error("You don't have permissions to edit this organization");
     }
 

@@ -29,8 +29,15 @@
         <button type="button" class="btn btn-def btn-md" data-toggle="modal" data-target="#addUsers">
           Add users to organisation
         </button>
-        {{>modalOrganisationEdit organisation=currentOrganisation changeOrganisationMembers=changeOrganisationMembers organisationMembers=organisationMembers organisationOwners=organisationOwners}}
-        {{>usersTable users=users organisationOwners=organisationOwners changeOrganisationMembers=changeOrganisationMembers usersRolesInOrganisation=usersRolesInOrganisation}}
+        {{>modalOrganisationEdit organisation=currentOrganisation
+            changeOrganisationMembers=changeOrganisationMembers
+            organisationMembers=organisationMembers
+            organisationOwners=organisationOwners}}
+
+        {{>usersTable users=users organisationOwners=organisationOwners
+            changeOrganisationMembers=changeOrganisationMembers
+            usersRolesInOrganisation=usersRolesInOrganisation}}
+
         <div class="clearer"></div>
         <div class="row">
           <div class="col-sm-4"></div>
