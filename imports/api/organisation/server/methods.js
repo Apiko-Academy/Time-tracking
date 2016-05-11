@@ -13,7 +13,7 @@ Meteor.methods({
         companySite: Match.Maybe(String),
         iconUrl: Match.Maybe(String)
       },
-      users: [MongoId]
+      members: [MongoId]
     });
 
     let organisationWithSameName = Organisation.findOne({ name: organisationAttributes.name });
@@ -49,7 +49,7 @@ Meteor.methods({
         companySite: Match.Optional(String),
         iconUrl: String
       },
-      users: [MongoId],
+      members: [MongoId],
       owners: [MongoId]
     });
 

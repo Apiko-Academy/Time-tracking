@@ -14,7 +14,7 @@ import { changeIcon } from '../../../../modules/filepicker.js';
 
 Template.organisationSettings.onCreated(function () {
   this.iconUrl = new ReactiveVar(this.data.profile.iconUrl);
-  this.organisationUsers = new ReactiveArray(this.data.users);
+  this.organisationUsers = new ReactiveArray(this.data.members);
   this.organisationOwners = new ReactiveArray(this.data.owners);
 
   this.usersRolesInOrganisation = (userId, eventPressed) => {
