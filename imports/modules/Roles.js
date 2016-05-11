@@ -8,7 +8,7 @@ export const Roles = {
       // properties from array
     } else if (Array.isArray(roles)) {
       for (let i = 0, len = roles.length; i < len; i++) {
-        if (Array.isArray(struct[roles[i]]) && (struct[roles[i]].indexOf(userId) > -1)) {
+        if (this.userHasRole(userId, struct, roles[i])) {
           return true;
         }
       }
