@@ -1,8 +1,47 @@
 <template name='Project_edit'>
-  <div class="list-container">
-    <button type="button" class="btn btn-def btn-md" data-toggle="modal" data-target="#users-add">
-      Add users to organisation
-    </button>
-    {{>Users_add users=projectMembers projectId=project._id}}
-  </div>
+  {{#if project}}
+    <div class="list-container">
+      <button type="button" class="btn btn-def btn-md" data-toggle="modal" data-target="#users-add">
+        Add workers to project
+      </button>
+      {{>Users_add users=projectMembers projectId=project._id}}
+    </div>
+    <h3>Project members</h3>
+    <div class="list-group">
+    {{#each project.managers}}
+    <button type="button" class="list-group-item">
+      <img src="{{icon}}" class="img-circle user-list-img" alt="#" />
+      <span><b>{{fullName}}</b> ({{email}})</span> 
+      <span class='pull-right'>
+        <div class="btn-group" role="group" aria-label="...">
+          <button type='button' class='btn btn-warning worker-set' id={{this}}>
+            Set as worker
+          </button>
+          <button type='button' class='btn btn-danger remove-member' id={{this}}>
+            Remove from project
+          </button>
+        </div>
+      </span>
+      </button>
+    {{/each}}
+    {{#each project.workers}}
+      <button type="button" class="list-group-item">
+        <img src="{{icon}}" class="img-circle user-list-img" alt="#"/>
+        <span><b>{{fullName}}</b> ({{email}})</span>
+        <span class='pull-right'>
+          <div class="btn-group" role="group" aria-label="...">
+            <button type='button' class='btn btn-info manager-set' id={{this}}>
+              Set as manager
+            </button>
+            <button type='button' class='btn btn-danger remove-member' id={{this}}>
+              Remove from project
+            </button>
+          </div>
+        </span>
+        </button>
+    {{/each}}
+    </div>
+  {{else}}
+    {{> permissions text='Access denied'}}
+  {{/if}}
 </template>

@@ -20,7 +20,10 @@ Router.route('/project/:_id', {
   name: 'projectSettings',
   template: 'Project_edit',
   waitOn: function(){
-    return this.subscribe('current.project', this.params._id);
+    return [
+      this.subscribe('current.project', this.params._id),
+      this.subscribe('users')
+    ]
   },
   data: function(){
     return {
