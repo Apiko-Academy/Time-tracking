@@ -4,17 +4,17 @@ import './user.js'
 import './organisation-settings.js';
 
 Template.usersTable.helpers({
-  organisationUsers () {
+  organisationMembers () {
     let tmpl = Template.instance();
-    return tmpl.data.organisationUsers;
+    return tmpl.data.organisationMembers;
   },
   organisationOwners () {
     let tmpl = Template.instance();
     return tmpl.data.organisationOwners;
   },
-  changeOrganisationUsers() {
+  changeOrganisationMembers() {
     let tmpl = Template.instance();
-    return tmpl.data.changeOrganisationUsers;
+    return tmpl.data.changeOrganisationMembers;
   },
   usersRolesInOrganisation () {
     let tmpl = Template.instance();

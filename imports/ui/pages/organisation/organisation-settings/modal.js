@@ -6,7 +6,7 @@ import './users-table.html';
 Template.modalOrganisationEdit.helpers({
   onUserSelectHandler () {
     return (itemId) => {
-      this.changeOrganisationUsers(itemId);
+      this.changeOrganisationMembers(itemId);
     }
   }
 });
