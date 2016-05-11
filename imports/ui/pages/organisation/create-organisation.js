@@ -34,7 +34,7 @@ Template.createOrganisation.events({
         iconUrl: iconUrl,
         companySite: companySite
       },
-      users: [Meteor.userId()]
+      members: [Meteor.userId()]
     };
 
     event.target.reset();
