@@ -1,7 +1,7 @@
 import './api.js';
 
-import { outputHandler } from '../../modules/output-handler.js';
-import { noImage } from '../../modules/images.js';
+import { outputHandler } from '/imports/modules/output-handler.js';
+import { noImage } from '/imports/modules/images.js';
 
 // some weird hook that rejects sign up attempt and notifies user if no data was passed
 // also sets default userpic

@@ -5,30 +5,30 @@ import { Meteor } from 'meteor/meteor';
 import { Router } from 'meteor/iron:router';
 
 // homepage
-import '../../../ui/pages/homepage.html';
+import '/imports/ui/pages/homepage.html';
 // main layout
-import '../../../ui/layouts/main-layout.js';
+import '/imports/ui/layouts/main-layout.js';
 // loading
-import '../../../ui/pages/loading.html';
+import '/imports/ui/pages/loading.html';
 // 404
-import '../../../ui/pages/not-found.html';
+import '/imports/ui/pages/not-found.html';
 // organisation
 import { Organisation } from '/imports/api/collections.js';
-import '../../../ui/pages/organisation/organisation.js';
-import '../../../ui/pages/organisation/my-organisations.js';
-import '../../../ui/pages/organisation/organisation-settings/organisation-settings.js';
+import '/imports/ui/pages/organisation/organisation.js';
+import '/imports/ui/pages/organisation/my-organisations.js';
+import '/imports/ui/pages/organisation/organisation-settings/organisation-settings.js';
 // projects
-import '../../../ui/pages/projects-page.js';
+import '/imports/ui/pages/projects-page.js';
 // reports
-import '../../../ui/pages/reports.html';
+import '/imports/ui/pages/reports.html';
 // tasks
-import '../../../ui/pages/tasks.js';
+import '/imports/ui/pages/tasks.js';
 // timer
-import '../../../ui/pages/timer.html';
+import '/imports/ui/pages/timer.html';
 // user profile
-import '../../../ui/pages/user-profile.js';
+import '/imports/ui/pages/user-profile.js';
 // permissions
-import '../../../ui/components/permissions-page/permissions.html';
+import '/imports/ui/components/permissions-page/permissions.html';
 
 // CONFIGURATION
 import "./config.js";
