@@ -3,10 +3,10 @@ import './create-organisation.html';
 import { Template } from 'meteor/templating';
 import { loadFilePicker } from 'meteor/natestrauser:filepicker-plus';
 import { ReactiveVar } from 'meteor/reactive-var';
-import { handleMethodResult } from '../../../modules/handle-method-result.js';
-import { outputHandler } from '../../../modules/output-handler.js';
-import { noImage } from '../../../modules/images.js';
-import { changeIcon } from '../../../modules/filepicker.js';
+import { handleMethodResult } from '/imports/modules/handle-method-result.js';
+import { outputHandler } from '/imports/modules/output-handler.js';
+import { noImage } from '/imports/modules/images.js';
+import { changeIcon } from '/imports/modules/filepicker.js';
 
 
 Template.createOrganisation.onCreated(function () {

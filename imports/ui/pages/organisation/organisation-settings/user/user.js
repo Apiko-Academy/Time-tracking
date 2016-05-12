@@ -1,8 +1,8 @@
-import './modal.js';
+import './../modal/modal.js';
 import './user.html';
 
-import { getFullName } from '../../../../modules/users.js';
-import { getProfileIcon } from '../../../../modules/users.js';
+import { getFullName } from '/imports/modules/users.js';
+import { getProfileIcon } from '/imports/modules/users.js';
 
 Template.userInOrganisation.helpers({
   getName () {

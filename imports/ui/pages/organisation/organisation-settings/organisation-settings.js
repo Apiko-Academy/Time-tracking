@@ -1,17 +1,17 @@
 import './organisation-settings.html';
-import '../../../components/permissions-page/permissions.html';
+import '/imports/ui/components/permissions-page/permissions.html';
 
-import './modal.js';
-import './users-table.js';
+import './modal/modal.js';
+import './users-table/users-table.js';
 
-import { handleMethodResult } from '../../../../modules/handle-method-result.js';
+import { handleMethodResult } from '/imports/modules/handle-method-result.js';
 import { Mongo } from 'meteor/mongo';
 import { Organisation } from '/imports/api/collections.js';
-import { outputHandler } from '../../../../modules/output-handler.js';
+import { outputHandler } from '/imports/modules/output-handler.js';
 import { ReactiveArray } from 'meteor/manuel:reactivearray';
 import { ReactiveVar } from 'meteor/reactive-var';
-import { changeIcon } from '../../../../modules/filepicker.js';
-import { getOrganisationIcon } from '../../../../modules/organisation.js';
+import { changeIcon } from '/imports/modules/filepicker.js';
+import { getOrganisationIcon } from '/imports/modules/organisation.js';
 
 Template.organisationSettings.onCreated(function () {
   let organizationIcon = getOrganisationIcon(this.data._id);

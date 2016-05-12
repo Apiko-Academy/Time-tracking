@@ -34,14 +34,6 @@ Template.Projects_find.helpers({
     userOrganizations.forEach((org) => {
       usersIds = _.union(usersIds, org.members);
     });
-    //let organizationIds = Roles.getGroupsForUser(Meteor.userId());
-    //let usersIds = [];
-    //
-    //organizationIds.forEach((orgId)=>{
-    //  usersIds = _.union(usersIds,
-    //    _.pluck(Roles.getUsersInRole(['member', 'owner'], orgId).fetch(), '_id')
-    //  );
-    //});
     return usersIds.map((id)=>{
       return {
         _id: id,

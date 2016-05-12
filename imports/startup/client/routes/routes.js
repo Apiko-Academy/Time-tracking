@@ -9,7 +9,7 @@ import '/imports/ui/pages/homepage/homepage.html';
 // organisation
 import { Organisation } from '/imports/api/collections.js';
 import '/imports/ui/pages/organisation/organisation.js';
-import '/imports/ui/pages/organisation/my-organisations.js';
+import '/imports/ui/pages/organisation/my-organisations/my-organisations.js';
 import '/imports/ui/pages/organisation/organisation-settings/organisation-settings.js';
 // projects
 import '/imports/ui/pages/projects/projects-page.js';
