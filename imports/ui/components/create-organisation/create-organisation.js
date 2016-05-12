@@ -1,4 +1,4 @@
-import './create-organisation.html';
+import '../create-organisation/create-organisation.html';
 
 import { Template } from 'meteor/templating';
 import { loadFilePicker } from 'meteor/natestrauser:filepicker-plus';

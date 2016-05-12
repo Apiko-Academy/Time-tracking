@@ -1,5 +1,5 @@
 import './organisation.html';
-import './create-organisation/create-organisation.js';
+import '../../components/create-organisation/create-organisation.js';
 
 import { Template } from 'meteor/templating';
 

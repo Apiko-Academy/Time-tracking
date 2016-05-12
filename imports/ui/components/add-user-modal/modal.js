@@ -1,5 +1,5 @@
 import './modal.html';
-import '../organisation-settings.html';
+import '/imports/ui/pages/organisation/organisation-settings/organisation-settings.html';
 import '../users-table/users-table.html';
 
 

@@ -89,7 +89,7 @@
 	});
 
 	Template._resetPasswordDialog.onRendered(function() {
-		var $modal = $(this.find('#login-buttons-reset-password-modal'));
+		var $modal = $(this.find('#login-buttons-reset-password-add-user-modal'));
 		if (!_.isFunction($modal.modal)) {
 			console.error("You have to add a Bootstrap package, i.e. meteor add twbs:bootstrap");
 		} else {
@@ -145,7 +145,7 @@
 	});
 
 	Template._enrollAccountDialog.onRendered(function() {
-		$modal = $(this.find('#login-buttons-enroll-account-modal'));
+		$modal = $(this.find('#login-buttons-enroll-account-add-user-modal'));
 		if (!_.isFunction($modal.modal)) {
 			console.error("You have to add a Bootstrap package, i.e. meteor add twbs:bootstrap");
 		} else {
@@ -219,7 +219,7 @@
 		'click .configure-login-service-dismiss-button': function(event) {
 			event.stopPropagation();
 			loginButtonsSession.set('configureLoginServiceDialogVisible', false);
-			$('#configure-login-service-dialog-modal').modal('hide');
+			$('#configure-login-service-dialog-add-user-modal').modal('hide');
 		},
 		'click #configure-login-service-dialog-save-configuration': function() {
 			if (loginButtonsSession.get('configureLoginServiceDialogVisible') &&
@@ -246,7 +246,7 @@
 					} else {
 						loginButtonsSession.set('configureLoginServiceDialogVisible', false);
 					}
-					$('#configure-login-service-dialog-modal').modal('hide');
+					$('#configure-login-service-dialog-add-user-modal').modal('hide');
 				});
 			}
 		},

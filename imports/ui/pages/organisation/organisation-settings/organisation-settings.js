@@ -1,8 +1,8 @@
 import './organisation-settings.html';
 import '/imports/ui/components/permissions-page/permissions.html';
 
-import './modal/modal.js';
-import './users-table/users-table.js';
+import '/imports/ui/components/add-user-modal/modal.js';
+import '/imports/ui/components/users-table/users-table.js';
 
 import { handleMethodResult } from '/imports/modules/handle-method-result.js';
 import { Mongo } from 'meteor/mongo';

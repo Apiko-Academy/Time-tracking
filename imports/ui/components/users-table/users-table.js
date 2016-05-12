@@ -1,7 +1,7 @@
-import './../modal/modal.html';
+import '../add-user-modal/modal.html';
 
 import '../user/user.js'
-import '../organisation-settings.js';
+import '/imports/ui/pages/organisation/organisation-settings/organisation-settings.js';
 
 Template.usersTable.helpers({
   organisationMembers () {

@@ -1,4 +1,4 @@
-import './../modal/modal.js';
+import '../add-user-modal/modal.js';
 import './user.html';
 
 import { getFullName } from '/imports/modules/users.js';
