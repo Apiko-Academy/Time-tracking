@@ -1,7 +1,7 @@
 import './member-list-item.html';
 
-import { getFullName, getProfileIcon, getUserEmail } from '../../../../../../modules/users.js';
-import { handleMethodResult } from '../../../../../../modules/handle-method-result.js';
+import { getFullName, getProfileIcon, getUserEmail } from '/imports/modules/users.js';
+import { handleMethodResult } from '/imports/modules/handle-method-result.js';
 import { Meteor } from 'meteor/meteor';
 import { Template } from 'meteor/templating';
 
