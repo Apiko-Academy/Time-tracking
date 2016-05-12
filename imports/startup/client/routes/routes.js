@@ -5,7 +5,7 @@ import { Meteor } from 'meteor/meteor';
 import { Router } from 'meteor/iron:router';
 
 // homepage
-import '/imports/ui/pages/homepage.html';
+import '/imports/ui/pages/homepage/homepage.html';
 // main layout
 import '/imports/ui/layouts/main-layout.js';
 // loading
@@ -18,15 +18,15 @@ import '/imports/ui/pages/organisation/organisation.js';
 import '/imports/ui/pages/organisation/my-organisations.js';
 import '/imports/ui/pages/organisation/organisation-settings/organisation-settings.js';
 // projects
-import '/imports/ui/pages/projects-page.js';
+import '/imports/ui/pages/projects/projects-page.js';
 // reports
-import '/imports/ui/pages/reports.html';
+import '/imports/ui/pages/reports/reports.html';
 // tasks
-import '/imports/ui/pages/tasks.js';
+import '/imports/ui/pages/tasks/tasks.js';
 // timer
-import '/imports/ui/pages/timer.html';
+import '/imports/ui/pages/timer/timer.html';
 // user profile
-import '/imports/ui/pages/user-profile.js';
+import '/imports/ui/pages/user-profile/user-profile.js';
 // permissions
 import '/imports/ui/components/permissions-page/permissions.html';
 

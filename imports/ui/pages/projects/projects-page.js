@@ -1,12 +1,12 @@
 import './projects-page.html';
-import '../components/project/find/projects-find.js';
-import '../components/project/list/projects-list.js';
-import '../components/project/create/project-create.js';
+import '/imports/ui/components/project/find/projects-find.js';
+import '/imports/ui/components/project/list/projects-list.js';
+import '/imports/ui/components/project/create/project-create.js';
 
 import 'meteor/trsdln:modals';
 
 import { Template } from 'meteor/templating';
-import { Project } from '../../api/collections.js';
+import { Project } from '/imports/api/collections.js';
 
 Template.Projects_page.onCreated(function(){
   this.clientFilter = new ReactiveVar( null );
