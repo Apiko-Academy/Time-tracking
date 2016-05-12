@@ -6,12 +6,6 @@ import { Router } from 'meteor/iron:router';
 
 // homepage
 import '/imports/ui/pages/homepage/homepage.html';
-// main layout
-import '/imports/ui/layouts/main-layout.js';
-// loading
-import '/imports/ui/pages/loading.html';
-// 404
-import '/imports/ui/pages/not-found.html';
 // organisation
 import { Organisation } from '/imports/api/collections.js';
 import '/imports/ui/pages/organisation/organisation.js';
@@ -27,8 +21,6 @@ import '/imports/ui/pages/tasks/tasks.js';
 import '/imports/ui/pages/timer/timer.html';
 // user profile
 import '/imports/ui/pages/user-profile/user-profile.js';
-// permissions
-import '/imports/ui/components/permissions-page/permissions.html';
 
 // CONFIGURATION
 import "./config.js";
