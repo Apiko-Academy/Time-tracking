@@ -5,7 +5,6 @@ import { Template } from 'meteor/templating';
 import { loadFilePicker } from 'meteor/natestrauser:filepicker-plus';
 import { Organisation } from '/imports/api/collections.js';
 
-import '../../startup/client/config.js';
 import '../components/gravatar/gravatar.js';
 import { handleMethodResult } from '../../modules/handle-method-result.js';
 import { outputHandler } from '../../modules/output-handler.js';

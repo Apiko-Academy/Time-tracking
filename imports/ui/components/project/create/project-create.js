@@ -43,7 +43,7 @@ Template.Project_create.events({
       clientId: target.clients.value,
       public: target.public.checked,
       color: ''
-    }
+    };
 
     target.reset();
     

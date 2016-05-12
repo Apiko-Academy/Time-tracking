@@ -1,8 +1,8 @@
 import { Meteor } from 'meteor/meteor';
 import { check } from 'meteor/check';
-import { MongoId } from '../../../modules/regex.js';
-import { Organisation } from '../../collections.js';
-import { Roles } from '../../../modules/Roles.js';
+import { MongoId } from '/imports/modules/regex.js';
+import { Organisation } from '/imports/api/collections.js';
+import { Roles } from '/imports/modules/Roles.js';
 
 Meteor.methods({
   organisationInsert: function(organisationAttributes) {
