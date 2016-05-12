@@ -9,7 +9,7 @@
     <h3>Project members</h3>
     <div class="list-group">
     {{#each project.managers}}
-    <button type="button" class="list-group-item">
+    <button type="button" class="list-group-item list-group-item-info">
       <img src="{{icon}}" class="img-circle user-list-img" alt="#" />
       <span><b>{{fullName}}</b> ({{email}})</span> 
       <span class='pull-right'>
@@ -22,7 +22,7 @@
           </button>
         </div>
       </span>
-      </button>
+    </button>
     {{/each}}
     {{#each project.workers}}
       <button type="button" class="list-group-item">
