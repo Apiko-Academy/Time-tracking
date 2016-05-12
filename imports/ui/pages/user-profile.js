@@ -13,7 +13,6 @@ import { regExEmail } from '../../modules/regex.js';
 
 Template.userProfile.onCreated(function () {
   // should be defined other way: meteor settings or env var, I guess
-  loadFilePicker('AMxXlNUEKQ1OgRo47XtKSz');
   this.subscribe('organisation');
 
 
