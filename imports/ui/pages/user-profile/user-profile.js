@@ -1,15 +1,14 @@
 import './user-profile.html';
-import './user-organization.js';
+import '../../components/user-organization/user-organization.js';
 
 import { Template } from 'meteor/templating';
 import { loadFilePicker } from 'meteor/natestrauser:filepicker-plus';
-import { Organisation } from '../../api/organisation/organisation.js';
+import { Organisation } from '/imports/api/collections.js';
 
-import '../../startup/client/config.js';
-import '../components/gravatar/gravatar.js';
-import { handleMethodResult } from '../../modules/handle-method-result.js';
-import { outputHandler } from '../../modules/output-handler.js';
-import { regExEmail } from '../../modules/regex.js';
+import '/imports/ui/components/gravatar/gravatar.js';
+import { handleMethodResult } from '/imports/modules/handle-method-result.js';
+import { outputHandler } from '/imports/modules/output-handler.js';
+import { regExEmail } from '/imports/modules/regex.js';
 
 Template.userProfile.onCreated(function () {
   // should be defined other way: meteor settings or env var, I guess

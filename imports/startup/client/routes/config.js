@@ -1,18 +1,11 @@
-import '../../../ui/pages/loading.html';
-import '../../../ui/pages/not-found.html';
+import { Router } from 'meteor/iron:router';
 
-import {Router} from 'meteor/iron:router';
-
-import './main-layout.js';
-import './homepage.js';
-import './timer.js';
-import './projects.js';
-import './tasks.js';
-import './reports.js';
-import './user-profile.js';
-import './organisation.js';
-import '../../../ui/pages/loading.html';
-import '../../../ui/pages/not-found.html';
+// main layout
+import '/imports/ui/layouts/main-layout.js';
+// loading
+import '/imports/ui/pages/loading.html';
+// 404
+import '/imports/ui/pages/not-found.html';
 
 Router.configure({
   layoutTemplate: 'mainLayout',

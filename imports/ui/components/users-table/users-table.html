@@ -5,7 +5,7 @@
       {{#each users}}
         {{> userInOrganisation organisationOwners=organisationOwners
             user=this changeOrganisationMembers=changeOrganisationMembers
-            usersRolesInOrganisation=usersRolesInOrganisation}}
+            toggleOwner=toggleOwner}}
       {{/each}}
       </tbody>
     </table>

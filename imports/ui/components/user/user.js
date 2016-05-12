@@ -1,8 +1,8 @@
-import './modal.js';
+import '../add-user-modal/modal.js';
 import './user.html';
 
-import { getFullName } from '../../../../modules/users.js';
-import { getProfileIcon } from '../../../../modules/users.js';
+import { getFullName } from '/imports/modules/users.js';
+import { getProfileIcon } from '/imports/modules/users.js';
 
 Template.userInOrganisation.helpers({
   getName () {
@@ -14,7 +14,7 @@ Template.userInOrganisation.helpers({
   profileImage () {
     return getProfileIcon(this.user._id);
   }
-})
+});
 
 Template.userInOrganisation.events({
   'click .remove-from-organisation-users': function(event){
@@ -23,10 +23,10 @@ Template.userInOrganisation.events({
   },
   'click .add-user-to-owners': function(event) {
     event.preventDefault();
-    this.usersRolesInOrganisation(this.user._id, 'add-user-to-owners');
+    this.toggleOwner(this.user._id, 'add-user-to-owners');
   },
   'click .remove-user-from-owners': function(event) {
     event.preventDefault();
-    this.usersRolesInOrganisation(this.user._id, 'remove-user-from-owners');
+    this.toggleOwner(this.user._id, 'remove-user-from-owners');
   }
 });

@@ -1,7 +1,7 @@
-import './modal.html';
+import '../add-user-modal/modal.html';
 
-import './user.js'
-import './organisation-settings.js';
+import '../user/user.js'
+import '/imports/ui/pages/organisation/organisation-settings/organisation-settings.js';
 
 Template.usersTable.helpers({
   organisationMembers () {
@@ -16,8 +16,7 @@ Template.usersTable.helpers({
     let tmpl = Template.instance();
     return tmpl.data.changeOrganisationMembers;
   },
-  usersRolesInOrganisation () {
-    let tmpl = Template.instance();
-    return tmpl.data.usersRolesInOrganisation;
+  toggleOwner () {
+    return Template.instance().data.toggleOwner;
   }
 });

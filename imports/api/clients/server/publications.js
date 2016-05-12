@@ -1,6 +1,5 @@
 import { Meteor } from 'meteor/meteor';
-import { Clients } from '../clients.js';
-
+import { Clients } from '../../collections.js';
 
 Meteor.publish('clients', function() {
   if(this.userId){

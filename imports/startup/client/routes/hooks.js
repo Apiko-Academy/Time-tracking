@@ -1,7 +1,8 @@
-import './config.js';
-import '../../../ui/components/permissions-page/permissions.html';
-
-import { Meteor } from 'meteor/meteor';
+import { Router } from 'meteor/iron:router';
+// loading
+import '/imports/ui/pages/loading.html';
+// permissions
+import '/imports/ui/components/permissions-page/permissions.html';
 
 Router.onBeforeAction(function(){
   this.render('loading');

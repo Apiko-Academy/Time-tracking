@@ -1,8 +1,8 @@
 import './my-organisations.html';
-import './organisation-settings/organisation-settings.html';
+import '../organisation-settings/organisation-settings.html';
 
-import { getOrganisationIcon } from '../../../modules/organisation.js';
-import { getFullName } from '../../../modules/users.js';
+import { getOrganisationIcon } from '/imports/modules/organisation.js';
+import { getFullName } from '/imports/modules/users.js';
 
 Template.myOrganisations.helpers({
   isOwner: function(){
