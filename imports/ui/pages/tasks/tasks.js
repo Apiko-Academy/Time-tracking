@@ -1,4 +1,4 @@
-import '../components/users-select/users-select.js';
+import '/imports/ui/components/users-select/users-select.js';
 import './tasks.html';
 
 Template.tasks.helpers({

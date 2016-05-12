@@ -1,17 +1,17 @@
 import './organisation-settings.html';
-import '../../../components/permissions-page/permissions.html';
+import '/imports/ui/components/permissions-page/permissions.html';
 
-import './modal.js';
-import './users-table.js';
+import '/imports/ui/components/add-user-modal/modal.js';
+import '/imports/ui/components/users-table/users-table.js';
 
-import { handleMethodResult } from '../../../../modules/handle-method-result.js';
+import { handleMethodResult } from '/imports/modules/handle-method-result.js';
 import { Mongo } from 'meteor/mongo';
-import { Organisation } from '../../../../api/organisation/organisation.js';
-import { outputHandler } from '../../../../modules/output-handler.js';
+import { Organisation } from '/imports/api/collections.js';
+import { outputHandler } from '/imports/modules/output-handler.js';
 import { ReactiveArray } from 'meteor/manuel:reactivearray';
 import { ReactiveVar } from 'meteor/reactive-var';
-import { changeIcon } from '../../../../modules/filepicker.js';
-import { getOrganisationIcon } from '../../../../modules/organisation.js';
+import { changeIcon } from '/imports/modules/filepicker.js';
+import { getOrganisationIcon } from '/imports/modules/organisation.js';
 
 Template.organisationSettings.onCreated(function () {
   let organizationIcon = getOrganisationIcon(this.data._id);
@@ -20,19 +20,6 @@ Template.organisationSettings.onCreated(function () {
   this.iconUrl = new ReactiveVar(organizationIcon);
   this.organisationOwners = new ReactiveArray(this.data.owners);
 
-  this.usersRolesInOrganisation = (userId, eventPressed) => {
-    let methodName = eventPressed === 'add-user-to-owners' ? 'push' : 'remove';
-    this.organisationOwners[methodName](userId);
-  };
-
-  this.addOrRemoveUserFromOrganisation =  (userId, eventPressed) => {
-    if (eventPressed === 'remove') {
-      this.organisationOwners.remove(userId);
-      this.organisationMembers.remove(userId);
-    } else {
-      this.organisationMembers.push(userId);
-    }
-  };
 });
 
 Template.organisationSettings.helpers({
@@ -46,11 +33,21 @@ Template.organisationSettings.helpers({
   },
   changeOrganisationMembers () {
     let tmpl = Template.instance();
-    return tmpl.addOrRemoveUserFromOrganisation;
+    return function(userId, eventPressed) {
+      if (eventPressed === 'remove') {
+        tmpl.organisationOwners.remove(userId);
+        tmpl.organisationMembers.remove(userId);
+      } else {
+        tmpl.organisationMembers.push(userId);
+      }
+    };
   },
-  usersRolesInOrganisation () {
+  toggleOwner () {
     let tmpl = Template.instance();
-    return tmpl.usersRolesInOrganisation;
+    return function(userId, eventPressed) {
+      let methodName = eventPressed === 'add-user-to-owners' ? 'push' : 'remove';
+      tmpl.organisationOwners[methodName](userId);
+    }
   },
   currentOrganisation () {
     return this;

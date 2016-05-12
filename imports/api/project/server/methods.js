@@ -1,6 +1,6 @@
 import { Meteor } from 'meteor/meteor';
 import { check } from 'meteor/check';
-import { Project } from '../project.js';
+import { Project } from '../../collections.js';
 
 Meteor.methods({
   'project.create': function(projectAttributes) {

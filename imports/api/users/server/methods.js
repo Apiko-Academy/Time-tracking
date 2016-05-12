@@ -1,4 +1,4 @@
-import {MongoId} from '../../../modules/regex.js';
+import {MongoId} from '/imports/modules/regex.js';
 
 import { Meteor } from 'meteor/meteor';
 

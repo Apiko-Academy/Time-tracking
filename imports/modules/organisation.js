@@ -1,4 +1,4 @@
-import { Organisation } from '../api/organisation/organisation.js';
+import { Organisation } from '../api/collections.js';
 import { noImage } from './images.js';
 
 let getOrganisationIcon = (organisationId) => {

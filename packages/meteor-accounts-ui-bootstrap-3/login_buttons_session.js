@@ -101,7 +101,7 @@
 			this.set('configureLoginServiceDialogServiceName', name);
 			this.set('configureLoginServiceDialogSaveDisabled', true);
 			setTimeout(function(){
-				$('#configure-login-service-dialog-modal').modal();
+				$('#configure-login-service-dialog-add-user-modal').modal();
 			}, 500)
 		}
 	};

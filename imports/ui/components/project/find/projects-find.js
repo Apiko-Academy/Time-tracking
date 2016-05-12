@@ -1,11 +1,11 @@
 import './projects-find.html';
-import 'meteor/alanning:roles';
 import 'meteor/underscore';
 import '../../select-dropdown/select-dropdown.js';
 
-import { Clients } from '../../../../api/clients/clients.js';
+import { Clients } from '/imports/api/collections.js';
+import { Organisation } from '/imports/api/collections.js';
 import { Template } from 'meteor/templating';
-import { getFullName } from '../../../../modules/users.js';
+import { getFullName } from '/imports/modules/users.js';
 
 Template.Projects_find.helpers({
   clients: function(){
@@ -29,13 +29,10 @@ Template.Projects_find.helpers({
     }
   },
   teamMembers: function(){
-    let organizationIds = Roles.getGroupsForUser(Meteor.userId());
+    let userOrganizations = Organisation.find({members: Meteor.userId()});
     let usersIds = [];
-
-    organizationIds.forEach((orgId)=>{
-      usersIds = _.union(usersIds, 
-        _.pluck(Roles.getUsersInRole(['member', 'owner'], orgId).fetch(), '_id')
-      );
+    userOrganizations.forEach((org) => {
+      usersIds = _.union(usersIds, org.members);
     });
     return usersIds.map((id)=>{
       return {
