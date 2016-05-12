@@ -1,6 +1,6 @@
 import './users-add.html';
 
-import { handleMethodResult } from '../../../../modules/handle-method-result.js';
+import { handleMethodResult } from '../../../../../../modules/handle-method-result.js';
 import { Meteor } from 'meteor/meteor';
 import { Template } from 'meteor/templating';
 

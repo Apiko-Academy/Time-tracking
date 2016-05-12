@@ -1,4 +1,2 @@
 import './project-edit.html';
-import './project-sharing.js';
-
-
+import './project-sharing/project-sharing.js';

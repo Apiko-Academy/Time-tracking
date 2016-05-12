@@ -33,14 +33,14 @@ Meteor.methods({
     let query = {};
 
     if(role === 'worker'){
-      query.$addToSet = {workers: userId};
-      query.$pull = {managers: userId};
+      _.extend(query, {$pull: {managers: userId}, $addToSet: {workers: userId}});
     } else if(role === 'manager'){
-      query.$pull = {workers: userId};
-      query.$addToSet = {managers: userId};
+      _.extend(query, {$addToSet: {managers: userId}, $pull: {workers: userId}});
     }
 
-    if(Project.find({_id: projectId, managers: this.userId})){
+    let project = Project.findOne({_id: projectId, managers: this.userId});
+
+    if(project){
       return Project.update({_id: projectId}, query);
     } else {
       throw new Meteor.Error('Access denied');
