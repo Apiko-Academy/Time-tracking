@@ -8,4 +8,8 @@ const Organisation = new Mongo.Collection('organisation');
 
 const Project = new Mongo.Collection('project');
 
-export {Clients, Organisation, Project};
+const Timers = new Mongo.Collection("timers");
+
+const Tasks = new Mongo.Collection("tasks");
+
+export {Clients, Organisation, Project, Timers, Tasks};
