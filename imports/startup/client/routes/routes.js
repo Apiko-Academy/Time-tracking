@@ -79,6 +79,7 @@ Router.route('/projects', {
   template: 'Projects_page',
   waitOn: function(){
     return [
+      Meteor.subscribe('organisation'),
       Meteor.subscribe('projects'),
       Meteor.subscribe('clients'),
       Meteor.subscribe('users')

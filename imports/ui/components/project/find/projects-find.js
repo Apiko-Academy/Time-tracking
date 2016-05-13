@@ -29,7 +29,7 @@ Template.Projects_find.helpers({
     }
   },
   teamMembers: function(){
-    let userOrganizations = Organisations.find({members: Meteor.userId()});
+    let userOrganizations = Organisations.find({members: Meteor.userId(), owners: Meteor.userId()});
     let usersIds = [];
     userOrganizations.forEach((org) => {
       usersIds = _.union(usersIds, org.members);
