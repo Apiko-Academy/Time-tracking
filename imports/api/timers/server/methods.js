@@ -11,6 +11,10 @@ Meteor.methods({
       userId: MongoId
     });
 
+    if (Timers.find({taskId: timerAttrs.taskId, userId: timerAttrs.userId, ticking: true}).count() > 0) {
+      throw new Meteor.Error("You already have a running timer for this task");
+    }
+
     const newTimer = _.extend(timerAttrs, {ticking: true, startedAt: new Date()});
 
     return Timers.insert(newTimer);
