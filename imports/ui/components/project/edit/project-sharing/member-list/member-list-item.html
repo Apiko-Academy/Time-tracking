@@ -1,0 +1,16 @@
+<template name='Member_list_item'>
+  <button type="button" class="list-group-item list-group-item-{{#if isManager}}info{{else}}default{{/if}}">
+    <img src="{{icon userId}}" class="img-circle user-list-img" alt="#" />
+    <span><b>{{fullName userId}}</b> ({{email userId}})</span> 
+    <span class='pull-right'>
+    <div class="btn-group" role="group">
+      <button type='button' class='btn btn-{{#if isManager}}warning{{else}}info{{/if}} {{unsetRole}}-set' id={{userId}}>
+        Set as {{unsetRole}}
+      </button>
+      <button type='button' class='btn btn-danger remove-member' id={{userId}}>
+        Remove from project
+      </button>
+    </div>
+    </span>
+  </button>
+</template>

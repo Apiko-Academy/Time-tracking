@@ -1,0 +1,15 @@
+<template name="Project_sharing">
+  <button type="button" class="btn btn-def btn-md" data-toggle="modal" data-target="#users-add">
+    Add workers to project
+  </button>
+  {{>Users_add users=projectMembers projectId=project._id}}
+  <h3>Project members</h3>
+  <div class="list-group">
+    {{#each project.managers}}
+      {{> Member_list_item userId=this project=../project role='manager'}}
+    {{/each}}
+    {{#each project.workers}}
+      {{> Member_list_item userId=this project=../project role='worker'}}
+    {{/each}}
+  </div>
+</template>

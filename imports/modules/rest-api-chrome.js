@@ -1,7 +1,7 @@
 import { Meteor } from 'meteor/meteor';
 import { Restivus } from "meteor/nimble:restivus";
 
-import { Timers, Tasks, Project } from "../api/collections.js";
+import { Timers, Tasks, Projects } from "../api/collections.js";
 
 const chromeExtApi = new Restivus({useDefaultAuth: true});
 

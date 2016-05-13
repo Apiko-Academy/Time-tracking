@@ -7,12 +7,14 @@ import { Router } from 'meteor/iron:router';
 // homepage
 import '/imports/ui/pages/homepage/homepage.html';
 // organisation
-import { Organisation } from '/imports/api/collections.js';
+import { Organisations, Projects } from '/imports/api/collections.js';
+
 import '/imports/ui/pages/organisation/organisation.js';
 import '/imports/ui/pages/organisation/my-organisations/my-organisations.js';
 import '/imports/ui/pages/organisation/organisation-settings/organisation-settings.js';
 // projects
 import '/imports/ui/pages/projects/projects-page.js';
+import '/imports/ui/components/project/edit/project-edit.js';
 // reports
 import '/imports/ui/pages/reports/reports.html';
 // tasks
@@ -49,7 +51,7 @@ Router.route('/editOrganisation/:_id', {
     return Meteor.subscribe('current.organisation', this.params._id);
   },
   data: function(){
-    return Organisation.findOne(this.params._id);
+    return Organisations.findOne(this.params._id);
   }
 });
 
@@ -65,7 +67,7 @@ Router.route('/my-organisations', {
   data: function(){
     return {
       organisations: function(){
-        return Organisation.find({}, {sort: {createdAt: -1}});
+        return Organisations.find({}, {sort: {createdAt: -1}});
       }
     }
   }
@@ -77,10 +79,26 @@ Router.route('/projects', {
   template: 'Projects_page',
   waitOn: function(){
     return [
+      Meteor.subscribe('organisation'),
       Meteor.subscribe('projects'),
       Meteor.subscribe('clients'),
       Meteor.subscribe('users')
     ]
+  }
+});
+Router.route('/project/:_id', {
+  name: 'projectSettings',
+  template: 'Project_edit',
+  waitOn: function(){
+    return [
+      this.subscribe('current.project', this.params._id),
+      this.subscribe('users')
+    ]
+  },
+  data: function(){
+    return {
+      project: Projects.findOne()
+    }
   }
 });
 

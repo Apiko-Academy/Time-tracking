@@ -1,5 +1,7 @@
 import { Meteor } from 'meteor/meteor';
-import { Organisation } from '../../collections.js';
+import { Organisations } from '../../collections.js';
+
+import 'meteor/underscore';
 
 Meteor.publish('all.users', function allUsers() {
   if (this.userId) {
@@ -10,18 +12,18 @@ Meteor.publish('all.users', function allUsers() {
 Meteor.publish('organisation', function() {
   let userId = this.userId;
 
-  return Organisation.find({ members: userId });
+  return Organisations.find({ members: userId });
 });
 
 Meteor.publishComposite('current.organisation', function(organisationId){
   return {
     find: function() {
-      return Organisation.find({_id: organisationId});
+      return Organisations.find({_id: organisationId});
     },
     children: [
       {
         find: function () {
-          let usersArray = _.flatten(Organisation.find({_id: organisationId}).map(
+          let usersArray = _.flatten(Organisations.find({_id: organisationId}).map(
               (item)=> {
                 return _.union(item.members, item.owners);
               }));
