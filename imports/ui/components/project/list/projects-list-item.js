@@ -1,7 +1,7 @@
 import './projects-list-item.html';
 
 import { Clients } from '/imports/api/collections.js';
-import {getFullName} from '../../../../modules/users.js';
+import { getFullName } from '../../../../modules/users.js';
 import { Template } from 'meteor/templating';
 
 Template.Project_list_item.helpers({

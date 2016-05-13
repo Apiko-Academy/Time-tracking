@@ -1,0 +1,9 @@
+<template name='Project_edit'>
+  <div class="list-container">
+    {{#if project}}
+      {{> Project_sharing}}
+    {{else}}
+      {{> permissions text='Access denied'}}
+    {{/if}}
+  </div>
+</template>

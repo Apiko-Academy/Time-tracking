@@ -2,9 +2,9 @@
   <td>{{name}}</td>
   <td>{{client}}</td>
   <td>{{#each managers}}
-    <b>{{this}} </b>
+    <span class="label label-primary"><b>{{this}}</b></span>
   {{/each}}
   {{#each workers}}
-    , {{this}}
+    <span class="label label-default">{{this}}</span>
   {{/each}}</td>
 </template>

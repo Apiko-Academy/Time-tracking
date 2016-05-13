@@ -15,7 +15,6 @@ import { getOrganisationIcon } from '/imports/modules/organisation.js';
 
 Template.organisationSettings.onCreated(function () {
   let organizationIcon = getOrganisationIcon(this.data._id);
-
   this.organisationMembers = new ReactiveArray(this.data.members);
   this.iconUrl = new ReactiveVar(organizationIcon);
   this.organisationOwners = new ReactiveArray(this.data.owners);
