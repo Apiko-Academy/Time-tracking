@@ -2,6 +2,8 @@ import { Meteor } from 'meteor/meteor';
 import { check } from 'meteor/check';
 import { Projects } from '../../collections.js';
 
+import 'meteor/underscore';
+
 Meteor.methods({
   'project.create': function(projectAttributes) {
     check(projectAttributes, {

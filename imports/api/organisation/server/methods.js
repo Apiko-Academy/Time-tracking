@@ -4,6 +4,8 @@ import { MongoId } from '/imports/modules/regex.js';
 import { Organisations } from '/imports/api/collections.js';
 import { Roles } from '/imports/modules/Roles.js';
 
+import 'meteor/underscore';
+
 Meteor.methods({
   organisationInsert: function(organisationAttributes) {
 
