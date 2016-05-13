@@ -6,7 +6,7 @@ import '/imports/ui/components/users-table/users-table.js';
 
 import { handleMethodResult } from '/imports/modules/handle-method-result.js';
 import { Mongo } from 'meteor/mongo';
-import { Organisation } from '/imports/api/collections.js';
+import { Organisations } from '/imports/api/collections.js';
 import { outputHandler } from '/imports/modules/output-handler.js';
 import { ReactiveArray } from 'meteor/manuel:reactivearray';
 import { ReactiveVar } from 'meteor/reactive-var';

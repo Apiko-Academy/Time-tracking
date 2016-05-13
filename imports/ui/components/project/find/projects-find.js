@@ -3,7 +3,7 @@ import 'meteor/underscore';
 import '../../select-dropdown/select-dropdown.js';
 
 import { Clients } from '/imports/api/collections.js';
-import { Organisation } from '/imports/api/collections.js';
+import { Organisations } from '/imports/api/collections.js';
 import { Template } from 'meteor/templating';
 import { getFullName } from '/imports/modules/users.js';
 
@@ -29,7 +29,7 @@ Template.Projects_find.helpers({
     }
   },
   teamMembers: function(){
-    let userOrganizations = Organisation.find({members: Meteor.userId()});
+    let userOrganizations = Organisations.find({members: Meteor.userId(), owners: Meteor.userId()});
     let usersIds = [];
     userOrganizations.forEach((org) => {
       usersIds = _.union(usersIds, org.members);

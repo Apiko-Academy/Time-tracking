@@ -3,7 +3,7 @@ import '../../components/user-organization/user-organization.js';
 
 import { Template } from 'meteor/templating';
 import { loadFilePicker } from 'meteor/natestrauser:filepicker-plus';
-import { Organisation } from '/imports/api/collections.js';
+import { Organisations } from '/imports/api/collections.js';
 
 import '/imports/ui/components/gravatar/gravatar.js';
 import { handleMethodResult } from '/imports/modules/handle-method-result.js';
@@ -76,7 +76,7 @@ Template.userProfile.helpers({
   organizations: function () {
     let userId = Meteor.userId();
 
-    return Organisation.find({ members: userId }).fetch();
+    return Organisations.find({ members: userId }).fetch();
   }
 });
 

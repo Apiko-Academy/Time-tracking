@@ -1,7 +1,7 @@
 import { Meteor } from 'meteor/meteor';
 import { check } from 'meteor/check';
 import { MongoId } from '/imports/modules/regex.js';
-import { Organisation } from '/imports/api/collections.js';
+import { Organisations } from '/imports/api/collections.js';
 import { Roles } from '/imports/modules/Roles.js';
 
 Meteor.methods({
@@ -17,7 +17,7 @@ Meteor.methods({
       members: [MongoId]
     });
 
-    let organisationWithSameName = Organisation.findOne({ name: organisationAttributes.name });
+    let organisationWithSameName = Organisations.findOne({ name: organisationAttributes.name });
 
     if (organisationWithSameName) {
       return organisationWithSameName._id;
@@ -28,7 +28,7 @@ Meteor.methods({
       createdAt: new Date()
     });
 
-    return Organisation.insert(organisation);
+    return Organisations.insert(organisation);
   },
 
   editOrganisation: function (organisationData) {
@@ -52,6 +52,6 @@ Meteor.methods({
       throw new Meteor.Error("You can not remove the last owner");
     }
 
-    Organisation.update({_id: organisationData._id}, {$set: organisationData});
+    Organisations.update({_id: organisationData._id}, {$set: organisationData});
   }
 });
