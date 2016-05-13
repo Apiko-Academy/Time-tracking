@@ -7,7 +7,7 @@ import { Router } from 'meteor/iron:router';
 // homepage
 import '/imports/ui/pages/homepage/homepage.html';
 // organisation
-import { Organisation, Project } from '/imports/api/collections.js';
+import { Organisations, Projects } from '/imports/api/collections.js';
 
 import '/imports/ui/pages/organisation/organisation.js';
 import '/imports/ui/pages/organisation/my-organisations/my-organisations.js';
@@ -51,7 +51,7 @@ Router.route('/editOrganisation/:_id', {
     return Meteor.subscribe('current.organisation', this.params._id);
   },
   data: function(){
-    return Organisation.findOne(this.params._id);
+    return Organisations.findOne(this.params._id);
   }
 });
 
@@ -67,7 +67,7 @@ Router.route('/my-organisations', {
   data: function(){
     return {
       organisations: function(){
-        return Organisation.find({}, {sort: {createdAt: -1}});
+        return Organisations.find({}, {sort: {createdAt: -1}});
       }
     }
   }
@@ -96,7 +96,7 @@ Router.route('/project/:_id', {
   },
   data: function(){
     return {
-      project: Project.findOne()
+      project: Projects.findOne()
     }
   }
 });

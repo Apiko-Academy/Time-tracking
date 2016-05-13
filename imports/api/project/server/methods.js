@@ -1,6 +1,6 @@
 import { Meteor } from 'meteor/meteor';
 import { check } from 'meteor/check';
-import { Project } from '../../collections.js';
+import { Projects } from '../../collections.js';
 
 Meteor.methods({
   'project.create': function(projectAttributes) {
@@ -11,7 +11,7 @@ Meteor.methods({
       public: Boolean
     });
 
-    let project = Project.findOne({name: projectAttributes.name, managers: this.userId});
+    let project = Projects.findOne({name: projectAttributes.name, managers: this.userId});
 
     if(!project && this.userId){
       projectAttributes = _.extend(projectAttributes, {
@@ -20,7 +20,7 @@ Meteor.methods({
         workers: []
       });
 
-      return Project.insert(projectAttributes);
+      return Projects.insert(projectAttributes);
     } else if(project){
       throw new Meteor.Error('Project is already exists');
     }
@@ -30,7 +30,7 @@ Meteor.methods({
     check(userId, String);
     check(role, String);
    
-    let project = Project.findOne({_id: projectId, managers: this.userId});
+    let project = Projects.findOne({_id: projectId, managers: this.userId});
 
     if(!project){
       throw new Meteor.Error('Access denied');
@@ -48,13 +48,13 @@ Meteor.methods({
       _.extend(query, {$addToSet: {managers: userId}, $pull: {workers: userId}});
     }
     
-    return Project.update({_id: projectId}, query);
+    return Projects.update({_id: projectId}, query);
   },
   'project.member.remove': function(projectId, userId){
     check(projectId, String);
     check(userId, String);
 
-    let project = Project.findOne({_id: projectId, managers: this.userId});
+    let project = Projects.findOne({_id: projectId, managers: this.userId});
 
     if(!project){
       throw new Meteor.Error('Access denied');
@@ -64,6 +64,6 @@ Meteor.methods({
         throw new Meteor.Error('You can not remove the last manager');
     }
 
-    return Project.update({_id: projectId}, {$pull: {workers: userId, managers: userId}});
+    return Projects.update({_id: projectId}, {$pull: {workers: userId, managers: userId}});
   }
 });
