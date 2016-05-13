@@ -1,5 +1,6 @@
 import { Meteor } from 'meteor/meteor';
 import { Template } from 'meteor/templating';
+import 'meteor/underscore';
 
 import './users-select.html';
 import './users-search.js';

@@ -1,6 +1,8 @@
 import { Meteor } from 'meteor/meteor';
 import { Organisations } from '../../collections.js';
 
+import 'meteor/underscore';
+
 Meteor.publish('all.users', function allUsers() {
   if (this.userId) {
     return Meteor.users.find();

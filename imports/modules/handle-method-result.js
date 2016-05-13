@@ -1,4 +1,7 @@
+import 'meteor/underscore';
+
 import { outputHandler } from './output-handler.js';
+
 let handleMethodResult = (func) => {
     return (error, result) => {
       if (error) {

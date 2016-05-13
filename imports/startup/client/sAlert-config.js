@@ -1,3 +1,5 @@
+import 'meteor/underscore';
+
 import { sAlert } from 'meteor/juliancwirko:s-alert';
 
 sAlert.config({

@@ -1,5 +1,6 @@
 import './select-dropdown.html';
 import 'meteor/natestrauser:select2';
+import 'meteor/underscore';
 
 import { Meteor } from 'meteor/meteor';
 import { Template } from 'meteor/templating';
