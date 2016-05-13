@@ -48,6 +48,10 @@ Meteor.methods({
       throw new Meteor.Error("You don't have permissions to edit this organization");
     }
 
+    if(organisationData.owners.length === 0){
+      throw new Meteor.Error("You can not remove the last owner");
+    }
+
     Organisation.update({_id: organisationData._id}, {$set: organisationData});
   }
 });

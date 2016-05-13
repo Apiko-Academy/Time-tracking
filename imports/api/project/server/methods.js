@@ -39,6 +39,10 @@ Meteor.methods({
     let query = {};
 
     if(role === 'worker'){
+
+      if(project.managers.length === 1 && project.managers.indexOf(userId) > -1){
+        throw new Meteor.Error('You can not remove the last manager');
+      }
       _.extend(query, {$pull: {managers: userId}, $addToSet: {workers: userId}});
     } else if(role === 'manager'){
       _.extend(query, {$addToSet: {managers: userId}, $pull: {workers: userId}});
@@ -50,10 +54,14 @@ Meteor.methods({
     check(projectId, String);
     check(userId, String);
 
-    let project = Project.find({_id: projectId, managers: this.userId});
+    let project = Project.findOne({_id: projectId, managers: this.userId});
 
     if(!project){
       throw new Meteor.Error('Access denied');
+    }
+    
+    if(project.managers.length === 1 && project.managers.indexOf(userId) > -1){
+        throw new Meteor.Error('You can not remove the last manager');
     }
 
     return Project.update({_id: projectId}, {$pull: {workers: userId, managers: userId}});
