@@ -36,3 +36,27 @@ chromeExtApi.addRoute("timers/stop/:id", {
     }
   }
 });
+
+// get total time for a task
+chromeExtApi.addRoute("taskTime/:id", {
+  get(){
+    if (Tasks.find({_id: this.urlParams.id}).count() === 0) {
+      return {status: "error", data: "no task with id " + this.urlParams.id};
+    }
+
+    let totalTimeElapsed = 0;
+    const currentTime = new Date();
+    const timers = Timers.find({taskId: this.urlParams.id});
+    timers.forEach((timer) => {
+      let elapsedByTimer;
+      // if there're ticking timers for task take their currently elapsed time
+      if(timer.ticking){
+        elapsedByTimer = currentTime - timer.startedAt;
+      } else {
+        elapsedByTimer = timer.elapsed;
+      }
+      totalTimeElapsed +=elapsedByTimer;
+    });
+    return {status: "success", data: totalTimeElapsed};
+  }
+});
