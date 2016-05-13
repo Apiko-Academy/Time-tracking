@@ -24,3 +24,15 @@ chromeExtApi.addRoute("timers/start", {
     }
   }
 });
+
+// stop timer by id
+chromeExtApi.addRoute("timers/stop/:id", {
+  post() {
+    try {
+      Meteor.call("timers.stop", this.urlParams.id);
+      return {status: "success", data: this.urlParams.id};
+    } catch(err) {
+      return {status: "error", data: err.message};
+    }
+  }
+});
