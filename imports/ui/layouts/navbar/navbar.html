@@ -17,7 +17,14 @@
           {{> topmenu}}
         </ul>
         <ul class="nav navbar-nav navbar-right">
-          {{> loginButtons}}  
+	        <div class="btn-group" role="group">
+		        <button type="button" class="btn btn-default">
+			        <a href="{{pathFor route='signin'}}">Login</a>
+		        </button>
+		        <button type="button" class="btn btn-default">
+			        <a href="{{pathFor route='signup'}}">Sign Up</a>
+		        </button>
+	        </div>
         </ul>
       </div><!--/.nav-collapse -->
     </div>

@@ -1,34 +1,25 @@
 import { Template } from 'meteor/templating';
 
-Accounts.ui.config({
+//AccountsTemplates.configure({
+//  defaultLayout: 'layout'
+//});
 
-  requestPermissions: {},
-  // passwordSignupFields: 'USERNAME_AND_EMAIL',
-  extraSignupFields: [{
-    fieldName: 'firstName',
-    fieldLabel: 'First name',
-    inputType: 'text',
-    visible: true,
-    validate: function(value, errorFunction) {
-      if (!value.trim()) {
-        errorFunction("Please write your first name");
-        return false;
-      } else {
-        return true;
-      }
-    }
-  }, {
-    fieldName: 'lastName',
-    fieldLabel: 'Last name',
-    inputType: 'text',
-    visible: true,
-    validate: function(value, errorFunction) {
-      if (!value.trim()) {
-        errorFunction("Please write your last name");
-        return false;
-      } else {
-        return true;
-      }
-    }
-  }]
+AccountsTemplates.addField({
+  _id: 'firstname',
+  type: 'text',
+  displayName: 'First Name',
+  required: true,
+  minLength: 3,
+  errStr: 'error.minChar',
+  trim: true
+});
+
+AccountsTemplates.addField({
+  _id: 'lastname',
+  type: 'text',
+  displayName: 'Last Name',
+  required: true,
+  minLength: 3,
+  errStr: 'error.minChar',
+  trim: true
 });
