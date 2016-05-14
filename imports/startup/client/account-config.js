@@ -5,7 +5,7 @@ import { Template } from 'meteor/templating';
 //});
 
 AccountsTemplates.addField({
-  _id: 'firstname',
+  _id: 'firstName',
   type: 'text',
   displayName: 'First Name',
   required: true,
@@ -15,7 +15,7 @@ AccountsTemplates.addField({
 });
 
 AccountsTemplates.addField({
-  _id: 'lastname',
+  _id: 'lastName',
   type: 'text',
   displayName: 'Last Name',
   required: true,

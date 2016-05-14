@@ -17,14 +17,35 @@
           {{> topmenu}}
         </ul>
         <ul class="nav navbar-nav navbar-right">
-	        <div class="btn-group" role="group">
-		        <button type="button" class="btn btn-default">
-			        <a href="{{pathFor route='signin'}}">Login</a>
-		        </button>
-		        <button type="button" class="btn btn-default">
-			        <a href="{{pathFor route='signup'}}">Sign Up</a>
-		        </button>
-	        </div>
+	        {{>loginButtons}}
+
+	        <!--Custom LoginButtons!-->
+	        <!--{{#if currentUser}}-->
+
+		        <!--<div class="dropdown">-->
+			        <!--<button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown"-->
+			                <!--aria-haspopup="true" aria-expanded="true">-->
+				        <!--<img src = "{{currentUser.profile.profileImage}}" style="width: 40px; height: 40px;">-->
+				        <!--{{currentUser.profile.firstName}}-->
+				        <!--{{currentUser.profile.lastName}}-->
+				        <!--<span class="caret"></span>-->
+			        <!--</button>-->
+			        <!--<ul class="dropdown-menu" aria-labelledby="dropdownMenu1">-->
+				        <!--<li><a href="#">Edit Profile</a></li>-->
+				        <!--<li><a href="#">My Organizations</a></li>-->
+			        <!--</ul>-->
+		        <!--</div>-->
+
+	        <!--{{else}}-->
+		        <!--<div class="btn-group" role="group">-->
+			        <!--<button type="button" class="btn btn-default">-->
+				        <!--<a href="{{pathFor route='signin'}}">Login</a>-->
+			        <!--</button>-->
+			        <!--<button type="button" class="btn btn-default">-->
+				        <!--<a href="{{pathFor route='signup'}}">Sign Up</a>-->
+			        <!--</button>-->
+		        <!--</div>-->
+	        <!--{{/if}}-->
         </ul>
       </div><!--/.nav-collapse -->
     </div>
