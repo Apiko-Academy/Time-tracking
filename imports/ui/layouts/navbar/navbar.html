@@ -17,7 +17,6 @@
           {{> topmenu}}
         </ul>
         <ul class="nav navbar-nav navbar-right">
-	        <!--{{>loginButtons}}-->
 
 	        <!--Custom LoginButtons!-->
 	        {{#if currentUser}}
@@ -33,16 +32,21 @@
 			        <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
 				        <li><a href="{{pathFor route='userProfile'}}">Edit Profile</a></li>
 				        <li><a href="{{pathFor route='myorganisations'}}">My Organizations</a></li>
+				        <li><a href="{{pathFor route='changePassword'}}">Change Password</a></li>
+				        <li class="sign-out"><a href="">Sign Out</a></li>
 			        </ul>
 		        </div>
 
 	        {{else}}
 		        <div class="btn-group" role="group">
 			        <button type="button" class="btn btn-default">
-				        <a href="{{pathFor route='signin'}}">Login</a>
+				        <a href="{{pathFor route='signIn'}}">Login</a>
 			        </button>
 			        <button type="button" class="btn btn-default">
-				        <a href="{{pathFor route='signup'}}">Sign Up</a>
+				        <a href="{{pathFor route='signUp'}}">Sign Up</a>
+			        </button>
+			        <button type="button" class="btn btn-default">
+				        <a href="{{pathFor route='forgotPassword'}}">Forgot Password</a>
 			        </button>
 		        </div>
 	        {{/if}}
