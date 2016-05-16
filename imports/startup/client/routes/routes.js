@@ -23,14 +23,6 @@ import '/imports/ui/pages/tasks/tasks.js';
 import '/imports/ui/pages/timer/timer.html';
 // user profile
 import '/imports/ui/pages/user-profile/user-profile.js';
-//signin page
-import '/imports/ui/pages/sign-in/sign-in.js';
-//signup page
-import '/imports/ui/pages/sign-up/sign-up.js';
-//change password
-import '/imports/ui/pages/change-password/change-password.js';
-//forgot password
-import '/imports/ui/pages/forgot-password/forgot-password.js';
 // CONFIGURATION
 import "./config.js";
 
@@ -134,28 +126,4 @@ Router.route('/userProfile', {
   data: function () {
     return Meteor.user();
   }
-});
-
-//signin page
-Router.route('/signin', {
-  name: 'signIn',
-  template: 'signIn'
-});
-
-//signup page
-Router.route('/signup', {
-  name: 'signUp',
-  template: 'signUp'
-});
-
-//change password
-Router.route('/change-password', {
-  name: 'changePassword',
-  template: 'changePassword'
-});
-
-//forgot password
-Router.route('/forgot-password', {
-  name: 'forgotPassword',
-  template: 'forgotPassword'
 });

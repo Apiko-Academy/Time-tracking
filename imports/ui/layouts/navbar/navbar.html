@@ -23,24 +23,23 @@
 		        <div class="dropdown">
 			        <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown"
 			                aria-haspopup="true" aria-expanded="true">
-				        <img src = "{{currentUser.profile.profileImage}}" class="user-small-avatar">
-				        {{currentUser.profile.firstName}}
-				        {{currentUser.profile.lastName}}
+				        <img src = "{{userAvatar}}" class="user-small-avatar">
+				        {{userFullName}}
 				        <span class="caret"></span>
 			        </button>
 			        <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
 				        <li><a href="{{pathFor route='userProfile'}}">Edit Profile</a></li>
 				        <li><a href="{{pathFor route='myorganisations'}}">My Organizations</a></li>
-				        <li><a href="{{pathFor route='changePassword'}}">Change Password</a></li>
+				        <li><a href="{{pathFor route='changePwd'}}">Change Password</a></li>
 				        <li class="sign-out"><a href="">Sign Out</a></li>
 			        </ul>
 		        </div>
 
 	        {{else}}
 		        <div class="btn-group" role="group">
-			        <button type="button" class="btn btn-default sign-in">Login</button>
-			        <button type="button" class="btn btn-default sign-up">Sign Up</button>
-			        <button type="button" class="btn btn-default forgot-password">Forgot Password</button>
+			        <a href="{{pathFor route='signIn'}}" class="btn btn-default">Login</a>
+			        <a href="{{pathFor route='signUp'}}" class="btn btn-default">Sign Up</a>
+			        <a href="{{pathFor route='forgotPwd'}}" class="btn btn-default">Forgot Password</a>
 		        </div>
 	        {{/if}}
         </ul>
