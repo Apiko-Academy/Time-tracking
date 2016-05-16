@@ -1,9 +1,5 @@
 import { Template } from 'meteor/templating';
 
-//AccountsTemplates.configure({
-//  defaultLayout: 'layout'
-//});
-
 AccountsTemplates.addField({
   _id: 'firstName',
   type: 'text',

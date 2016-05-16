@@ -21,7 +21,6 @@ iron:router
 twbs:bootstrap
 accounts-password
 useraccounts:bootstrap
-aldeed:template-extension
 less
 alanning:roles
 matb33:collection-hooks
