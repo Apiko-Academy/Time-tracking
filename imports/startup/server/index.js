@@ -1,4 +1,6 @@
 import './api.js';
+// REST API for Chrome extension
+import '/imports/modules/antiTogglApi.js';
 
 import { outputHandler } from '/imports/modules/output-handler.js';
 import { noImage } from '/imports/modules/images.js';

@@ -9,3 +9,9 @@ import '/imports/api/project/server/publications.js';
 
 import '/imports/api/clients/server/methods.js';
 import '/imports/api/clients/server/publications.js';
+
+import "/imports/api/tasks/server/methods.js";
+import "/imports/api/tasks/server/publications.js";
+
+import "/imports/api/timers/server/methods.js";
+import "/imports/api/timers/server/publications.js";
