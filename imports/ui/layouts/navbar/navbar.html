@@ -39,15 +39,9 @@
 
 	        {{else}}
 		        <div class="btn-group" role="group">
-			        <button type="button" class="btn btn-default">
-				        <a href="{{pathFor route='signIn'}}">Login</a>
-			        </button>
-			        <button type="button" class="btn btn-default">
-				        <a href="{{pathFor route='signUp'}}">Sign Up</a>
-			        </button>
-			        <button type="button" class="btn btn-default">
-				        <a href="{{pathFor route='forgotPassword'}}">Forgot Password</a>
-			        </button>
+			        <button type="button" class="btn btn-default sign-in">Login</button>
+			        <button type="button" class="btn btn-default sign-up">Sign Up</button>
+			        <button type="button" class="btn btn-default forgot-password">Forgot Password</button>
 		        </div>
 	        {{/if}}
         </ul>
