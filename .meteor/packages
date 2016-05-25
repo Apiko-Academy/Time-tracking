@@ -20,9 +20,8 @@ ecmascript              # Enable ECMAScript2015+ syntax in app code
 iron:router
 twbs:bootstrap
 accounts-password
-accounts-base
+useraccounts:bootstrap
 less
-ian:accounts-ui-bootstrap-3
 alanning:roles
 matb33:collection-hooks
 zephraph:namespace
@@ -38,3 +37,4 @@ natestrauser:select2
 manuel:reactivearray
 reywood:publish-composite
 jparker:gravatar
+useraccounts:iron-routing

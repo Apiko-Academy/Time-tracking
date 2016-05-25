@@ -11,4 +11,4 @@ Router.onBeforeAction(function(){
   } else {
     this.next();
   }
-}, {except: ['home']});
+}, {except: ['home', 'signIn', 'signUp', 'forgotPwd']});

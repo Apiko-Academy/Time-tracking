@@ -23,7 +23,6 @@ import '/imports/ui/pages/tasks/tasks.js';
 import '/imports/ui/pages/timer/timer.html';
 // user profile
 import '/imports/ui/pages/user-profile/user-profile.js';
-
 // CONFIGURATION
 import "./config.js";
 
